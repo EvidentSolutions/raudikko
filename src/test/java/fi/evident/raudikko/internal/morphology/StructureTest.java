@@ -43,6 +43,7 @@ class StructureTest {
     void structures() {
         assertEquals("=qj", parseStructure("[La][Xr]qj[X][Xp]mA[X]ma[Sn][Ny]", 2));
         assertEquals("=jj-=ppppp", parseStructure("[La][Xr]jj[X][Xp]EU[X]eu-[Bc][Ln][Xp]kieli[X]kiel[Sn][Ny]i", 8));
+        assertEquals("=ipppppp-", parseStructure("[Lp][Xp]Pohjois[X][Xr]i[X]pohjois[Bc]-", 8));
     }
 
     @Test

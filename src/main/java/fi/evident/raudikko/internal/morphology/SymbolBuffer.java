@@ -129,7 +129,7 @@ public final class SymbolBuffer {
         return index;
     }
 
-    private int getStart() {
+    int getStart() {
         return startIndices[index];
     }
 

@@ -1,0 +1,2378 @@
+#
+# Original file: https://github.com/voikko/corevoikko/blob/master/tests/voikkotest/fi-x-vfst/morpho.txt
+#
+# word:word
+# expected:number (not required)
+# !key (key not allowed in any analysis)
+# !=value (value not allowed in any key of any analysis)
+# analysis
+#  key=value
+word:kissa
+ expected:1
+ !NEGATIVE
+ !MALAGA_VAPAA_JALKIOSA
+ analysis
+  CLASS=nimisana
+  SIJAMUOTO=nimento
+  STRUCTURE==ppppp
+  NUMBER=singular
+  BASEFORM=kissa
+word:kuorma-auto
+ analysis
+  STRUCTURE==pppppp-=pppp
+  WORDIDS=+kuorma(w506469)+-+auto(w500567)
+  WORDBASES=+kuorma(kuorma)+-+auto(auto)
+word:koirra
+ expected:0
+word:EU
+ expected:1
+  CLASS=lyhenne
+  STRUCTURE==jj
+word:alusta
+ analysis
+  STRUCTURE==pppppp
+word:kissan
+ analysis
+  SIJAMUOTO=omanto
+  NUMBER=singular
+word:kissojen
+ analysis
+  SIJAMUOTO=omanto
+  NUMBER=plural
+word:kissaa
+ analysis
+  SIJAMUOTO=osanto
+word:meidät
+ analysis
+  SIJAMUOTO=kohdanto
+word:kissana
+ analysis
+  SIJAMUOTO=olento
+word:kissaksi
+ analysis
+  SIJAMUOTO=tulento
+word:kissassa
+ analysis
+  SIJAMUOTO=sisaolento
+word:kissasta
+ analysis
+  SIJAMUOTO=sisaeronto
+word:kissaan
+ analysis
+  SIJAMUOTO=sisatulento
+word:kissalla
+ analysis
+  SIJAMUOTO=ulkoolento
+word:kissalta
+ analysis
+  SIJAMUOTO=ulkoeronto
+word:kissalle
+ analysis
+  SIJAMUOTO=ulkotulento
+word:kissatta
+ analysis
+  SIJAMUOTO=vajanto
+word:kissoineni
+ analysis
+  SIJAMUOTO=seuranto
+word:kissoin
+ analysis
+  SIJAMUOTO=keinonto
+word:nopeasti
+ analysis
+  SIJAMUOTO=kerrontosti
+  !NUMBER
+word:juosta
+ !SIJAMUOTO
+ analysis
+  CLASS=teonsana
+word:nopea
+ analysis
+  CLASS=laatusana
+word:hyvin
+ analysis
+  CLASS=seikkasana
+ analysis
+  CLASS=laatusana
+  SIJAMUOTO=keinonto
+word:taistolainen
+ analysis
+  CLASS=nimisana_laatusana
+word:joka
+ analysis
+  CLASS=asemosana
+  SIJAMUOTO=nimento
+  NUMBER=singular
+word:jotka
+ analysis
+  CLASS=asemosana
+  SIJAMUOTO=nimento
+  NUMBER=plural
+word:ohi
+ analysis
+  CLASS=suhdesana
+word:hei
+ !PERSON
+ !SIJAMUOTO
+ expected:1
+ analysis
+  CLASS=huudahdussana
+  WORDIDS=+hei(w534446)
+  WORDBASES=+hei(hei)
+word:eli
+ analysis
+  CLASS=sidesana
+ analysis
+  CLASS=teonsana
+word:Tiina
+ analysis
+  CLASS=etunimi
+word:Pitkänen
+ analysis
+  CLASS=sukunimi
+word:Helsinki
+ analysis
+  CLASS=paikannimi
+word:Neptunus
+ analysis
+  CLASS=nimi
+word:ei
+ analysis
+  CLASS=kieltosana
+  NUMBER=singular
+  STRUCTURE==pp
+word:kymmenen
+ analysis
+  CLASS=lukusana
+  SIJAMUOTO=nimento
+  NUMBER=singular
+word:kymmenet
+ analysis
+  CLASS=lukusana
+  SIJAMUOTO=nimento
+  NUMBER=plural
+word:kaksikymmentä
+ analysis
+  SIJAMUOTO=nimento
+word:kahtakymmentä
+ analysis
+  SIJAMUOTO=osanto
+word:kaksikymmentäyksi
+ !=nimisana
+ analysis
+  SIJAMUOTO=nimento
+word:10
+ analysis
+  CLASS=lukusana
+word:kissat
+ analysis
+  NUMBER=plural
+word:juoksen
+ analysis
+  PERSON=1
+  MOOD=indicative
+  TENSE=present_simple
+word:olen
+ analysis
+  PERSON=1
+  TENSE=present_simple
+  !WORDIDS
+word:juokset
+ analysis
+  PERSON=2
+word:juoksee
+ analysis
+  PERSON=3
+word:juostaan
+ analysis
+  PERSON=4
+word:juoksisin
+ analysis
+  MOOD=conditional
+word:juokse
+ analysis
+  MOOD=imperative
+  NEGATIVE=both
+  CLASS=teonsana
+  NUMBER=singular
+  PERSON=2
+  STRUCTURE==pppppp
+  TENSE=present_simple
+word:juossee
+ analysis
+  MOOD=potential
+word:juoksemassa
+ analysis
+  MOOD=MA-infinitive
+word:juoksemassamme
+ expected:1
+ analysis
+  PARTICIPLE=agent
+  !MOOD
+word:juostakin
+ analysis
+  MOOD=A-infinitive
+word:juostessa
+ analysis
+  MOOD=E-infinitive
+word:juoksemasta
+ analysis
+  MOOD=MA-infinitive
+word:juoksemaan
+ analysis
+  MOOD=MA-infinitive
+word:verohallitus
+ analysis
+  CLASS=nimi
+  STRUCTURE==ippp=pppppppp
+word:Kaakkois-Panama
+ !==pppppppp-=ippppp
+ analysis
+  CLASS=paikannimi
+  STRUCTURE==ippppppp-=ippppp
+word:Suur-Panama
+ expected:1
+ analysis
+  CLASS=paikannimi
+  STRUCTURE==ippp-=ippppp
+word:Sydän-Suomi
+ analysis
+  CLASS=paikannimi
+  STRUCTURE==ipppp-=ipppp
+word:idänkauppa
+ analysis
+  STRUCTURE==pppp=pppppp
+word:hienoittasokereitta
+ analysis
+  NUMBER=plural
+  SIJAMUOTO=vajanto
+word:hienoinsokerein
+ analysis
+  NUMBER=plural
+  SIJAMUOTO=keinonto
+word:sana
+ analysis
+  MALAGA_VAPAA_JALKIOSA=true
+word:relatiivipronomini
+ analysis
+  MALAGA_VAPAA_JALKIOSA=true
+word:hyppely
+ !MALAGA_VAPAA_JALKIOSA
+word:ilmaisu
+ analysis
+  MALAGA_VAPAA_JALKIOSA=true
+word:Pohjois-
+ analysis
+  STRUCTURE==ipppppp-
+ analysis
+  STRUCTURE==ppppppp-
+word:sydän-
+ analysis
+  STRUCTURE==ppppp-
+word:Keski-Suomessa
+ analysis
+  STRUCTURE==ipppp-=ippppppp
+word:sallitaan
+ analysis
+  NEGATIVE=false
+word:sallita
+ analysis
+  NEGATIVE=true
+word:sallitakaan
+ analysis
+  NEGATIVE=true
+word:sallitaankaan
+ analysis
+  NEGATIVE=false
+word:maalaa
+ analysis
+  MOOD=indicative
+  PERSON=3
+  NEGATIVE=both
+word:haravoi
+ analysis
+  MOOD=indicative
+  PERSON=3
+  NEGATIVE=false
+  TENSE=past_imperfective
+ analysis
+  MOOD=indicative
+  PERSON=3
+  NEGATIVE=both
+  TENSE=present_simple
+ analysis
+  CLASS=teonsana
+  MOOD=imperative
+  NUMBER=singular
+  PERSON=2
+  TENSE=present_simple
+word:maalaakin
+ analysis
+  MOOD=indicative
+  PERSON=3
+  NEGATIVE=false
+word:maalaakaan
+ analysis
+  MOOD=indicative
+  PERSON=3
+  NEGATIVE=both # "Mitä hän (ei) maalaakaan?
+word:juoksepa
+ analysis
+  MOOD=imperative
+  NEGATIVE=false
+word:juoksehan
+ analysis
+  MOOD=imperative
+  NEGATIVE=false
+word:juoskoot
+ analysis
+  MOOD=imperative
+  NEGATIVE=false
+word:olla
+ analysis
+  NEGATIVE=both # Siellä ei olla hereillä. Haluan olla hereillä.
+word:luopua
+ analysis
+  NEGATIVE=both # Siellä ei haluttaisi luopua. Haluan luopua.
+word:mainittaisiin
+ analysis
+  NEGATIVE=false # "Hänet mainittaisiin ..."
+word:mainittaisi
+ analysis
+  NEGATIVE=true # "Häntä ei mainittaisi ..."
+word:sämpyläjauho
+ !POSSIBLE_GEOGRAPHICAL_NAME
+word:sämpyläjoki
+ analysis
+  POSSIBLE_GEOGRAPHICAL_NAME=true
+word:sämpyläjoella
+ analysis
+  POSSIBLE_GEOGRAPHICAL_NAME=true
+word:sämpyläjoellakin
+ analysis
+  POSSIBLE_GEOGRAPHICAL_NAME=true
+  !NEGATIVE
+word:Välimerta
+ analysis
+  POSSIBLE_GEOGRAPHICAL_NAME=true
+word:sämpyläjokilaiva
+ !POSSIBLE_GEOGRAPHICAL_NAME
+word:haluan
+ analysis
+  REQUIRE_FOLLOWING_VERB=A-infinitive
+word:ryhdymme
+ analysis
+  REQUIRE_FOLLOWING_VERB=MA-infinitive
+word:juoksemme
+ !REQUIRE_FOLLOWING_VERB
+word:minä
+ analysis
+  NUMBER=singular
+word:sinä
+ analysis
+  NUMBER=singular
+word:hän
+ analysis
+  NUMBER=singular
+word:me
+ analysis
+  NUMBER=plural
+word:te
+ analysis
+  NUMBER=plural
+word:he
+ analysis
+  NUMBER=plural
+word:kovalevy
+ expected:1
+word:kovakalloinen
+ expected:1
+word:harmaapikasuolattu
+ expected:1
+word:leikkivä
+ analysis
+  CLASS=laatusana
+word:leikkinyt
+ analysis
+  CLASS=laatusana
+word:piikkinen
+ analysis
+  CLASS=laatusana
+word:piikitön
+ analysis
+  CLASS=laatusana
+word:piikkimäinen
+ analysis
+  CLASS=laatusana
+word:piikeittäin
+ analysis
+  CLASS=seikkasana
+word:piikkisyys
+ analysis
+  CLASS=nimisana
+word:ruotsalainen
+ expected:1
+ analysis
+  CLASS=nimisana_laatusana
+word:ruotsalainenkin
+ expected:1
+ analysis
+  CLASS=nimisana_laatusana
+word:ruotsalaisessa
+ expected:1
+ analysis
+  CLASS=nimisana_laatusana
+word:agraariruotsalainen
+ expected:1
+ analysis
+  CLASS=nimisana_laatusana
+word:juoksemiseen
+ expected:1
+ analysis
+  MOOD=MINEN-infinitive
+word:superhämärästi
+ expected:1
+ analysis
+  CLASS=laatusana
+  SIJAMUOTO=kerrontosti
+word:tapakristitty
+ expected:1
+word:härkäjuoksijana
+ expected:1
+ analysis
+  CLASS=nimisana
+word:kissanvärinen
+ expected:1
+word:ajattelukykyinen
+ expected:1
+word:pikajuoksukykyinen
+ expected:1
+word:superbiologinen
+ expected:1
+word:ahdashenkinen
+ expected:1
+word:ruotsalaishenkinen
+ expected:1
+word:eräs
+ expected:1
+ analysis
+  CLASS=asemosana
+  NUMBER=singular
+  SIJAMUOTO=nimento
+  STRUCTURE==pppp
+word:jotta
+ expected:1
+ analysis
+ CLASS=sidesana
+word:montenegrolainen
+ expected:1
+ analysis
+ CLASS=laatusana
+ SIJAMUOTO=nimento
+ STRUCTURE==pppppppppppppppp
+word:iiii
+ analysis
+  CLASS=lukusana
+  STRUCTURE==qqqq
+word:jottei
+ expected:1
+ analysis
+ CLASS=kieltosana
+ STRUCTURE==pppp=pp
+word:Uudenmaansa
+ expected:1
+ analysis
+ CLASS=paikannimi
+ SIJAMUOTO=omanto
+ STRUCTURE==ipppp=pppppp
+word:hyttynen
+ expected:1
+ analysis
+  CLASS=nimisana
+  STRUCTURE==pppppppp
+  SIJAMUOTO=nimento
+word:hyttysen
+ expected:1
+ analysis
+  SIJAMUOTO=omanto
+word:hyttystä
+ expected:1
+ analysis
+  SIJAMUOTO=osanto
+word:hyttysessä
+ expected:1
+ analysis
+  SIJAMUOTO=sisaolento
+word:hyttysestä
+ expected:1
+ analysis
+  SIJAMUOTO=sisaeronto
+word:hyttyseen
+ expected:1
+ analysis
+  SIJAMUOTO=sisatulento
+word:hyttysellä
+ expected:1
+ analysis
+  SIJAMUOTO=ulkoolento
+word:hyttyseltä
+ expected:1
+ analysis
+  SIJAMUOTO=ulkoeronto
+word:hyttyselle
+ expected:1
+ analysis
+  SIJAMUOTO=ulkotulento
+word:ampiaiset
+ expected:1
+ analysis
+  STRUCTURE==ppppppppp
+word:lapinkirvinen
+ expected:1
+ analysis
+  STRUCTURE==ppppp=pppppppp
+word:Pokkinen
+ expected:1
+ analysis
+  CLASS=sukunimi
+  STRUCTURE==ippppppp
+word:Nousiainen
+ expected:1
+ analysis
+  CLASS=paikannimi
+word:Alfred
+ expected:1
+ analysis
+  CLASS=etunimi
+word:Kanteletar
+ expected:1
+ analysis
+  CLASS=nimi
+  STRUCTURE==ippppppppp
+word:keltainen
+ expected:1
+ analysis
+  CLASS=laatusana
+  STRUCTURE==ppppppppp
+word:arktisuus
+ expected:1
+ analysis
+  CLASS=nimisana
+  STRUCTURE==ppppppppp
+word:pottusyltty
+ expected:1
+ analysis
+  CLASS=nimisana
+  STRUCTURE==ppppp=pppppp
+word:vieras
+ expected:1
+ analysis
+  CLASS=nimisana_laatusana
+word:katsella
+ analysis
+  STRUCTURE==pppppppp
+  CLASS=teonsana
+  MOOD=A-infinitive
+word:katselen
+ analysis
+  STRUCTURE==pppppppp
+  CLASS=teonsana
+  MOOD=indicative
+  NUMBER=singular
+  PERSON=1
+word:katselet
+ analysis
+  STRUCTURE==pppppppp
+  CLASS=teonsana
+  MOOD=indicative
+  NUMBER=singular
+  PERSON=2
+word:katselee
+ analysis
+  STRUCTURE==pppppppp
+  CLASS=teonsana
+  MOOD=indicative
+  NUMBER=singular
+  PERSON=3
+word:katselemme
+ analysis
+  CLASS=teonsana
+  MOOD=indicative
+  NUMBER=plural
+  PERSON=1
+word:katselette
+ analysis
+  CLASS=teonsana
+  MOOD=indicative
+  NUMBER=plural
+  PERSON=2
+  TENSE=present_simple
+word:lunastetaan
+ analysis
+  PERSON=4
+word:adverbisija
+ analysis
+  STRUCTURE==pp=ppppp=pppp
+word:Pötsönlahdella
+ analysis
+  STRUCTURE==ippppp=pppppppp
+word:katselemassa
+ analysis
+  CLASS=teonsana
+  MOOD=MA-infinitive
+  NUMBER=singular
+  SIJAMUOTO=sisaolento
+word:katsellessa
+ analysis
+  CLASS=teonsana
+  MOOD=E-infinitive
+word:katselisin
+ analysis
+  CLASS=teonsana
+  MOOD=conditional
+word:pahoinpiteli
+ analysis
+  CLASS=teonsana
+  MOOD=indicative
+  NUMBER=singular
+  PERSON=3
+  TENSE=past_imperfective
+  STRUCTURE==pppppp=pppppp
+word:hinaajalla
+ analysis
+  CLASS=nimisana
+  SIJAMUOTO=ulkoolento
+word:Suomi-Sveitsi
+ analysis
+   CLASS=paikannimi
+   STRUCTURE==ipppp-=ipppppp
+word:CD-ROM
+ analysis
+   CLASS=nimisana
+   STRUCTURE==ii-=iii
+ analysis
+   CLASS=nimisana
+   STRUCTURE==pp-=ppp
+word:anonyymisti
+ analysis
+  CLASS=laatusana
+  SIJAMUOTO=kerrontosti
+word:autonikin
+ analysis
+  FOCUS=kin
+  POSSESSIVE=1s
+word:talosikaan
+ analysis
+  FOCUS=kaan
+  POSSESSIVE=2s
+word:talomme
+ analysis
+  POSSESSIVE=1p
+word:talonne
+ analysis
+  POSSESSIVE=2p
+word:talonsa
+ analysis
+  POSSESSIVE=3
+word:-legenda
+ expected:1
+ analysis
+  CLASS=nimisana
+  STRUCTURE=-=ppppppp
+word:jäähdytetään
+ analysis
+  TENSE=present_simple
+word:jäähdytettiin
+ analysis
+  TENSE=past_imperfective
+word:muisto
+ expected:1
+ analysis
+  CLASS=nimisana
+word:epäröin
+ expected:2
+ analysis
+  TENSE=present_simple
+ analysis
+  TENSE=past_imperfective
+word:kommentoikaa
+ expected:1
+ analysis
+  CLASS=teonsana
+  MOOD=imperative
+  NUMBER=plural
+  PERSON=2
+  TENSE=present_simple
+word:olemme
+  expected:1
+  analysis
+    CLASS=teonsana
+    MOOD=indicative
+    NUMBER=plural
+    PERSON=1
+    TENSE=present_simple
+word:kielteisemmin
+ expected:1
+ analysis
+  CLASS=laatusana
+  COMPARISON=comparative
+  NUMBER=plural
+  SIJAMUOTO=keinonto
+word:kielteisimmin
+ expected:1
+ analysis
+  CLASS=laatusana
+  COMPARISON=superlative
+  NUMBER=plural
+  SIJAMUOTO=keinonto
+word:lienen
+  expected:1
+  analysis
+    CLASS=teonsana
+    BASEFORM=olla
+    MOOD=potential
+    NEGATIVE=false
+    NUMBER=singular
+    PERSON=1
+    TENSE=present_simple
+word:liene
+  expected:1
+  analysis
+    CLASS=teonsana
+    !NUMBER
+    !PERSON
+    MOOD=potential
+    NEGATIVE=true
+    TENSE=present_simple
+word:älkööt
+  expected:1
+  analysis
+    CLASS=kieltosana
+    NUMBER=plural
+word:kukistaneen
+  expected:1
+word:ab
+  expected:1
+    CLASS=lyhenne
+    STRUCTURE==qq
+word:ab-kissa
+  expected:1
+    STRUCTURE==qq-=ppppp
+word:esiintyjittäin
+  expected:1
+    CLASS=seikkasana
+word:espanjalaisittain
+  expected:1
+    STRUCTURE==ppppppppppppppppp
+word:Helsinki-alueellinen
+  expected:1
+  analysis
+    STRUCTURE==ippppppp-=ppppppppppp
+word:roomalaiskissa
+  expected:1
+  analysis
+    STRUCTURE==ppppppppp=ppppp
+word:kissattomuus
+  expected:1
+word:ei-kenenkään-maa
+  expected:1
+  analysis
+    STRUCTURE==pp-=ppppppppp-=ppp
+word:yksi
+  expected:1
+  analysis
+    CLASS=lukusana
+    NUMBER=singular
+    SIJAMUOTO=nimento
+    STRUCTURE==pppp
+word:kaksituhattakolmetoista
+  expected:1
+  analysis
+    STRUCTURE==ppppp=ppppppp=ppppp=pppppp
+word:kahdeksaakymmentä
+  expected:1
+  analysis
+    STRUCTURE==ppppppppp=pppppppp
+word:myyty
+  expected:1
+word:minut
+  expected:1
+  analysis
+    CLASS=asemosana
+    SIJAMUOTO=kohdanto
+word:Aadolfinkatu
+  expected:1
+  analysis
+    CLASS=nimisana
+    STRUCTURE==ippppppp=pppp
+word:Suur-Sveitsi
+  expected:1
+  analysis
+    CLASS=paikannimi
+    STRUCTURE==ippp-=ipppppp
+word:asuin-Sveitsi
+  expected:1
+  analysis
+    CLASS=paikannimi
+    STRUCTURE==ppppp-=ipppppp
+word:juoksekaan
+  expected:1
+  analysis
+    CLASS=teonsana
+    FOCUS=kaan
+    MOOD=imperative
+    NEGATIVE=true
+    NUMBER=singular
+    PERSON=2
+    STRUCTURE==pppppppppp
+    TENSE=present_simple
+word:neljännentoista
+  expected:1
+  analysis
+    CLASS=lukusana
+    NUMBER=singular
+    SIJAMUOTO=omanto
+    STRUCTURE==ppppppppp=pppppp
+word:parhaassa
+  expected:1
+  analysis
+    CLASS=laatusana
+    COMPARISON=superlative
+word:ja
+  expected:1
+  analysis
+    CLASS=sidesana
+    STRUCTURE==pp
+word:Gallen-Kallela-Sirén
+  analysis
+    CLASS=sukunimi
+    STRUCTURE==ippppp-=ipppppp-=ipppp
+word:-sävellys-
+  analysis
+    CLASS=etuliite
+    STRUCTURE=-=pppppppp-
+word:ilman
+  analysis
+    CLASS=suhdesana
+word:suomalais-neuvostoliittolainen
+  analysis
+    STRUCTURE==ppppppppp-=pppppppp=pppppppppppp
+word:Isossa-Britanniassa
+ expected:1
+  analysis
+    CLASS=paikannimi
+    STRUCTURE==ippppp-=ippppppppppp
+word:Uusimaa
+  analysis
+    CLASS=paikannimi
+    STRUCTURE==ippp=ppp
+word:Keski-Uusimaa
+ expected:1
+  analysis
+    CLASS=paikannimi
+    STRUCTURE==ipppp-=ippp=ppp
+word:Tyynessämeressä
+ expected:1
+  analysis
+    CLASS=paikannimi
+    NUMBER=singular
+    SIJAMUOTO=sisaolento
+    STRUCTURE==ippppppp=ppppppp
+word:huhti-toukokuusta
+ expected:1
+  analysis
+    CLASS=nimisana
+    NUMBER=singular
+    SIJAMUOTO=sisaeronto
+    STRUCTURE==ppppp-=ppppp=pppppp
+word:viisivuotiskausi
+ expected:1
+  analysis
+    STRUCTURE==ppppp=pppppp=ppppp
+word:AIDS-epidemia
+ expected:1
+  analysis
+    STRUCTURE==jjjj-=pppppppp
+word:vammaisuusaste
+ expected:1
+  analysis
+    STRUCTURE==pppppppppp=pppp
+word:-nimen
+ expected:1
+ !MALAGA_VAPAA_JALKIOSA
+word:Euro-sarja
+ expected:1
+   analysis
+     STRUCTURE==ippp-=ppppp
+word:tulee
+ expected:1
+  analysis:
+   NEGATIVE=false
+word:saa
+ expected:2
+  analysis:
+   MOOD=indicative
+   PERSON=3
+   NEGATIVE=both
+  analysis:
+   MOOD=imperative
+   PERSON=2
+   NEGATIVE=both
+word:julkaistu
+ expected:1
+  analysis:
+   COMPARISON=positive
+   PARTICIPLE=past_passive
+word:julkaistiin
+ expected:1
+ analysis:
+  NEGATIVE=false
+word:tekijä
+ expected:1
+  analysis:
+   NUMBER=singular
+word:urallaan
+ expected:1
+  analysis:
+   POSSESSIVE=3
+word:käsittelee
+ expected:1
+ analysis:
+  TENSE=present_simple
+word:yhdistää
+ expected:2
+ analysis:
+  MOOD=indicative
+  NEGATIVE=false
+word:pääsee
+ expected:1
+ analysis:
+  NEGATIVE=false
+word:koiralla
+ analysis
+  BASEFORM=koira
+  !KYSYMYSLIITE
+  !FOCUS
+  !COMPARISON
+word:koirallako
+ analysis
+  KYSYMYSLIITE=true
+word:eikö
+ analysis
+  KYSYMYSLIITE=true
+word:koirallakin
+ analysis
+  FOCUS=kin
+word:koirallakaan
+ analysis
+  FOCUS=kaan
+word:juoksin
+ analysis
+  TENSE=past_imperfective
+word:juokseva
+ expected:1
+ analysis
+  PARTICIPLE=present_active
+  BASEFORM=juokseva
+word:juostava
+ analysis
+  PARTICIPLE=present_passive
+word:metsästettävä
+ analysis
+  PARTICIPLE=present_passive
+word:juossut
+ analysis
+  PARTICIPLE=past_active
+word:juosseet
+ analysis
+  PARTICIPLE=past_active
+word:juostu
+ analysis
+  PARTICIPLE=past_passive
+word:juoksema
+ analysis
+  PARTICIPLE=agent
+  !MOOD
+word:juoksematon
+ analysis
+  PARTICIPLE=negation
+word:toimii
+ expected:1
+ analysis
+  NEGATIVE=false
+word:haluavatkin
+ expected:2
+ analysis
+  CLASS=laatusana
+ analysis
+  CLASS=teonsana
+  MOOD=indicative
+  NEGATIVE=false
+  NUMBER=plural
+  PERSON=3
+  REQUIRE_FOLLOWING_VERB=A-infinitive
+word:vähentävät
+ expected:2
+ analysis
+  CLASS=laatusana
+ analysis
+  CLASS=teonsana
+word:jakavat
+ expected:2
+ analysis
+  CLASS=laatusana
+ analysis
+  CLASS=teonsana
+word:aikakauslehti
+ expected:1
+ analysis
+  STRUCTURE==pppp=pppp=ppppp
+word:ADSL:n
+ analysis
+  STRUCTURE==jjjj:p
+word:kokevat
+ expected:2
+ analysis
+  CLASS=laatusana
+ analysis
+  CLASS=teonsana
+word:itarin
+ expected:2
+ analysis
+  COMPARISON=positive
+  NUMBER=plural
+  SIJAMUOTO=keinonto
+ analysis
+  COMPARISON=superlative
+  NUMBER=singular
+  SIJAMUOTO=nimento
+word:herännäis-kissa
+ expected:1
+word:nelisormimangusti
+ expected:1
+word:neutraalimpaan
+ expected:1
+ analysis
+  CLASS=laatusana
+word:nimeämiskäytännöstä
+ expected:1
+ !MOOD
+word:muokattaisi
+ expected:1
+ !NUMBER
+word:mutkistuu
+ expected:1
+ analysis
+  NEGATIVE=false
+word:varo-EU
+ expected:1
+  analysis
+   STRUCTURE==pppp-=jj
+word:alkeissidosta
+ expected:1
+  analysis
+   BASEFORM=alkeissidos
+word:alavireisyyttään
+ expected:1
+  analysis
+   BASEFORM=alavireisyys
+word:suunnittelijoita
+ expected:1
+  analysis
+   BASEFORM=suunnittelija
+word:avuttomasti
+  analysis
+   BASEFORM=avuton
+word:talottomampi
+ expected:1
+  analysis
+   BASEFORM=taloton
+   CLASS=laatusana
+   COMPARISON=comparative
+word:rakennus
+ expected:1
+  analysis
+   BASEFORM=rakennus
+word:palveluita
+ expected:1
+  analysis
+   BASEFORM=palvelu
+word:arkistoinnin
+ expected:1
+  analysis
+   BASEFORM=arkistointi
+word:EU-kieli
+ expected:1
+  analysis
+   BASEFORM=EU-kieli
+word:lento
+ expected:1
+  analysis
+   BASEFORM=lento
+word:sortoa
+ expected:1
+  analysis
+   BASEFORM=sorto
+word:laulanta
+ expected:1
+  analysis
+   BASEFORM=laulanta
+word:avaruudellinen
+ expected:1
+  analysis
+   BASEFORM=avaruudellinen
+word:byrokraattistua
+ expected:1
+  analysis
+   BASEFORM=byrokraattistua
+word:avoselkäinen
+ !POSSIBLE_GEOGRAPHICAL_NAME
+word:esijuoksija
+ expected:1
+word:elämänviisaus
+ expected:1
+word:erehtyväinen
+ expected:1
+  analysis
+   BASEFORM=erehtyväinen
+word:hallitusti
+ expected:1
+  analysis
+   BASEFORM=hallittu
+word:hajakylvö
+ expected:1
+  analysis
+   BASEFORM=hajakylvö
+word:eteläamerikkalainen
+ expected:1
+  analysis
+   BASEFORM=eteläamerikkalainen
+word:moottoroitu
+ expected:1
+  analysis
+   BASEFORM=moottoroitu
+word:käyttö
+ expected:1
+  analysis
+   BASEFORM=käyttö
+word:kaavoittuma
+ expected:1
+  analysis
+   BASEFORM=kaavoittuma
+word:öykkärimäisesti
+ expected:1
+  analysis
+   BASEFORM=öykkärimäinen
+word:HI-virus
+ expected:1
+  analysis
+   STRUCTURE==ii-=ppppp
+word:örinä
+ expected:1
+  analysis
+   BASEFORM=örinä
+word:diivailen
+ expected:1
+  analysis
+   BASEFORM=diivailla
+word:haukottelee
+ expected:1
+  analysis
+   BASEFORM=haukotella
+word:havaittavassa
+ expected:1
+  analysis
+   BASEFORM=havaittava
+word:halaistua
+ expected:1
+  analysis
+   BASEFORM=halaistu
+word:hyödyntäneen
+ expected:1
+  analysis
+   BASEFORM=hyödyntänyt
+word:Hanna-Liisa
+ expected:1
+  analysis
+   BASEFORM=Hanna-Liisa
+word:hiihtojen
+ expected:1
+  analysis
+   BASEFORM=hiihto
+word:jättöä
+ expected:1
+  analysis
+   BASEFORM=jättö
+word:jäljittääkseen
+ expected:1
+  analysis
+   BASEFORM=jäljittää
+word:astahtelen
+ expected:1
+  analysis
+   BASEFORM=astahdella
+word:kastele
+ expected:1
+  analysis
+   BASEFORM=kastella
+word:luovalle
+ expected:1
+  analysis
+   BASEFORM=luova
+word:kontti-
+ expected:1
+  analysis
+   BASEFORM=kontti-
+word:-kissakoira
+ expected:1
+word:kuulemat
+ expected:1
+  analysis
+   BASEFORM=kuulema
+word:muistu
+ expected:1
+  analysis
+   BASEFORM=muistua
+word:lätkäisseessä
+ expected:1
+  analysis
+   BASEFORM=lätkäissyt
+word:valvoessaan
+ expected:1
+ !NEGATIVE
+word:kuuntelisi
+ expected:1
+  analysis
+   NEGATIVE=both
+word:kaksijakoisesti
+ expected:1
+ !NUMBER
+word:ionisoituu
+ expected:1
+  analysis
+   BASEFORM=ionisoitua
+word:näkeekö
+ expected:1
+  analysis
+   NEGATIVE=false
+word:nujersivat
+ expected:1
+  analysis
+   TENSE=past_imperfective
+word:nimekseen
+ expected:1
+  analysis
+   POSSESSIVE=3
+word:muistelleet
+ expected:1
+  analysis
+   BASEFORM=muistellut
+word:johtajattaren
+ expected:1
+  analysis
+   BASEFORM=johtajatar
+   NUMBER=singular
+word:lähentyy
+ expected:1
+  analysis
+   BASEFORM=lähentyä
+word:lähennän
+ expected:1
+  analysis
+   BASEFORM=lähentää
+word:lähentelen
+ expected:1
+  analysis
+   BASEFORM=lähennellä
+word:rumuus
+ expected:1
+word:käsiteltyjen
+ expected:1
+  analysis
+   BASEFORM=käsitelty
+   PARTICIPLE=past_passive
+word:pyrimme
+ expected:2
+  analysis
+   TENSE=present_simple
+  analysis
+   TENSE=past_imperfective
+word:putoili
+ expected:1
+  analysis
+   BASEFORM=putoilla
+word:pysähtyneisyys
+ expected:1
+  analysis
+   CLASS=nimisana
+word:signeeraa
+ expected:1
+  analysis
+   TENSE=present_simple
+word:peittoaa
+ expected:1
+  analysis
+   NEGATIVE=false
+word:otettakoon
+ expected:1
+  analysis
+   NEGATIVE=false
+word:tekisikö
+ expected:1
+  analysis
+   NEGATIVE=false
+word:kavensivat
+ expected:1
+  analysis
+   BASEFORM=kaventaa
+word:simpukkamurros
+ expected:1
+  analysis
+   BASEFORM=simpukkamurros
+word:tallentelen
+ expected:1
+  analysis
+   BASEFORM=tallennella
+word:tallentuu
+ expected:1
+  analysis
+   BASEFORM=tallentua
+word:linnoittautuminen
+ expected:1
+  analysis
+   NUMBER=singular
+   SIJAMUOTO=nimento
+word:nyhdätän
+ expected:1
+  analysis
+   BASEFORM=nyhdättää
+word:linnoittautumisensa
+ expected:1
+  analysis
+   NUMBER=singular
+   SIJAMUOTO=nimento
+word:suppenevat
+ expected:2
+  analysis
+   BASEFORM=supeta
+  analysis
+   BASEFORM=suppeneva
+word:pukemalla
+ expected:2
+  analysis
+   MOOD=MA-infinitive
+   SIJAMUOTO=ulkoolento
+word:täräytti
+ expected:1
+  analysis
+   BASEFORM=täräyttää
+word:täräytyksen
+ expected:1
+  analysis
+   BASEFORM=täräytys
+word:keventämällä
+ !NEGATIVE
+word:kanteleeni
+ expected:2
+  analysis
+   SIJAMUOTO=nimento
+  analysis
+   SIJAMUOTO=sisatulento
+word:rikkoneensa
+ expected:1
+  analysis
+   BASEFORM=rikkonut
+word:johtavuus
+ expected:1
+word:lehtikultaa
+ expected:1
+  analysis
+   CLASS=nimisana
+word:peruskoulukone
+ expected:1
+word:Pohjois-Texas
+ expected:1
+word:murtaakseen
+ expected:1
+  analysis
+   NEGATIVE=both
+word:haennoiden
+ expected:1
+  analysis
+   BASEFORM=haenta
+word:liiteli
+ expected:1
+  analysis
+   BASEFORM=liidellä
+word:kunnan-
+ expected:1
+  analysis
+   BASEFORM=kunnan-
+word:kanavittain
+ expected:1
+  analysis
+   BASEFORM=kanavittain
+   CLASS=seikkasana
+   !NUMBER
+   !SIJAMUOTO
+word:musiikkioppilaitos
+ expected:2
+  analysis
+   CLASS=nimisana
+  analysis
+   CLASS=nimi
+word:marxismi-leninismin
+ expected:1
+  analysis
+   BASEFORM=marxismi-leninismi
+word:väännös
+ expected:1
+word:pahakseni
+ expected:1
+  analysis
+   CLASS=nimisana
+word:köyhälleen
+ expected:1
+  analysis
+   CLASS=nimisana
+word:huutelevat
+ expected:2
+  analysis
+   BASEFORM=huuteleva
+  analysis
+   BASEFORM=huudella
+word:aterioi
+ expected:3
+  analysis
+   TENSE=present_simple
+   MOOD=indicative
+  analysis
+   TENSE=past_imperfective
+   MOOD=indicative
+  analysis
+   TENSE=present_simple
+   MOOD=imperative
+word:lähdöllä
+ expected:1
+word:seitsemästoista
+ expected:1
+  analysis
+   BASEFORM=seitsemästoista
+word:kääntelen
+ expected:1
+  analysis
+   BASEFORM=käännellä
+word:soveltelen
+ expected:1
+  analysis
+   BASEFORM=sovellella
+word:nakertelen
+ expected:1
+  analysis
+   BASEFORM=nakerrella
+word:jäykentelen
+ expected:1
+  analysis
+   BASEFORM=jäykennellä
+word:kylittäin
+ expected:1
+  analysis
+   !POSSIBLE_GEOGRAPHICAL_NAME
+word:ohjattuaan
+ expected:1
+  analysis
+   BASEFORM=ohjattu
+word:juostaman
+ expected:1
+  analysis
+   !NUMBER
+word:kirjailijanimi
+ expected:1
+  analysis
+   MALAGA_VAPAA_JALKIOSA=true
+word:kerrostalo-
+ expected:1
+  analysis
+   !POSSIBLE_GEOGRAPHICAL_NAME
+word:tarjokkuus
+ expected:1
+word:keskelläkin
+ expected:1
+  analysis
+   BASEFORM=keskellä
+word:rikas-
+ expected:1
+  analysis
+   CLASS=etuliite
+word:kuljeskelee
+ expected:1
+  analysis
+   BASEFORM=kuljeskella
+word:komentajuudesta
+ expected:1
+word:muttet
+ expected:1
+  analysis
+   PERSON=2
+word:kohtauksittain
+ expected:1
+word:kulta-aarre
+ expected:1
+word:rajoittuneisuus
+ expected:1
+  analysis
+   NUMBER=singular
+word:opiskelleensa
+ expected:1
+  analysis
+   BASEFORM=opiskellut
+   NUMBER=singular
+   SIJAMUOTO=nimento
+word:käyttökelvoton
+ expected:1
+  analysis
+   CLASS=laatusana
+word:mielenterveydellinen
+ expected:1
+  analysis
+   CLASS=laatusana
+word:juoksekin
+ expected:1
+  analysis
+   NEGATIVE=false
+word:vesitilavuus
+ expected:1
+  analysis
+   !POSSIBLE_GEOGRAPHICAL_NAME
+word:heidänlaisensa
+ expected:1
+  analysis
+   BASEFORM=heidänlainen
+word:puhuu
+ expected:1
+  analysis
+    CLASS=teonsana
+word:puhuman
+ expected:2
+  analysis
+   BASEFORM=puhuma
+   CLASS=nimisana
+   PARTICIPLE=agent
+   SIJAMUOTO=omanto
+  analysis
+   BASEFORM=puhua
+   CLASS=teonsana
+   MOOD=MA-infinitive
+   SIJAMUOTO=keinonto
+word:kalinassa
+ expected:1
+  analysis
+   BASEFORM=kalina
+word:piirteli
+ expected:1
+  analysis
+   BASEFORM=piirrellä
+word:koskapa
+ expected:1
+  analysis
+   BASEFORM=koska
+word:kannatan
+ expected:1
+  analysis
+   BASEFORM=kannattaa
+word:vaihtelisi
+ expected:1
+  analysis
+   BASEFORM=vaihdella
+word:huhuiltiin
+ expected:1
+  analysis
+   BASEFORM=huhuilla
+word:purrussa
+ expected:1
+  analysis
+   BASEFORM=purtu
+word:lentelivät
+ expected:1
+  analysis
+   BASEFORM=lennellä
+word:kolahti
+ expected:1
+  analysis
+   BASEFORM=kolahtaa
+word:kanneltiin
+ expected:1
+  analysis
+   BASEFORM=kannella
+word:saatellaan
+ expected:1
+  analysis
+   BASEFORM=saatella
+word:ammutti
+ expected:1
+  analysis
+   BASEFORM=ammuttaa
+word:VI:ssa
+ expected:1
+  analysis
+   BASEFORM=VI
+   STRUCTURE==jj:ppp
+word:VI:t
+ expected:1
+ analysis
+  NUMBER=plural
+  SIJAMUOTO=nimento
+word:jaata
+ expected:1
+  analysis
+   BASEFORM=jaa
+word:pantua
+ expected:1
+  analysis
+   BASEFORM=pantu
+word:taitaapi
+ expected:1
+  analysis
+   BASEFORM=taitaa
+   MOOD=indicative
+   NEGATIVE=false
+   NUMBER=singular
+   PERSON=3
+   TENSE=present_simple
+word:parhaimmat
+ expected:1
+  analysis
+   BASEFORM=hyvä
+word:syöksee
+ expected:1
+  analysis
+   NEGATIVE=false
+   TENSE=present_simple
+word:hänetkin
+ expected:1
+  analysis
+   NUMBER=singular
+word:haltijatar
+ expected:1
+  analysis
+   BASEFORM=haltijatar
+word:osaamis-
+ expected:1
+  analysis
+   CLASS=etuliite
+   !NUMBER
+   !SIJAMUOTO
+word:aita-
+ expected:1
+  analysis
+   CLASS=etuliite
+   !NUMBER
+   !SIJAMUOTO
+word:Jack-
+ expected:1
+  analysis
+   CLASS=etuliite
+word:avo-
+ expected:1
+  analysis
+   CLASS=etuliite
+word:-vuotias
+ expected:1
+  analysis
+   CLASS=laatusana
+word:XX-
+ expected:1
+  analysis
+   CLASS=etuliite
+word:live-
+ expected:1
+  analysis
+   CLASS=etuliite
+word:viideksitoista
+ expected:1
+  analysis
+   CLASS=lukusana
+   BASEFORM=viisitoista
+word:kolmehenkisessä
+ expected:1
+  analysis
+   CLASS=laatusana
+   BASEFORM=kolmehenkinen
+word:toistasataa
+ expected:1
+  analysis
+   CLASS=lukusana
+   NUMBER=singular
+   SIJAMUOTO=nimento
+word:parisenkymmentä
+ expected:1
+  analysis
+   CLASS=lukusana
+   NUMBER=singular
+   SIJAMUOTO=nimento
+word:kymmeniätuhansia
+ expected:1
+  analysis
+   CLASS=lukusana
+   NUMBER=plural
+   SIJAMUOTO=osanto
+   BASEFORM=kymmenentuhatta
+word:etkä
+ expected:1
+  analysis
+   CLASS=kieltosana
+   BASEFORM=ei
+   MOOD=indicative
+   NUMBER=singular
+   PERSON=2
+word:sinfoniaansa
+ expected:2
+  analysis
+   SIJAMUOTO=osanto
+   POSSESSIVE=3
+  analysis
+   SIJAMUOTO=sisatulento
+   POSSESSIVE=3
+word:kuutisensataa
+ expected:1
+  analysis
+   NUMBER=singular
+   SIJAMUOTO=nimento
+word:menikään
+ expected:1
+  analysis
+   NEGATIVE=false
+word:koe-eläin
+ expected:1
+word:miljardeista
+ expected:1
+  analysis
+   BASEFORM=miljardi
+word:kahdeksisadaksi
+ expected:1
+  analysis
+   BASEFORM=kaksisataa
+word:satojatuhansia
+ expected:1
+word:olemattomien
+ expected:1
+  analysis
+   PARTICIPLE=negation
+word:älähän
+ expected:1
+  analysis
+   BASEFORM=ei
+   MOOD=imperative
+   NUMBER=singular
+   PERSON=2
+word:ettet
+ expected:1
+  analysis
+   BASEFORM=ettei
+   MOOD=indicative
+   NUMBER=singular
+   PERSON=2
+word:-1600-luvun
+ expected:1
+  analysis
+   STRUCTURE=-=qqqq-=ppppp
+word:EU:kin
+ expected:1
+  analysis
+   NUMBER=singular
+   SIJAMUOTO=nimento
+word:kokoelma-LP
+ expected:1
+  analysis
+   NUMBER=singular
+   SIJAMUOTO=nimento
+word:j
+ expected:1
+  analysis
+   NUMBER=singular
+   SIJAMUOTO=nimento
+word:varapj.
+ expected:1
+  analysis
+   NUMBER=singular
+   SIJAMUOTO=nimento
+word:voitane
+ expected:1
+  analysis
+   NEGATIVE=true
+word:meikä-r
+ expected:1
+  analysis
+   STRUCTURE==ppppp-=q
+word:200:sta
+ expected:1
+  analysis
+   CLASS=lukusana
+   BASEFORM=200
+word:-200:sta
+ expected:1
+  analysis
+   CLASS=lukusana
+   BASEFORM=-200
+word:käymisteitse
+ expected:1
+  analysis
+   CLASS=seikkasana
+   !NUMBER
+   !SIJAMUOTO
+word:kissankarvoittain
+ expected:1
+  analysis
+   CLASS=seikkasana
+   !NUMBER
+   !SIJAMUOTO
+word:koskeekaan
+ expected:1
+  analysis
+   NEGATIVE=false
+word:hyppäänkään
+ expected:1
+  analysis
+   NEGATIVE=false
+word:kissankeltainen
+ expected:1
+word:kolmisen
+ expected:1
+ !NUMBER
+ !SIJAMUOTO
+word:hämäräaktiivinen
+ expected:1
+word:asiakastyytyväisyyttä
+ expected:1
+word:ratakorkeus
+ expected:1
+ !POSSIBLE_GEOGRAPHICAL_NAME
+word:esikarsinta
+ expected:1
+word:alikehittynyt
+ expected:1
+word:ylinouseva
+ expected:1
+word:uudelleenmuotoiltu
+ expected:1
+word:juoksemisestapa
+ expected:1
+ !NEGATIVE
+word:hätäistään
+ expected:1
+  analysis
+   POSSESSIVE=3
+   SIJAMUOTO=osanto
+   NUMBER=singular
+   CLASS=laatusana
+word:kpl:in
+ expected:2
+  analysis
+   SIJAMUOTO=omanto
+  analysis
+   SIJAMUOTO=keinonto
+word:arktis-alpiininen
+ expected:1
+word:III-divisioona
+ expected:1
+  analysis
+   STRUCTURE==jjj-=pppppppppp
+word:EU-laitos
+ expected:1
+word:Kissalaitos
+ expected:2
+  analysis
+   STRUCTURE==ppppp=pppppp
+  analysis
+   STRUCTURE==ipppp=pppppp
+word:-kissalaitos
+ expected:1
+  analysis
+   STRUCTURE=-=ppppp=pppppp
+word:kymmenennen
+ expected:1
+  analysis
+   BASEFORM=kymmenes
+   CLASS=lukusana
+   NUMBER=singular
+   SIJAMUOTO=omanto
+word:suosituimmuusaseman
+ expected:1
+ !COMPARISON
+ !PARTICIPLE
+word:voipi
+ expected:1
+  analysis
+   NEGATIVE=false
+word:väylänopeus
+ expected:1
+ !POSSIBLE_GEOGRAPHICAL_NAME
+word:pieniniemisyys
+ expected:1
+ !POSSIBLE_GEOGRAPHICAL_NAME
+word:mennyllä
+ expected:1
+  analysis
+   PARTICIPLE=past_passive
+word:viisi-
+ expected:1
+  analysis
+   CLASS=etuliite
+   BASEFORM=viisi-
+   STRUCTURE==ppppp-
+   !NUMBER
+   !SIJAMUOTO
+word:kissavanhempiaan
+ expected:1
+  analysis
+   CLASS=nimisana
+   !COMPARISON
+word:ryhtymättä
+ !REQUIRE_FOLLOWING_VERB
+word:kahdenkeskistä
+ expected:1
+  analysis
+   CLASS=laatusana
+   BASEFORM=kahdenkeskinen
+word:kolmen-
+ expected:1
+  analysis
+   CLASS=etuliite
+   BASEFORM=kolmen-
+word:nopeustutkassa
+ analysis
+  BASEFORM=nopeustutka
+  WORDBASES=+nope(nopea)+us(+us)+tutka(tutka)
+  WORDIDS=+nope(w509676)+us+tutka(w516202)
+word:pikilappu
+ expected:1
+ analysis
+  WORDIDS=+pikilappu(w507165)
+  WORDBASES=+pikilappu(piki=lappu)
+  BASEFORM=pikilappu
+  STRUCTURE==pppp=ppppp
+word:akveduktien
+ expected:1
+ analysis
+  WORDIDS=+akvedukti(w500022)
+  WORDBASES=+akvedukti(akvedukti)
+word:historiallinen
+ expected:1
+ analysis
+  WORDIDS=+historia(w502636)+lli+nen
+  WORDBASES=+historia(historia)+lli+nen(+nen)
+word:kissattomat
+ expected:1
+ analysis
+  WORDIDS=+kissa(w505527)+ton
+  WORDBASES=+kissa(kissa)+ton(+ton)
+word:etätyö
+ expected:1
+ analysis
+  WORDIDS=+etä(w534827)+työ(w516336)
+  WORDBASES=+etä+työ(työ)
+word:aktivoidumme
+ expected:1
+ analysis
+  WORDIDS=+aktivoi(w500008)+tua
+  WORDBASES=+aktivoi(aktivoida)+tua(+tua)
+word:juoksija
+ expected:1
+ analysis
+  WORDIDS=+juoksi(w503986)+ja
+  WORDBASES=+juoksi(juosta)+ja(+ja)
+word:-kentällisessä
+ expected:1
+word:suurempikokoinen
+ expected:1
+ analysis
+  COMPARISON=positive
+word:sadasosasekunti
+ expected:1
+word:merkittävyyskriteeri
+ expected:1
+word:yllättäenkin
+ expected:1
+ !NEGATIVE
+word:oltiin
+ expected:1
+ analysis
+  NEGATIVE=false
+word:oletkaan
+ expected:1
+ analysis
+  NEGATIVE=false
+word:olemmekaan
+ expected:1
+ analysis
+  NEGATIVE=false
+word:saakaan
+ expected:2
+ analysis
+  MOOD=indicative
+  NEGATIVE=both
+ analysis
+  MOOD=imperative
+  NEGATIVE=true
+word:mitkään
+ expected:1
+ analysis
+  NUMBER=plural
+word:olkoonkin
+ expected:1
+ analysis
+  NEGATIVE=false
+word:kolmesti
+ expected:1
+ analysis
+  CLASS=lukusana
+  SIJAMUOTO=kerrontosti
+  !COMPARISON
+word:kolmikymmenvuotias
+ expected:1
+ analysis
+  CLASS=laatusana
+  NUMBER=singular
+  SIJAMUOTO=nimento
+word:syötyään
+ expected:1
+ analysis
+  CLASS=laatusana
+  COMPARISON=positive
+  NUMBER=singular
+  PARTICIPLE=past_passive
+  POSSESSIVE=3
+  SIJAMUOTO=osanto
+word:kuunneltuamme
+ expected:1
+ analysis
+  CLASS=laatusana
+  COMPARISON=positive
+  NUMBER=singular
+  SIJAMUOTO=osanto
+  PARTICIPLE=past_passive
+  POSSESSIVE=1p
+word:saapas
+ expected:3
+ analysis
+  CLASS=nimisana
+ analysis
+  CLASS=teonsana
+  MOOD=indicative
+  NEGATIVE=false
+ analysis
+  CLASS=teonsana
+  MOOD=imperative
+  NEGATIVE=false
+word:XXVII
+ expected:2
+ analysis
+  CLASS=lukusana
+  NUMBER=singular
+  SIJAMUOTO=nimento
+word:romahtamaisillaan
+ expected:1
+ analysis
+  CLASS=teonsana
+  !NEGATIVE
+  !NUMBER
+  !SIJAMUOTO
+  MOOD=MAINEN-infinitive
+  POSSESSIVE=3
+word:tunnettuus
+ expected:1
+ analysis
+  CLASS=nimisana
+  !PARTICIPLE
+word:hallittavuus
+ expected:1
+ analysis
+  !PARTICIPLE
+word:edustavuuden
+ expected:1
+ analysis
+  !PARTICIPLE
+word:ollut
+ expected:2
+ analysis
+  PARTICIPLE=past_active
+  NUMBER=singular
+  SIJAMUOTO=nimento
+ analysis
+  PARTICIPLE=past_passive
+  NUMBER=plural
+  SIJAMUOTO=nimento
+word:mitään
+ expected:1
+ analysis
+  BASEFORM=mikään
+  CLASS=asemosana
+  NUMBER=singular
+  SIJAMUOTO=osanto
+  !FOCUS
+word:purrut
+ expected:2
+ analysis
+  BASEFORM=purtu
+  PARTICIPLE=past_passive
+ analysis
+  BASEFORM=purrut
+  PARTICIPLE=past_active
+word:kunkin
+ expected:1
+ analysis
+  BASEFORM=kukin
+word:juoksinkaan
+ expected:1
+ analysis
+  NEGATIVE=false
+word:olekaan
+ expected:1
+ analysis
+  NEGATIVE=true
+  MOOD=imperative
+word:Kanta-
+ expected:2
+ analysis
+  CLASS=etuliite
+  STRUCTURE==ipppp-
+ analysis
+  CLASS=etuliite
+  STRUCTURE==ppppp-
+word:juoksemattakin
+ !NEGATIVE
+word:olematta
+ expected:2
+ analysis
+  MOOD=MA-infinitive
+ analysis
+  PARTICIPLE=agent
+word:tuta
+ expected:1
+ analysis
+  MOOD=A-infinitive
+  NEGATIVE=both
+word:tutaan
+ expected:1
+ analysis
+  PERSON=4
+  NEGATIVE=false
+  MOOD=indicative
+  TENSE=present_simple
+word:Itäkissa-Sveitsi
+ expected:1
+ analysis
+  STRUCTURE==ppp=ppppp-=ipppppp # "Itäkissa" ei ole aluetta tarkentava etuliite
+word:Uudessa-Seelannissa
+ expected:1
+ analysis
+  BASEFORM=Uusi-Seelanti
+word:Etelä-Pentti
+ expected:1
+ analysis
+  BASEFORM=etelä-Pentti
+  STRUCTURE==ppppp-=ippppp
+word:Pohjois-Suomessa
+ analysis
+  BASEFORM=Pohjois-Suomi
+word:heinäisensä
+ expected:1
+ analysis
+  CLASS=laatusana
+  COMPARISON=positive
+  POSSESSIVE=3
+word:heinäisempänsä
+ expected:1
+ analysis
+  CLASS=laatusana
+  COMPARISON=comparative
+  POSSESSIVE=3
+word:heinäisimpänsä
+ expected:1
+ analysis
+  CLASS=laatusana
+  COMPARISON=superlative
+  POSSESSIVE=3
+word:sairastumisriski
+ expected:1
+ analysis
+  CLASS=nimisana
+word:-litraisilla
+ expected:1
+word:hullunkurisia
+ expected:1
+word:ajantasaisuus
+ expected:1
+word:aihekokonaisuus
+ expected:1
+word:ilmoituskokonaisuus
+ expected:1
+word:juoksijakokonaisuus
+ expected:1
+word:kerrostalokokonaisuus
+ expected:1
+word:turkulaiskokonaisuus
+ expected:1
+word:Matti-kokonaisuus
+ expected:1
+word:englantilaistyyppinen
+ expected:1
+word:Matti-tyyppinen
+ expected:1
+word:lähtivät
+ expected:1
+ analysis
+  TENSE=past_imperfective
+word:kehitellyn
+ expected:1
+ analysis
+  NUMBER=singular
+  PARTICIPLE=past_passive
+  SIJAMUOTO=omanto
+word:miellyttämishaluinen
+ expected:1
+word:tapauskohtainen
+ expected:1
+word:epävarmuuden
+ expected:1
+word:asiantuntijuus
+ expected:1
+word:asianmyyjyys
+ expected:1
+word:kolmenmallisessa
+ expected:1
+ analysis
+  BASEFORM=kolmenmallinen
+  CLASS=laatusana
+  COMPARISON=positive
+  NUMBER=singular
+  SIJAMUOTO=sisaolento
+word:kolmenmallinen
+ expected:1
+ analysis
+  BASEFORM=kolmenmallinen
+  CLASS=laatusana
+  COMPARISON=positive
+  NUMBER=singular
+  SIJAMUOTO=nimento
+word:isovanhemmista
+ expected:2
+ analysis
+  CLASS=nimisana
+ analysis
+  CLASS=laatusana
+word:ikäisekseen
+ expected:1
+ analysis
+  BASEFORM=ikäinen
+  CLASS=laatusana
+  COMPARISON=positive
+  NUMBER=singular
+  POSSESSIVE=3
+  SIJAMUOTO=tulento
+word:tyypillisimmillään
+ expected:1
+ analysis
+  BASEFORM=tyypillinen
+  CLASS=laatusana
+  COMPARISON=superlative
+  NUMBER=plural
+  POSSESSIVE=3
+  SIJAMUOTO=ulkoolento
+word:parhaakseen
+ expected:1
+ analysis
+  BASEFORM=hyvä
+  CLASS=laatusana
+  COMPARISON=superlative
+  NUMBER=singular
+  POSSESSIVE=3
+  SIJAMUOTO=tulento
+word:Isolla-Britannialla
+ expected:1
+ analysis
+  BASEFORM=Iso-Britannia
+  CLASS=paikannimi
+  NUMBER=singular
+  SIJAMUOTO=ulkoolento
+word:yhteiskuntapoliittinen
+ analysis
+  CLASS=nimisana_laatusana
+word:ollaksemme
+ expected:1
+ analysis
+  BASEFORM=olla
+  CLASS=teonsana
+  MOOD=A-infinitive
+  NEGATIVE=both
+  POSSESSIVE=1p
+word:Lounais-
+ expected:2
+ analysis
+  CLASS=etuliite
+  STRUCTURE==ipppppp-
+ analysis
+  CLASS=etuliite
+  STRUCTURE==ppppppp-
+word:Keski-
+ expected:2
+ analysis
+  CLASS=etuliite
+  STRUCTURE==ipppp-
+ analysis
+  CLASS=etuliite
+  STRUCTURE==ppppp-
+word:METSÄLUOTEIS-
+ expected:1
+ analysis
+  CLASS=etuliite
+  STRUCTURE==ppppp=ppppppp-
+word:muuanna
+ expected:1
+ analysis
+  SIJAMUOTO=olento
+word:saartaa
+ expected:2
+ analysis
+  CLASS=teonsana
+  MOOD=indicative
+  NEGATIVE=false
+  NUMBER=singular
+  PERSON=3
+ analysis
+  CLASS=teonsana
+  MOOD=A-infinitive
+  NEGATIVE=both
+word:saartavat
+ expected:2
+ analysis
+  CLASS=laatusana
+  COMPARISON=positive
+ analysis
+  CLASS=teonsana
+  MOOD=indicative
+  NEGATIVE=false
+  NUMBER=plural
+  PERSON=3
+word:tyhmähkö
+ expected:1
+ analysis
+   CLASS=laatusana
+word:ummikoin
+ expected:2
+ analysis
+  COMPARISON=superlative
+ analysis
+  SIJAMUOTO=keinonto
+word:21.
+ expected:1
+ analysis
+   CLASS=lukusana
+   BASEFORM=21.
+   STRUCTURE==qqq
+#word:12:12:12
+# expected:1
+# analysis
+#  CLASS=lukusana
+#  BASEFORM=12:12:12
+# STRUCTURE==qq:qq:qq
