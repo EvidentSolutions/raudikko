@@ -123,10 +123,12 @@ final class BaseForm {
         boolean xpPassed = false;
         StringBuilder baseform = new StringBuilder();
 
-        tokenizer.moveToStart();
+        boolean first = true;
         while (tokenizer.nextToken()) {
-            if (tokenizer.isAtFirstToken() && (isDigit(tokenizer.currentToken.charAt(0)) || tokenizer.currentToken.charAt(0) == '-'))
+            if (first && (isDigit(tokenizer.currentToken.charAt(0)) || tokenizer.currentToken.charAt(0) == '-'))
                 isInDigitSequence = true;
+
+            first = false;
 
             Symbol tag = tokenizer.getCurrentTag();
             if (tag != null) {

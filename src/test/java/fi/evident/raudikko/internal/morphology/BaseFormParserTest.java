@@ -47,11 +47,18 @@ class BaseFormParserTest {
         assertEquals("vatsaneläkeruoka", parse("[Ln][Xp]vatsa[X]vats[Sg][Ny]an[Bh][Bc][Ln][Xp]eläke[X]eläke[Sn][Ny][Bh][Bc][Ln][Xp]ruoka[X]ruok[Sp][Ny]aa", "pppppp=ppppp=pppppp"));
         assertEquals("hevosrakenteinen", parse("[Ln][Xp]hevonen[X]hevos[Bh][Bc][Ll][Xp]rakenteinen[X]rakentei[Sn][Ny]nen", "ppppp=ppppppppppp"));
         assertEquals("hyppijä", parse("[Lt][Xp]hyppiä[X]hyppi[Ln][Xj]jä[X][Sine][Ny]jässä", "pppppppppp"));
+    }
+
+    @Test
+    void numeralBaseForms() {
         assertEquals("kaksikymmentäseitsemän", parse("[Lu][Xp]kaksi[X]ka[Sade][Ny]hdella[Bc][Lu][Xp]kymmentä[X][Sade][Ny]kymmenellä[Bc][Lu][Xp]seitsemän[X]seitsem[Sade][Ny]ällä", "pppppppp=pppppppppp=ppppppppppp"));
 
         assertEquals("kahdeskymmenes", parse("[Lu][Xp]kahdes[X]kahde[Sade][Ny]nnella[Bc][Xp]kymmenes[X][Sade][Ny]kymmenennellä", "ppppppppppp=ppppppppppppp"));
         assertEquals("kolmassadas", parse("[Lu][Xp]kolmas[X]kolma[Sade][Ny]nnella[Bc][Xp]sadas[X][Sade][Ny]sadannella", "ppppppppppp=pppppppppp"));
         assertEquals("kolmasmiljoonas", parse("[Lu][Xp]kolmas[X]kolma[Sade][Ny]nnella[Bc][Lu][Bc][Xp]miljoonas[X][Sade][Ny]miljoonannella", "ppppppppppp=pppppppppppppp"));
+
+        assertEquals("200", parse("[Lu]200[Sela][Ny]:sta", "=qqq:ppp"));
+        assertEquals("-200", parse("-[Bc][Lu]200[Sela][Ny]:sta", "-=qqq:ppp"));
     }
 
     private static @Nullable String parse(@NotNull String fstOutput, @NotNull String structure) {
