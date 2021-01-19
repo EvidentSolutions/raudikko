@@ -39,6 +39,8 @@ import org.jetbrains.annotations.TestOnly;
 
 import java.util.ArrayList;
 
+import static java.lang.Character.isDigit;
+
 public final class SymbolBuffer {
 
     private final @NotNull StringBuilder textBuffer;
@@ -175,6 +177,15 @@ public final class SymbolBuffer {
         return false;
     }
 
+    public boolean nextTokenStartsWithDigit() {
+        if (nextToken()) {
+            boolean result = isDigit(currentToken.charAt(0));
+            previousToken();
+            return result;
+        }
+        return false;
+    }
+
     public boolean firstTokenIs(@NotNull  String tag) {
         if (tokenCount == 0) return false;
         Symbol first = tags[0];
@@ -200,8 +211,12 @@ public final class SymbolBuffer {
     }
 
     void skipXTag() {
+        skipUntilTag(Tags.x);
+    }
+
+    void skipUntilTag(@NotNull String tag) {
         while (nextToken())
-            if (matchesTag(Tags.x))
+            if (matchesTag(tag))
                 break;
     }
 

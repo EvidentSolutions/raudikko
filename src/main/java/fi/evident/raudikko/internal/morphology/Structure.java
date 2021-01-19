@@ -70,7 +70,6 @@ final class Structure {
     private Structure() {
     }
 
-    // TODO: this produces different results than Voikko
     public static @NotNull String parseStructure(@NotNull SymbolBuffer tokenizer, int wordLength) {
         StringBuilder structure = new StringBuilder(wordLength * 2);
         structure.append('=');
@@ -86,17 +85,17 @@ final class Structure {
         while (tokenizer.nextToken()) {
             Symbol tag = tokenizer.getCurrentTag();
             if (tag != null) {
-                if (tag.matches(Tags.bh)) {
-                    if (tokenizer.getIndex() == 1)
+                if (tag.startsWith(Tags.PREFIX_B) && !tag.matches(Tags.bh)) {
+                    if (tokenizer.getStart() == 1)
                         structure.append('=');
 
                     if (charsSeen > charsFromDefault) {
-                        defaultTitleCase =
-                                createDefaultStructure(structure, charsSeen - charsFromDefault, defaultTitleCase, isAbbr);
+                        defaultTitleCase = createDefaultStructure(structure, charsSeen - charsFromDefault, defaultTitleCase, isAbbr);
                         charsMissing = decreaseCharsMissing(charsMissing, charsSeen, charsFromDefault);
                     }
 
-                    if (tokenizer.getIndex() != 1 && structure.length() != 0 && !endsWithChar(structure, '='))
+                    // TODO: Why is 'tokenizer.getStart() + 5' necessary? Make the meaning clearer.
+                    if (tokenizer.getStart() != 1 && tokenizer.getStart() + 5 < tokenizer.getTotalLength() && structure.length() != 0 && !endsWithChar(structure, '='))
                         structure.append('=');
 
                     charsSeen = 0;
@@ -108,8 +107,9 @@ final class Structure {
 
                         String currentToken = tokenizer.readXTagContents();
 
-                        for (int i = 0, len = currentToken.length(); i < len; i++) {
+                        for (int i = 0, len = currentToken.length(); i < len && charsMissing != 0; i++) {
                             char c = currentToken.charAt(i);
+                            structure.append(c);
                             if (c != '=') {
                                 charsFromDefault++;
                                 if (c != '-')
@@ -124,8 +124,9 @@ final class Structure {
                     if (tag.startsWith(Tags.PREFIX_LE)) {
                         defaultTitleCase = true;
                         isAbbr = false;
-                    } else
-                        isAbbr = tag.matches(Tags.la) || tag.startsWith(Tags.PREFIX_LU);
+                    } else {
+                        isAbbr = tag.matches(Tags.la) || tag.matches(Tags.lur) || (tag.matches(Tags.lu) && tokenizer.nextTokenStartsWithDigit());
+                    }
                 }
             } else {
                 CharSequence currentToken = tokenizer.currentToken;
@@ -178,8 +179,8 @@ final class Structure {
         }
 
         createDefaultStructure(structure, charsMissing, defaultTitleCase, isAbbr);
-
         capitalizeStructure(structure, tokenizer);
+
         return structure.toString();
     }
 
@@ -239,16 +240,17 @@ final class Structure {
                     if (c == '-') {
                         hyphenCount++;
 
-                        if (isDe && tokenizer.containsTagAfterCurrent(Tags.lep)) {
-                            for (int j = 0, len2 = structure.length(); j < len2; j++) {
-                                char ch = structure.charAt(j);
-                                if (ch == 'i' || ch == 'p') {
-                                    structure.setCharAt(j, 'i');
-                                    return;
-                                }
-                            }
+                        if (isDe) {
+                            boolean hasLep = tokenizer.containsTagAfterCurrent(Tags.lep);
+                            if (hasLep)
+                                tokenizer.skipUntilTag(Tags.lep);
 
-                            return;
+                            if (hasLep || tokenizer.isAtLastToken())
+                                for (int k = 0; k < structure.length(); k++)
+                                    if (structure.charAt(k) == 'i' || structure.charAt(k) == 'p') {
+                                        structure.setCharAt(k, 'i');
+                                        return;
+                                    }
                         }
                     }
                 }

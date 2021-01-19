@@ -119,7 +119,7 @@ public class VoikkoComparisonTest {
     void compareReferenceText() {
         for (String word : referenceWords) {
             List<Map<String, ?>> voikkoResult = voikko.analyze(word).stream().map(VoikkoComparisonTest::withoutUnsupportedAttributes).collect(toList());
-            List<Map<String, ?>> raudikkoResult = analyzer.analyze(word).stream().map(VoikkoComparisonTest::toVoikkoFormat).collect(toList());
+            List<Map<String, ?>> raudikkoResult = analyzer.analyze(word).stream().map(Analysis::toVoikkoFormat).collect(toList());
             assertEquals(voikkoResult, raudikkoResult);
         }
     }
@@ -187,14 +187,7 @@ public class VoikkoComparisonTest {
         }
     }
 
-    private static Map<String, ?> toVoikkoFormat(@NotNull Analysis analysis) {
-        Map<String, String> map = analysis.toVoikkoFormat();
-        map.remove("STRUCTURE");
-        return map;
-    }
-
     private static @NotNull Map<String, ?> withoutUnsupportedAttributes(@NotNull Map<String, ?> analysis) {
-        analysis.remove("STRUCTURE");
         analysis.remove("WORDIDS");
         analysis.remove("WORDBASES");
         return analysis;

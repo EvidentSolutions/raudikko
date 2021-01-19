@@ -146,7 +146,7 @@ final class BasicAttributes {
         if (analysis.getNegative() != null && ((analysis.getWordClass() != null && !analysis.getWordClass().equals("teonsana")) || (Objects.equals(analysis.getMood(), "MINEN-infinitive") || Objects.equals(analysis.getMood(), "E-infinitive") || Objects.equals(analysis.getMood(), "MA-infinitive"))))
             analysis.setNegative(null);
 
-        if (analysis.getParticiple() != null && analysis.getParticiple().equals("past_passive"))
+        if (Objects.equals(analysis.getParticiple(), "past_passive"))
             analysis.setWordClass("laatusana");
 
         if (analysis.getNumber() != null && Objects.equals(analysis.getSijamuoto(), "kerrontosti"))

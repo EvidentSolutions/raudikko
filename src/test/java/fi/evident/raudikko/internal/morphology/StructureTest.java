@@ -33,46 +33,31 @@
 package fi.evident.raudikko.internal.morphology;
 
 import org.jetbrains.annotations.NotNull;
+import org.junit.jupiter.api.Test;
 
-// https://github.com/voikko/corevoikko/blob/master/voikko-fi/vvfst/root.lexc
-public final class Tags {
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-    static final @NotNull String bc = "[Bc]";
-    static final @NotNull String bh = "[Bh]";
+class StructureTest {
 
-    static final @NotNull String de = "[De]";
-    static final @NotNull String dg = "[Dg]";
+    @Test
+    void structures() {
+        assertEquals("=qj", parseStructure("[La][Xr]qj[X][Xp]mA[X]ma[Sn][Ny]", 2));
+        assertEquals("=jj-=ppppp", parseStructure("[La][Xr]jj[X][Xp]EU[X]eu-[Bc][Ln][Xp]kieli[X]kiel[Sn][Ny]i", 8));
+    }
 
-    static final @NotNull String fko = "[Fko]";
+    @Test
+    void trailingDash() {
+        assertEquals("=ipppppp-", parseStructure("[Lp][Xp]Pohjois[X][Xr]i[X]pohjois[Bc]-", 8));
+        assertEquals("-=pppppppp-", parseStructure("-[Bc][Lt][Xp]säveltää[X]sävell[Ln][Xj]ys[X]y[Sn][Ny]s-[Bh][Bc]", 10));
+    }
 
-    static final @NotNull String isf = "[Isf]";
-    static final @NotNull String icu = "[Icu]";
-    static final @NotNull String ica = "[Ica]";
-    static final @NotNull String ion = "[Ion]";
-    static final @NotNull String ivj = "[Ivj]";
-    static final @NotNull String ira = "[Ira]";
-    static final @NotNull String irm = "[Irm]";
+    @Test
+    void capitalization() {
+        assertEquals("=ipppppp-", parseStructure("[Lp]lounais[De]-", 8));
+        assertEquals("=ppppp-", parseStructure("[Lp][Xp]keski[X]keski[Bc]-", 6));
+    }
 
-    static final @NotNull String la = "[La]";
-    static final @NotNull String ln = "[Ln]";
-    static final @NotNull String lnl = "[Lnl]";
-    static final @NotNull String lu = "[Lu]";
-    static final @NotNull String lur = "[Lur]";
-    static final @NotNull String ll = "[Ll]";
-    static final @NotNull String lep = "[Lep]";
-
-    static final @NotNull String ssti = "[Ssti]";
-
-    static final @NotNull String xp = "[Xp]";
-    static final @NotNull String xj = "[Xj]";
-    static final @NotNull String xr = "[Xr]";
-    static final @NotNull String xs = "[Xs]";
-    static final @NotNull String x = "[X]";
-
-    public static final String PREFIX_B = "[B";
-    public static final String PREFIX_L = "[L";
-    public static final String PREFIX_LE = "[Le";
-    public static final String PREFIX_LU = "[Lu";
-    public static final String PREFIX_X = "[X";
-
+    private static @NotNull String parseStructure(@NotNull String s, int len) {
+        return Structure.parseStructure(SymbolBuffer.parse(s), len);
+    }
 }
