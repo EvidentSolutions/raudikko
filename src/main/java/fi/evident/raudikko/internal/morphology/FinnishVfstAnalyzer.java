@@ -54,6 +54,7 @@ public final class FinnishVfstAnalyzer implements Analyzer {
     private final @NotNull Symbol[] output = new Symbol[2000];
     private final @NotNull SymbolBuffer buffer = new SymbolBuffer(2000);
     private final short[] flags;
+    private static final int MAX_WORD_LENGTH = 255;
 
     public FinnishVfstAnalyzer(@NotNull UnweightedTransducer transducer) {
         this.transducer = transducer;
@@ -64,7 +65,7 @@ public final class FinnishVfstAnalyzer implements Analyzer {
     public @NotNull List<Analysis> analyze(@NotNull CharSequence word, int maxResults) {
         ArrayList<Analysis> results = new ArrayList<>();
 
-        if (word.length() > 255)
+        if (word.length() > MAX_WORD_LENGTH)
             return results;
 
         transducer.transduce(word, inputBuffer, flags, output, depth -> {
@@ -72,6 +73,28 @@ public final class FinnishVfstAnalyzer implements Analyzer {
 
             if (isValidAnalysis(buffer))
                 createAnalysis(buffer, word.length(), results);
+        });
+
+        return results;
+    }
+
+    @Override
+    public @NotNull List<String> baseForms(@NotNull CharSequence word) {
+        ArrayList<String> results = new ArrayList<>();
+
+        if (word.length() > MAX_WORD_LENGTH)
+            return results;
+
+        transducer.transduce(word, inputBuffer, flags, output, depth -> {
+            buffer.reset(output, depth);
+
+            if (isValidAnalysis(buffer)) {
+                String structure = parseStructure(buffer, word.length());
+
+                String baseForm = parseBaseform(buffer, structure);
+                if (baseForm != null && !results.contains(baseForm))
+                    results.add(baseForm);
+            }
         });
 
         return results;
