@@ -56,9 +56,10 @@ final class BasicAttributes {
             switch (tagClass) {
                 case 'L':
                     if (analysis.getWordClass() == null) {
-                        if (tag.matches(Tags.lnl))
-                            analysis.setWordClass((convertNimiLaatusanaToLaatusana || (analysis.getComparison() != null && (analysis.getComparison().equals("comparative") || analysis.getComparison().equals("superlative"))) || tag.matches(Tags.lu)) ? "laatusana" : "nimisana_laatusana");
-                        else
+                        if (tag.matches(Tags.lnl)) {
+                            String comp = analysis.getComparison();
+                            analysis.setWordClass(convertNimiLaatusanaToLaatusana || Objects.equals(comp, "comparative") || Objects.equals(comp, "superlative") || tokenizer.firstTokenIs(Tags.lu) ? "laatusana" : "nimisana_laatusana");
+                        } else
                             analysis.setWordClass(Attributes.CLASS.get(tag.toString()));
                     }
                     break;

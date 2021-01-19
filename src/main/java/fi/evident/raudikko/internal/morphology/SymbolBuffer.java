@@ -175,13 +175,10 @@ public final class SymbolBuffer {
         return false;
     }
 
-    public boolean nextTokenStartsWith(@NotNull String tag) {
-        int nextIndex = index + 1;
-        if (nextIndex < tokenCount) {
-            Symbol nextTag = tags[nextIndex];
-            return nextTag != null && nextTag.startsWith(tag);
-        }
-        return false;
+    public boolean firstTokenIs(@NotNull  String tag) {
+        if (tokenCount == 0) return false;
+        Symbol first = tags[0];
+        return first != null && first.matches(tag);
     }
 
     public boolean lastTokenIsTag(@NotNull String tag) {
