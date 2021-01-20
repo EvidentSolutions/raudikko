@@ -35,6 +35,9 @@ package fi.evident.raudikko;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Result of analyzing a word.
  *
@@ -213,6 +216,44 @@ public final class Analysis implements Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new AssertionError(e);
         }
+    }
+
+    /**
+     * Converts the results of the analysis in same kind of dictionary that Voikko returns.
+     */
+    public @NotNull Map<String, String> toVoikkoFormat() {
+        Map<String, String> map = new HashMap<>();
+
+        putIfNotNull(map, "BASEFORM", baseForm);
+        putIfNotNull(map, "CLASS", wordClass);
+        putIfNotNull(map, "SIJAMUOTO", sijamuoto);
+        putIfNotNull(map, "COMPARISON", comparison);
+        putIfNotNull(map, "FOCUS", focus);
+        putIfNotNull(map, "FSTOUTPUT", fstOutput);
+        putIfNotNull(map, "STRUCTURE", structure);
+        putIfNotNull(map, "NUMBER", number);
+        putIfNotNull(map, "NEGATIVE", negative);
+        putIfNotNull(map, "MOOD", mood);
+        putIfNotNull(map, "PARTICIPLE", participle);
+        putIfNotNull(map, "PERSON", person);
+        putIfNotNull(map, "POSSESSIVE", possessive);
+        putIfNotNull(map, "TENSE", tense);
+        putIfNotNull(map,"REQUIRE_FOLLOWING_VERB", requireFollowingVerb);
+        putIfTrue(map, "KYSYMYSLIITE", kysymysliite);
+        putIfTrue(map, "MALAGA_VAPAA_JALKIOSA", malagaVapaaJalkiosa);
+        putIfTrue(map, "POSSIBLE_GEOGRAPHICAL_NAME", possibleGeographicalName);
+
+        return map;
+    }
+
+    private static void putIfNotNull(@NotNull Map<String, String> map, @NotNull String key, @Nullable String value) {
+        if (value != null)
+            map.put(key, value);
+    }
+
+    private static void putIfTrue(@NotNull Map<String, String> map, @NotNull String key, boolean value) {
+        if (value)
+            map.put(key, "true");
     }
 
     @Override

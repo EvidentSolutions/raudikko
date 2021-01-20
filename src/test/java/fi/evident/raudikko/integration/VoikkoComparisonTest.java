@@ -36,7 +36,6 @@ import fi.evident.raudikko.Analysis;
 import fi.evident.raudikko.Analyzer;
 import fi.evident.raudikko.Morphology;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -189,28 +188,8 @@ public class VoikkoComparisonTest {
     }
 
     private static Map<String, ?> toVoikkoFormat(@NotNull Analysis analysis) {
-        Map<String, Object> map = new HashMap<>();
-
-        putIfNotNull(map, "BASEFORM", analysis.getBaseForm());
-        putIfNotNull(map, "CLASS", analysis.getWordClass());
-        putIfNotNull(map, "SIJAMUOTO", analysis.getSijamuoto());
-        putIfNotNull(map, "COMPARISON", analysis.getComparison());
-        putIfNotNull(map, "FOCUS", analysis.getFocus());
-        putIfNotNull(map, "FSTOUTPUT", analysis.getFstOutput());
-//        putIfNotNull(map, "STRUCTURE", analysis.getStructure());
-        putIfNotNull(map, "NUMBER", analysis.getNumber());
-        putIfNotNull(map, "NEGATIVE", analysis.getNegative());
-        putIfNotNull(map, "MOOD", analysis.getMood());
-        putIfNotNull(map, "PARTICIPLE", analysis.getParticiple());
-        putIfNotNull(map, "PERSON", analysis.getPerson());
-        putIfNotNull(map, "POSSESSIVE", analysis.getPossessive());
-        putIfNotNull(map, "TENSE", analysis.getTense());
-        putIfNotNull(map,"REQUIRE_FOLLOWING_VERB", analysis.getRequireFollowingVerb());
-
-        putIfTrue(map, "KYSYMYSLIITE", analysis.isKysymysliite());
-        putIfTrue(map, "MALAGA_VAPAA_JALKIOSA", analysis.isMalagaVapaaJalkiosa());
-        putIfTrue(map, "POSSIBLE_GEOGRAPHICAL_NAME", analysis.isPossibleGeographicalName());
-
+        Map<String, String> map = analysis.toVoikkoFormat();
+        map.remove("STRUCTURE");
         return map;
     }
 
@@ -219,16 +198,6 @@ public class VoikkoComparisonTest {
         analysis.remove("WORDIDS");
         analysis.remove("WORDBASES");
         return analysis;
-    }
-
-    private static void putIfNotNull(@NotNull Map<String, Object> map, @NotNull String key, @Nullable String value) {
-        if (value != null)
-            map.put(key, value);
-    }
-
-    private static void putIfTrue(@NotNull Map<String, Object> map, @NotNull String key, boolean value) {
-        if (value)
-            map.put(key, "true");
     }
 
     private static final class RepeatedList<T> extends AbstractList<T> {
