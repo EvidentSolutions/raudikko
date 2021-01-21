@@ -10,7 +10,7 @@ libraries. Raudikko is also quite a bit faster than Voikko's Java-interface.
 Add dependency to your build file:
 
 ```kotlin
-implementation("fi.evident.raudikko:raudikko:0.1")
+implementation("fi.evident.raudikko:raudikko:0.1.1")
 ```
 
 Create an analyzer and use it to produce `Analysis`-objects for given words:
@@ -36,7 +36,7 @@ The below table lists the version of Voikko that Raudikko is tests against.
 
 | Raudikko version       | Voikko version           | Morphology  |
 | ------------- |:-------------:| -----:|
-| 0.1      | 4.3 | [9f0d3d](https://github.com/voikko/corevoikko/commit/9f0d3de39ac23a9776d1ec8c30a157a707955a50) |
+| 0.1.1    | 4.3 | [9f0d3d](https://github.com/voikko/corevoikko/commit/9f0d3de39ac23a9776d1ec8c30a157a707955a50) |
 
 ## Acknowledgements
 
