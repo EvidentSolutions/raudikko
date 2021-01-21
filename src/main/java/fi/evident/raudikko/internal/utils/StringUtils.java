@@ -79,4 +79,15 @@ public final class StringUtils {
 
         return Character.toUpperCase(s.charAt(0)) + s.substring(1);
     }
+
+    public static boolean matchesAt(@NotNull CharSequence haystack, int offset, @NotNull CharSequence needle) {
+        if (offset < 0 || offset + needle.length() > haystack.length())
+            return false;
+
+        for (int i = 0; i < needle.length(); i++)
+            if (haystack.charAt(i + offset) != needle.charAt(i))
+                return false;
+
+        return true;
+    }
 }

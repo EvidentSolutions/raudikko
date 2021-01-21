@@ -77,9 +77,7 @@ final class Organization {
                 return false;
 
             if (buffer.matchesTag(Tags.ion))
-                while (buffer.previousToken())
-                    if (buffer.matchesTag(Tags.bc))
-                        return true;
+                return buffer.containsTagBeforeCurrent(Tags.bc);
         }
 
         return false;

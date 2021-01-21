@@ -38,7 +38,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-import static fi.evident.raudikko.internal.utils.StringUtils.endsWithChar;
+import static fi.evident.raudikko.internal.morphology.Attributes.resolveAttribute;
 
 final class BasicAttributes {
 
@@ -52,65 +52,64 @@ final class BasicAttributes {
             Symbol tag = tokenizer.getCurrentTag();
             if (tag == null) continue;
 
-            char tagClass = tag.toString().charAt(1);
-            switch (tagClass) {
+            switch (tag.toString().charAt(1)) {
                 case 'L':
                     if (analysis.getWordClass() == null) {
                         if (tag.matches(Tags.lnl)) {
                             String comp = analysis.getComparison();
                             analysis.setWordClass(convertNimiLaatusanaToLaatusana || Objects.equals(comp, "comparative") || Objects.equals(comp, "superlative") || tokenizer.firstTokenIs(Tags.lu) ? "laatusana" : "nimisana_laatusana");
                         } else
-                            analysis.setWordClass(Attributes.CLASS.get(tag.toString()));
+                            analysis.setWordClass(resolveAttribute(tag));
                     }
                     break;
                 case 'N':
                     if (analysis.getNumber() == null && (analysis.getWordClass() == null || !analysis.getWordClass().equals("etuliite") && !analysis.getWordClass().equals("seikkasana")))
-                        analysis.setNumber(Attributes.NUMBER.get(tag.toString()));
+                        analysis.setNumber(resolveAttribute(tag));
                     break;
                 case 'P':
                     if (analysis.getPerson() == null)
-                        analysis.setPerson(Attributes.PERSON.get(tag.toString()));
+                        analysis.setPerson(resolveAttribute(tag));
                     break;
                 case 'S':
                     if (analysis.getWordClass() == null || !analysis.getWordClass().equals("etuliite") && !analysis.getWordClass().equals("seikkasana")) {
                         if (analysis.getSijamuoto() == null)
-                            analysis.setSijamuoto(Attributes.SIJAMUOTO.get(tag.toString()));
+                            analysis.setSijamuoto(resolveAttribute(tag));
                         if (tag.matches(Tags.ssti))
                             convertNimiLaatusanaToLaatusana = true;
                     }
                     break;
                 case 'T':
                     if (analysis.getMood() == null && analysis.getWordClass() == null)
-                        analysis.setMood(Attributes.MOOD.get(tag.toString()));
+                        analysis.setMood(resolveAttribute(tag));
                     break;
                 case 'A':
                     if (analysis.getTense() == null)
-                        analysis.setTense(Attributes.TENSE.get(tag.toString()));
+                        analysis.setTense(resolveAttribute(tag));
                     break;
                 case 'F':
                     if (tag.matches(Tags.fko))
                         analysis.setKysymysliite(true);
                     else if (analysis.getFocus() == null)
-                        analysis.setFocus(Attributes.FOCUS.get(tag.toString()));
+                        analysis.setFocus(resolveAttribute(tag));
                     break;
                 case 'O':
                     if (analysis.getPossessive() == null)
-                        analysis.setPossessive(Attributes.POSSESSIVE.get(tag.toString()));
+                        analysis.setPossessive(resolveAttribute(tag));
                     break;
                 case 'C':
                     if (analysis.getWordClass() == null && analysis.getComparison() == null)
-                        analysis.setComparison(Attributes.COMPARISON.get(tag.toString()));
+                        analysis.setComparison(resolveAttribute(tag));
                     break;
                 case 'E':
                     if (analysis.getNegative() == null)
-                        analysis.setNegative(Attributes.NEGATIVE.get(tag.toString()));
+                        analysis.setNegative(resolveAttribute(tag));
                     break;
                 case 'R':
                     // TODO: Checking the end for [Ln] is done to handle -tUAnne ("kuunneltuanne"). This is for compatibility
                     // with Malaga implementation. See VISK § 543 (temporaalirakenne) for correct analysis.
                     if (analysis.getParticiple() == null && !bcPassed)
                         if (analysis.getWordClass() == null || analysis.getWordClass().equals("laatusana") || tokenizer.lastTokenIsTag(Tags.ln))
-                            analysis.setParticiple(Attributes.PARTICIPLE.get(tag.toString()));
+                            analysis.setParticiple(resolveAttribute(tag));
                     break;
                 case 'I':
                     addInfoFlag(tag, analysis, tokenizer);
@@ -118,17 +117,8 @@ final class BasicAttributes {
                 case 'B':
                     if (tag.matches(Tags.bc) && analysis.getWordClass() == null) {
                         // is preceded by "-" or "-[Bh]"?
-                        boolean match = false;
-                        if (tokenizer.previousToken()) {
-                            if (endsWithChar(tokenizer.currentToken, '-'))
-                                match = true;
-                            else if (tokenizer.matchesTag(Tags.bh) && tokenizer.previousToken()) {
-                                match = endsWithChar(tokenizer.currentToken, '-');
-                                tokenizer.nextToken();
-                            }
-
-                            tokenizer.nextToken();
-                        }
+                        boolean match = tokenizer.relativeTokenEndsWithChar(-1, '-')
+                                || (tokenizer.previousTokenIsTag(Tags.bh) && tokenizer.relativeTokenEndsWithChar(-2, '-'));
 
                         if (match) {
                             analysis.setWordClass("etuliite");
@@ -162,7 +152,7 @@ final class BasicAttributes {
 
     private static void addInfoFlag(@NotNull Symbol tag, @NotNull Analysis analysis, @NotNull SymbolBuffer tokenizer) {
         if (tag.matches(Tags.ivj)) {
-            if (!tokenizer.fullContents().startsWith("-")) // TODO don't call fullContents
+            if (!tokenizer.firstTokenStartsWith('-'))
                 analysis.setMalagaVapaaJalkiosa(true);
         } else if (tag.matches(Tags.ica)) {
             String className = analysis.getWordClass();

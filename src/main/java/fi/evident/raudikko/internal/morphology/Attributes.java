@@ -32,7 +32,9 @@
 
 package fi.evident.raudikko.internal.morphology;
 
+import fi.evident.raudikko.internal.fst.Symbol;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,97 +43,92 @@ final class Attributes {
 
     private Attributes() { }
 
-    public static final @NotNull Map<String, String> CLASS = new HashMap<>();
-    public static final @NotNull Map<String, String> COMPARISON = new HashMap<>();
-    public static final @NotNull Map<String, String> SIJAMUOTO = new HashMap<>();
-    public static final @NotNull Map<String, String> MOOD = new HashMap<>();
-    public static final @NotNull Map<String, String> NUMBER = new HashMap<>();
-    public static final @NotNull Map<String, String> PERSON = new HashMap<>();
-    public static final @NotNull Map<String, String> TENSE = new HashMap<>();
-    public static final @NotNull Map<String, String> FOCUS = new HashMap<>();
-    public static final @NotNull Map<String, String> POSSESSIVE = new HashMap<>();
-    public static final @NotNull Map<String, String> PARTICIPLE = new HashMap<>();
-    public static final @NotNull Map<String, String> NEGATIVE = new HashMap<>();
+    private static final @NotNull Map<String, String> attributeTexts = new HashMap<>();
+
+    static @Nullable String resolveAttribute(@NotNull Symbol symbol) {
+        return Attributes.attributeTexts.get(symbol.toString());
+    }
 
     static {
-        CLASS.put("[Ln]", "nimisana");
-        CLASS.put("[Ll]", "laatusana");
-        CLASS.put("[Lnl]", "nimisana_laatusana");
-        CLASS.put("[Lh]", "huudahdussana");
-        CLASS.put("[Lee]", "etunimi");
-        CLASS.put("[Les]", "sukunimi");
-        CLASS.put("[Lep]", "paikannimi");
-        CLASS.put("[Lem]", "nimi");
-        CLASS.put("[Lt]", "teonsana");
-        CLASS.put("[La]", "lyhenne");
-        CLASS.put("[Ls]", "seikkasana");
-        CLASS.put("[Lu]", "lukusana");
-        CLASS.put("[Lur]", "lukusana");
-        CLASS.put("[Lr]", "asemosana");
-        CLASS.put("[Lc]", "sidesana");
-        CLASS.put("[Ld]", "suhdesana");
-        CLASS.put("[Lk]", "kieltosana");
-        CLASS.put("[Lp]", "etuliite");
 
-        COMPARISON.put("[Cc]", "comparative");
-        COMPARISON.put("[Cs]", "superlative");
+        attributeTexts.put("[Ln]", "nimisana");
+        attributeTexts.put("[Ll]", "laatusana");
+        attributeTexts.put("[Lnl]", "nimisana_laatusana");
+        attributeTexts.put("[Lh]", "huudahdussana");
+        attributeTexts.put("[Lee]", "etunimi");
+        attributeTexts.put("[Les]", "sukunimi");
+        attributeTexts.put("[Lep]", "paikannimi");
+        attributeTexts.put("[Lem]", "nimi");
+        attributeTexts.put("[Lt]", "teonsana");
+        attributeTexts.put("[La]", "lyhenne");
+        attributeTexts.put("[Ls]", "seikkasana");
+        attributeTexts.put("[Lu]", "lukusana");
+        attributeTexts.put("[Lur]", "lukusana");
+        attributeTexts.put("[Lr]", "asemosana");
+        attributeTexts.put("[Lc]", "sidesana");
+        attributeTexts.put("[Ld]", "suhdesana");
+        attributeTexts.put("[Lk]", "kieltosana");
+        attributeTexts.put("[Lp]", "etuliite");
 
-        SIJAMUOTO.put("[Sn]", "nimento");
-        SIJAMUOTO.put("[Sg]", "omanto");
-        SIJAMUOTO.put("[Sp]", "osanto");
-        SIJAMUOTO.put("[Ses]", "olento");
-        SIJAMUOTO.put("[Str]", "tulento");
-        SIJAMUOTO.put("[Sine]", "sisaolento");
-        SIJAMUOTO.put("[Sela]", "sisaeronto");
-        SIJAMUOTO.put("[Sill]", "sisatulento");
-        SIJAMUOTO.put("[Sade]", "ulkoolento");
-        SIJAMUOTO.put("[Sabl]", "ulkoeronto");
-        SIJAMUOTO.put("[Sall]", "ulkotulento");
-        SIJAMUOTO.put("[Sab]", "vajanto");
-        SIJAMUOTO.put("[Sko]", "seuranto");
-        SIJAMUOTO.put("[Sin]", "keinonto");
-        SIJAMUOTO.put("[Ssti]", "kerrontosti");
-        SIJAMUOTO.put("[Sak]", "kohdanto");
+        attributeTexts.put("[Cc]", "comparative");
+        attributeTexts.put("[Cs]", "superlative");
 
-        MOOD.put("[Tn1]", "A-infinitive");
-        MOOD.put("[Tn2]", "E-infinitive");
-        MOOD.put("[Tn3]", "MA-infinitive");
-        MOOD.put("[Tn4]", "MINEN-infinitive");
-        MOOD.put("[Tn5]", "MAINEN-infinitive");
-        MOOD.put("[Tt]", "indicative");
-        MOOD.put("[Te]", "conditional");
-        MOOD.put("[Tk]", "imperative");
-        MOOD.put("[Tm]", "potential");
+        attributeTexts.put("[Sn]", "nimento");
+        attributeTexts.put("[Sg]", "omanto");
+        attributeTexts.put("[Sp]", "osanto");
+        attributeTexts.put("[Ses]", "olento");
+        attributeTexts.put("[Str]", "tulento");
+        attributeTexts.put("[Sine]", "sisaolento");
+        attributeTexts.put("[Sela]", "sisaeronto");
+        attributeTexts.put("[Sill]", "sisatulento");
+        attributeTexts.put("[Sade]", "ulkoolento");
+        attributeTexts.put("[Sabl]", "ulkoeronto");
+        attributeTexts.put("[Sall]", "ulkotulento");
+        attributeTexts.put("[Sab]", "vajanto");
+        attributeTexts.put("[Sko]", "seuranto");
+        attributeTexts.put("[Sin]", "keinonto");
+        attributeTexts.put("[Ssti]", "kerrontosti");
+        attributeTexts.put("[Sak]", "kohdanto");
 
-        NUMBER.put("[Ny]", "singular");
-        NUMBER.put("[Nm]", "plural");
+        attributeTexts.put("[Tn1]", "A-infinitive");
+        attributeTexts.put("[Tn2]", "E-infinitive");
+        attributeTexts.put("[Tn3]", "MA-infinitive");
+        attributeTexts.put("[Tn4]", "MINEN-infinitive");
+        attributeTexts.put("[Tn5]", "MAINEN-infinitive");
+        attributeTexts.put("[Tt]", "indicative");
+        attributeTexts.put("[Te]", "conditional");
+        attributeTexts.put("[Tk]", "imperative");
+        attributeTexts.put("[Tm]", "potential");
 
-        PERSON.put("[P1]", "1");
-        PERSON.put("[P2]", "2");
-        PERSON.put("[P3]", "3");
-        PERSON.put("[P4]", "4");
+        attributeTexts.put("[Ny]", "singular");
+        attributeTexts.put("[Nm]", "plural");
 
-        TENSE.put("[Ap]", "present_simple");
-        TENSE.put("[Ai]", "past_imperfective");
+        attributeTexts.put("[P1]", "1");
+        attributeTexts.put("[P2]", "2");
+        attributeTexts.put("[P3]", "3");
+        attributeTexts.put("[P4]", "4");
 
-        FOCUS.put("[Fkin]", "kin");
-        FOCUS.put("[Fkaan]", "kaan");
+        attributeTexts.put("[Ap]", "present_simple");
+        attributeTexts.put("[Ai]", "past_imperfective");
 
-        POSSESSIVE.put("[O1y]", "1s");
-        POSSESSIVE.put("[O2y]", "2s");
-        POSSESSIVE.put("[O1m]", "1p");
-        POSSESSIVE.put("[O2m]", "2p");
-        POSSESSIVE.put("[O3]", "3");
+        attributeTexts.put("[Fkin]", "kin");
+        attributeTexts.put("[Fkaan]", "kaan");
 
-        NEGATIVE.put("[Et]", "true");
-        NEGATIVE.put("[Ef]", "false");
-        NEGATIVE.put("[Eb]", "both");
+        attributeTexts.put("[O1y]", "1s");
+        attributeTexts.put("[O2y]", "2s");
+        attributeTexts.put("[O1m]", "1p");
+        attributeTexts.put("[O2m]", "2p");
+        attributeTexts.put("[O3]", "3");
 
-        PARTICIPLE.put("[Rv]", "present_active");
-        PARTICIPLE.put("[Ra]", "present_passive");
-        PARTICIPLE.put("[Ru]", "past_active");
-        PARTICIPLE.put("[Rt]", "past_passive");
-        PARTICIPLE.put("[Rm]", "agent");
-        PARTICIPLE.put("[Re]", "negation");
+        attributeTexts.put("[Et]", "true");
+        attributeTexts.put("[Ef]", "false");
+        attributeTexts.put("[Eb]", "both");
+
+        attributeTexts.put("[Rv]", "present_active");
+        attributeTexts.put("[Ra]", "present_passive");
+        attributeTexts.put("[Ru]", "past_active");
+        attributeTexts.put("[Rt]", "past_passive");
+        attributeTexts.put("[Rm]", "agent");
+        attributeTexts.put("[Re]", "negation");
     }
 }

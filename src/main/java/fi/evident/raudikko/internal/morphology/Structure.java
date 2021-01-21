@@ -36,6 +36,7 @@ import fi.evident.raudikko.internal.fst.Symbol;
 import org.jetbrains.annotations.NotNull;
 
 import static fi.evident.raudikko.internal.utils.StringUtils.endsWithChar;
+import static java.lang.Math.max;
 
 /*
  STRUCTURE
@@ -86,7 +87,7 @@ final class Structure {
             Symbol tag = tokenizer.getCurrentTag();
             if (tag != null) {
                 if (tag.startsWith(Tags.PREFIX_B) && !tag.matches(Tags.bh)) {
-                    if (tokenizer.getStart() == 1)
+                    if (tokenizer.getCurrentOffset() == 1)
                         structure.append('=');
 
                     if (charsSeen > charsFromDefault) {
@@ -95,7 +96,7 @@ final class Structure {
                     }
 
                     // TODO: Why is 'tokenizer.getStart() + 5' necessary? Make the meaning clearer.
-                    if (tokenizer.getStart() != 1 && tokenizer.getStart() + 5 < tokenizer.getTotalLength() && structure.length() != 0 && !endsWithChar(structure, '='))
+                    if (tokenizer.getCurrentOffset() != 1 && tokenizer.getCurrentOffset() + 5 < tokenizer.getTotalLength() && structure.length() != 0 && !endsWithChar(structure, '='))
                         structure.append('=');
 
                     charsSeen = 0;
@@ -185,13 +186,7 @@ final class Structure {
     }
 
     private static int decreaseCharsMissing(int charsMissing, int charsSeen, int charsFromDefault) {
-        if (charsSeen - charsFromDefault <= charsMissing) {
-            return charsMissing - (charsSeen - charsFromDefault);
-        } else {
-            // lexicon error: something wrong with fstOutput
-            assert false;
-            return charsMissing;
-        }
+        return max(0, charsMissing - (charsSeen - charsFromDefault));
     }
 
     private static boolean createDefaultStructure(@NotNull StringBuilder sb, int charsMissing, boolean defaultTitleCase, boolean abbr) {

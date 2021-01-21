@@ -125,16 +125,8 @@ public final class SymbolBuffer {
         index = tokenCount;
     }
 
-    public int getIndex() {
-        return index;
-    }
-
-    int getStart() {
+    int getCurrentOffset() {
         return startIndices[index];
-    }
-
-    private int getEnd() {
-        return startIndices[index + 1];
     }
 
     int getTotalLength() {
@@ -168,6 +160,15 @@ public final class SymbolBuffer {
         }
     }
 
+    boolean relativeTokenEndsWithChar(int relativeIndex, char c) {
+        int tokenIndex = index + relativeIndex;
+        if (tokenIndex >= 0 && tokenIndex < tokenCount) {
+            int nextStart = startIndices[tokenIndex + 1];
+            return textBuffer.charAt(nextStart - 1) == c;
+        }
+        return false;
+    }
+
     public boolean nextTokenIsTag(@NotNull String tag) {
         int nextIndex = index + 1;
         if (nextIndex < tokenCount) {
@@ -177,13 +178,22 @@ public final class SymbolBuffer {
         return false;
     }
 
-    public boolean nextTokenStartsWithDigit() {
-        if (nextToken()) {
-            boolean result = isDigit(currentToken.charAt(0));
-            previousToken();
-            return result;
+    public boolean previousTokenIsTag(@NotNull String tag) {
+        int previous = index - 1;
+        if (previous >= 0) {
+            Symbol nextTag = tags[previous];
+            return nextTag != null && nextTag.matches(tag);
         }
         return false;
+    }
+
+    public boolean nextTokenStartsWithDigit() {
+        int nextIndex = index + 1;
+        return nextIndex < tokenCount && isDigit(textBuffer.charAt(startIndices[nextIndex]));
+    }
+
+    public boolean firstTokenStartsWith(char c) {
+        return getTotalLength() != 0 && textBuffer.charAt(0) == c;
     }
 
     public boolean firstTokenIs(@NotNull  String tag) {
@@ -246,6 +256,15 @@ public final class SymbolBuffer {
         return false;
     }
 
+    boolean containsTagBeforeCurrent(@NotNull String s) {
+        for (int i = index - 1; i >= 0; i--) {
+            Symbol tag = tags[i];
+            if (tag != null && tag.matches(s))
+                return true;
+        }
+        return false;
+    }
+
     /**
      * A CharSequence representing the current token. Note that to avoid allocation, this
      * sequence is only valid while the token is active
@@ -253,17 +272,17 @@ public final class SymbolBuffer {
     final @NotNull CharSequence currentToken = new CharSequence() {
         @Override
         public int length() {
-            return getEnd() - getStart();
+            return startIndices[index + 1] - startIndices[index];
         }
 
         @Override
         public char charAt(int index) {
-            return textBuffer.charAt(getStart() + index);
+            return textBuffer.charAt(getCurrentOffset() + index);
         }
 
         @Override
         public CharSequence subSequence(int start, int end) {
-            int offset = getStart();
+            int offset = getCurrentOffset();
             return textBuffer.subSequence(offset + start, offset + end);
         }
 

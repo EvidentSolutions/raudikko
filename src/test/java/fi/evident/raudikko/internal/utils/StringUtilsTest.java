@@ -30,48 +30,27 @@
  * the terms of any one of the MPL, the GPL or the LGPL.
  */
 
-package fi.evident.raudikko.internal.morphology;
+package fi.evident.raudikko.internal.utils;
 
-import org.jetbrains.annotations.NotNull;
+import org.junit.jupiter.api.Test;
 
-// https://github.com/voikko/corevoikko/blob/master/voikko-fi/vvfst/root.lexc
-public final class Tags {
+import static fi.evident.raudikko.internal.utils.StringUtils.matchesAt;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-    // Boundaries
-    public static final String PREFIX_B = "[B";
-    static final @NotNull String bc = "[Bc]";
-    static final @NotNull String bh = "[Bh]";
+class StringUtilsTest {
 
-    static final @NotNull String de = "[De]";
-    static final @NotNull String dg = "[Dg]";
+    @Test
+    void verifyMatchesAt() {
+        assertTrue(matchesAt("foo", 0, "foo"));
+        assertTrue(matchesAt("foobar", 0, "foo"));
+        assertFalse(matchesAt("foobar", 1, "foo"));
 
-    static final @NotNull String fko = "[Fko]";
+        assertTrue(matchesAt("foobar", 1, "oo"));
+        assertTrue(matchesAt("foobar", 1, "oob"));
+        assertTrue(matchesAt("foobar", 1, "oobar"));
+        assertFalse(matchesAt("foobar", 1, "foobarbaz"));
 
-    static final @NotNull String isf = "[Isf]";
-    static final @NotNull String icu = "[Icu]";
-    static final @NotNull String ica = "[Ica]";
-    static final @NotNull String ion = "[Ion]";
-    static final @NotNull String ivj = "[Ivj]";
-    static final @NotNull String ira = "[Ira]";
-    static final @NotNull String irm = "[Irm]";
-
-    // Classes
-    public static final String PREFIX_L = "[L";
-    public static final String PREFIX_LE = "[Le";
-    static final @NotNull String la = "[La]";
-    static final @NotNull String ln = "[Ln]";
-    static final @NotNull String lnl = "[Lnl]";
-    static final @NotNull String lu = "[Lu]";
-    static final @NotNull String lur = "[Lur]";
-    static final @NotNull String ll = "[Ll]";
-    static final @NotNull String lep = "[Lep]";
-
-    static final @NotNull String ssti = "[Ssti]";
-
-    // Parameters
-    public static final String PREFIX_X = "[X";
-    public static final @NotNull String xp = "[Xp]"; // perusmuoto
-    public static final @NotNull String xj = "[Xj]"; // johtimen perusmuoto
-    static final @NotNull String xr = "[Xr]"; // rakenne
-    static final @NotNull String x = "[X]"; // end marker
+        assertFalse(matchesAt("foobar", -1, "ofoo"));
+    }
 }

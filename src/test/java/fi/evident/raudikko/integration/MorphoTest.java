@@ -140,7 +140,7 @@ public class MorphoTest {
                 } else {
                     Matcher m = keyValuePattern.matcher(line);
                     if (m.matches()) {
-                        if (current.analyses.isEmpty()) continue; // TODO
+                        if (current.analyses.isEmpty()) continue; // TODO: fix test file
 
                         Map<String, String> currentAnalysis = current.analyses.get(current.analyses.size() - 1);
                         currentAnalysis.put(m.group(1), m.group(2));

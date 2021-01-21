@@ -60,13 +60,13 @@ final class BaseForm {
         while (tokenizer.nextToken()) {
             Symbol tag = tokenizer.getCurrentTag();
             if (tag != null) {
-                if (tag.matches(Tags.xp) || tag.matches(Tags.xj)) {
+                if (tag.isBaseFormTag()) {
                     latestXpStartInBaseform = baseform.length();
 
                     latestBaseForm = withoutChar(tokenizer.readXTagContents(), '=');
                     hyphensInLatestXp += countOccurrences(latestBaseForm, '-');
 
-                } else if (tag.matches(Tags.xr) || tag.matches(Tags.xs))
+                } else if (tag.startsWith(Tags.PREFIX_X))
                     tokenizer.skipXTag();
 
                 else if (tag.matches(Tags.de))
@@ -86,17 +86,17 @@ final class BaseForm {
                     ignoreNextDe = !tag.matches(Tags.ll) && !tag.matches(Tags.lnl);
                 }
             } else {
-                String text = tokenizer.currentToken.toString(); // TODO
+                CharSequence token = tokenizer.currentToken;
 
-                for (int i = 0, len = text.length(); i < len; i++) {
-                    char nextChar = text.charAt(i);
+                for (int i = 0, len = token.length(); i < len; i++) {
+                    char nextChar = token.charAt(i);
                     if (nextChar == '-') {
                         if (hyphensInLatestXp > 0)
                             hyphensInLatestXp--;
                         else {
                             // Compound place name such as "Isolla-Britannialla" needs to have "Isolla" replaced with "Iso".
                             // However "-is" is never replaced with "-nen" ("Pohjois-Suomella").
-                            if (isDe && latestBaseForm != null && !text.regionMatches(i - 2, "is-", 0, 3) && tokenizer.containsTagAfterCurrent(Tags.lep)) {
+                            if (isDe && latestBaseForm != null && !matchesAt(token, i - 2, "is-") && tokenizer.containsTagAfterCurrent(Tags.lep)) {
                                 baseform.setLength(latestXpStartInBaseform);
                                 baseform.append(capitalize(latestBaseForm));
                             }
@@ -125,7 +125,8 @@ final class BaseForm {
 
         boolean first = true;
         while (tokenizer.nextToken()) {
-            if (first && (isDigit(tokenizer.currentToken.charAt(0)) || tokenizer.currentToken.charAt(0) == '-'))
+            CharSequence token = tokenizer.currentToken;
+            if (first && (isDigit(token.charAt(0)) || token.charAt(0) == '-'))
                 isInDigitSequence = true;
 
             first = false;
@@ -137,17 +138,16 @@ final class BaseForm {
                     xpPassed = true;
                 }
 
-                if (tag.matches(Tags.xp) || tag.matches(Tags.xj)) {
+                if (tag.isBaseFormTag()) {
                     baseform.append(tokenizer.readXTagContents());
                     xpPassed = true;
 
-                } else if (tag.matches(Tags.xr)) {
+                } else if (tag.startsWith(Tags.PREFIX_X)) {
                     tokenizer.skipXTag();
 
-                } else if (tag.matches(Tags.bc) && tokenizer.isAtLastToken()) {
-                    return null; // incomplete numeral is really a prefix
-
                 } else if (tag.matches(Tags.bc)) {
+                    if (tokenizer.isAtLastToken())
+                        return null; // incomplete numeral is really a prefix
                     xpPassed = false;
 
                 } else if (tag.matches(Tags.ln) || tag.matches(Tags.ll) || tag.matches(Tags.lnl)) {
@@ -155,18 +155,11 @@ final class BaseForm {
                 }
             } else if (isInDigitSequence || !xpPassed) {
                 baseform.append(tokenizer.currentToken);
-            } else {
-                boolean previousMinus = false;
 
-                for (int i = 0, len = tokenizer.currentToken.length(); i < len; i++) {
-                    char c = tokenizer.currentToken.charAt(i);
-                    if (c == '-') {
-                        previousMinus = true;
-                    } else if (previousMinus) {
-                        baseform.append(c);
-                        previousMinus = false;
-                    }
-                }
+            } else {
+                for (int i = 0, len = token.length(); i < len; i++)
+                    if (token.charAt(i) == '-' && i + 1 < len)
+                        baseform.append(token.charAt(++i));
             }
         }
         return baseform.toString();
