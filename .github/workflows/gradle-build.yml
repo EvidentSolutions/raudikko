@@ -1,4 +1,4 @@
-name: Run Gradle build on pushes and pull requests
+name: Build
 on:
   push:
     branches: [ main ]
