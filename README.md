@@ -5,6 +5,8 @@ Raudikko is Java library for performing morphological analysis on Finnish langua
 [Voikko's Java-interface](https://voikko.puimula.org/java.html), it is implemented purely in Java and needs no native
 libraries. Raudikko is also quite a bit faster than Voikko's Java-interface.
 
+[![Build](https://github.com/EvidentSolutions/raudikko/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/EvidentSolutions/raudikko/actions/workflows/gradle-build.yml)
+
 ## Usage
 
 Add dependency to your build file:
