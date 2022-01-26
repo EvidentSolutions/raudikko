@@ -40,6 +40,10 @@ The below table lists the version of Voikko that Raudikko is tests against.
 | ------------- |:-------------:| -----:|
 | 0.1.1    | 4.3 | [9f0d3d](https://github.com/voikko/corevoikko/commit/9f0d3de39ac23a9776d1ec8c30a157a707955a50) |
 
+## Related projects
+
+- [elasticsearch-analysis-raudikko](https://github.com/EvidentSolutions/elasticsearch-analysis-raudikko) uses Raudikko to provide Finnish analysis for Elasticsearch
+
 ## Acknowledgements
 
 Most of Raudikko's code is based heavily on Voikko and the used morphology files come directly from Voikko. None
