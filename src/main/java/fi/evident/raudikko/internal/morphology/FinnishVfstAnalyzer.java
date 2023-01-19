@@ -42,6 +42,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import static fi.evident.raudikko.internal.morphology.BaseForm.parseBaseFormParts;
 import static fi.evident.raudikko.internal.morphology.BaseForm.parseBaseform;
 import static fi.evident.raudikko.internal.morphology.BasicAttributes.parseBasicAttributes;
 import static fi.evident.raudikko.internal.morphology.Organization.organizationNameAnalysis;
@@ -125,6 +126,9 @@ public final class FinnishVfstAnalyzer implements Analyzer {
 
         if (configuration.isIncludeFstOutput())
             analysis.setFstOutput(buffer.fullContents());
+
+        if (configuration.isIncludeBaseFormParts())
+            analysis.setBaseFormParts(parseBaseFormParts(buffer));
 
         if (configuration.isIncludeBasicAttributes())
             parseBasicAttributes(analysis, buffer);

@@ -36,6 +36,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -64,6 +65,7 @@ public final class Analysis implements Cloneable {
     private boolean malagaVapaaJalkiosa = false;
     private boolean possibleGeographicalName = false;
     private @Nullable String requireFollowingVerb;
+    private @Nullable List<String> baseFormParts;
 
     public @Nullable String getBaseForm() {
         return baseForm;
@@ -209,6 +211,14 @@ public final class Analysis implements Cloneable {
         this.requireFollowingVerb = requireFollowingVerb;
     }
 
+    public void setBaseFormParts(@Nullable List<String> baseFormParts) {
+        this.baseFormParts = baseFormParts;
+    }
+
+    public @Nullable List<String> getBaseFormParts() {
+        return baseFormParts;
+    }
+
     @Override
     public @NotNull Analysis clone() {
         try {
@@ -277,6 +287,7 @@ public final class Analysis implements Cloneable {
                 ", malagaVapaaJalkiosa=" + malagaVapaaJalkiosa +
                 ", possibleGeographicalName=" + possibleGeographicalName +
                 ", requireFollowingVerb='" + requireFollowingVerb + '\'' +
+                ", baseFormParts='" + baseFormParts + '\'' +
                 '}';
     }
 }

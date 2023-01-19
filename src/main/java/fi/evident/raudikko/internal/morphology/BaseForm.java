@@ -36,6 +36,9 @@ import fi.evident.raudikko.internal.fst.Symbol;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static fi.evident.raudikko.internal.utils.StringUtils.*;
 import static java.lang.Character.isDigit;
 import static java.lang.Character.toUpperCase;
@@ -163,6 +166,22 @@ final class BaseForm {
             }
         }
         return baseform.toString();
+    }
+
+    static @NotNull List<String> parseBaseFormParts(@NotNull SymbolBuffer tokenizer) {
+        List<String> parts = new ArrayList<>();
+        tokenizer.moveToStart();
+
+        while (tokenizer.nextToken()) {
+            Symbol tag = tokenizer.getCurrentTag();
+            if (tag != null && tag.matches(Tags.xp)) {
+                String part = withoutChar(tokenizer.readXTagContents(), '=');
+                if (!part.isEmpty()) {
+                    parts.add(part);
+                }
+            }
+        }
+        return parts;
     }
 
     private static final class StructureIterator {

@@ -1,0 +1,1170 @@
+word:kissa
+ [kissa]
+word:kuorma-auto
+ [kuorma,auto]
+word:koirra
+word:EU
+ [EU]
+word:alusta
+ [alku]
+ [alus]
+ [alunen]
+ [alusta]
+ [alustaa]
+word:kissan
+ [kissa]
+word:kissojen
+ [kissa]
+word:kissaa
+ [kissa]
+word:meidät
+ [me]
+word:kissana
+ [kissa]
+word:kissaksi
+ [kissa]
+word:kissassa
+ [kissa]
+word:kissasta
+ [kissa]
+word:kissaan
+ [kissa]
+word:kissalla
+ [kissa]
+word:kissalta
+ [kissa]
+word:kissalle
+ [kissa]
+word:kissatta
+ [kissa]
+word:kissoineni
+ [kissa]
+word:kissoin
+ [kissa]
+word:nopeasti
+ [nopea]
+word:juosta
+ [juosta]
+ [juosta]
+word:nopea
+ [nopea]
+word:hyvin
+ [hyvä]
+ [hyvin]
+word:taistolainen
+ [taistolainen]
+word:joka
+ [joka]
+word:jotka
+ [joka]
+word:ohi
+ [ohi]
+word:hei
+ [hei]
+word:eli
+ [elää]
+ [eli]
+word:Tiina
+ [Tiina]
+word:Pitkänen
+ [Pitkänen]
+word:Helsinki
+ [Helsinki]
+word:Neptunus
+ [Neptunus]
+word:ei
+ [ei]
+word:kymmenen
+ [kymmenen]
+ [kymmenen]
+ [kymmen]
+word:kymmenet
+ [kymmenen]
+ [kymmen]
+word:kaksikymmentä
+ [kaksi]
+word:kahtakymmentä
+ [kaksi,kymmentä]
+word:kaksikymmentäyksi
+ [kaksi,yksi]
+word:10
+ []
+word:kissat
+ [kissa]
+word:juoksen
+ [juosta]
+word:olen
+ [olla]
+word:juokset
+ [juosta]
+word:juoksee
+ [juosta]
+word:juostaan
+ [juosta]
+word:juoksisin
+ [juosta]
+word:juokse
+ [juosta]
+word:juossee
+ [juosta]
+word:juoksemassa
+ [juosta]
+ [juosta]
+word:juoksemassamme
+ [juosta]
+word:juostakin
+ [juosta]
+ [juosta]
+word:juostessa
+ [juosta]
+word:juoksemasta
+ [juosta]
+ [juosta]
+word:juoksemaan
+ [juosta]
+ [juosta]
+word:verohallitus
+ [vero,hallitus]
+word:Kaakkois-Panama
+ [Panama]
+word:Suur-Panama
+ [Panama]
+word:Sydän-Suomi
+ [sydän,Suomi]
+word:idänkauppa
+ [itä,kauppa]
+word:hienoittasokereitta
+ [hienosokeri]
+word:hienoinsokerein
+ [hienosokeri]
+word:sana
+ [sana]
+word:relatiivipronomini
+ [relatiivipronomini]
+word:hyppely
+ [hypellä]
+word:ilmaisu
+ [ilmaista]
+word:Pohjois-
+ [Pohjois]
+ [pohjoinen]
+word:sydän-
+ [Sydän]
+ [sydän]
+word:Keski-Suomessa
+ [Suomi]
+word:sallitaan
+ [sallia]
+word:sallita
+ [sallia]
+word:sallitakaan
+ [sallia]
+word:sallitaankaan
+ [sallia]
+word:maalaa
+ [maalata]
+word:haravoi
+ [haravoida]
+ [haravoida]
+ [haravoida]
+word:maalaakin
+ [maa,laaki]
+ [maalata]
+word:maalaakaan
+ [maalata]
+word:juoksepa
+ [juosta]
+word:juoksehan
+ [juosta]
+word:juoskoot
+ [juosta]
+word:olla
+ [olla]
+word:luopua
+ [luopua]
+word:mainittaisiin
+ [mainita]
+word:mainittaisi
+ [mainita]
+word:sämpyläjauho
+ [sämpylä,jauho]
+word:sämpyläjoki
+ [sämpylä,joki]
+word:sämpyläjoella
+ [sämpylä,joki]
+word:sämpyläjoellakin
+ [sämpylä,joki]
+word:Välimerta
+ [Välimeri]
+ [väli,merta]
+ [väli,meri]
+word:sämpyläjokilaiva
+ [sämpylä,joki,laiva]
+word:haluan
+ [haluta]
+word:ryhdymme
+ [ryhtyä]
+word:juoksemme
+ [juosta]
+word:minä
+ [minä]
+ [mikä]
+ [minä]
+word:sinä
+ [se]
+ [sinä]
+word:hän
+ [hän]
+word:me
+ [me]
+word:te
+ [te]
+word:he
+ [he]
+word:kovalevy
+ [kova,levy]
+word:kovakalloinen
+ [kova,kallo]
+word:harmaapikasuolattu
+ [harmaa,suolata]
+word:leikkivä
+ [leikkiä]
+word:leikkinyt
+ [leikkiä]
+word:piikkinen
+ [piikki]
+word:piikitön
+ [piikki]
+word:piikkimäinen
+ [piikki]
+word:piikeittäin
+ [piikki]
+word:piikkisyys
+ [piikki]
+word:ruotsalainen
+ [ruotsalainen]
+word:ruotsalainenkin
+ [ruotsalainen]
+word:ruotsalaisessa
+ [ruotsalainen]
+word:agraariruotsalainen
+ [agraari,ruotsalainen]
+word:juoksemiseen
+ [juosta]
+word:superhämärästi
+ [hämärä]
+word:tapakristitty
+ [tapa,kristitty]
+word:härkäjuoksijana
+ [härkä,juosta]
+word:kissanvärinen
+ [kissa,väri]
+word:ajattelukykyinen
+ [ajatella,kyky]
+word:pikajuoksukykyinen
+ [juoksu,kyky]
+word:superbiologinen
+ [biologi]
+word:ahdashenkinen
+ [ahdas,henki]
+word:ruotsalaishenkinen
+ [ruotsalainen,henki]
+word:eräs
+ [eräs]
+word:jotta
+ [jotta]
+word:montenegrolainen
+ [Montenegro]
+word:iiii
+ []
+ []
+word:jottei
+ [jott,ei]
+word:Uudenmaansa
+ [Uusimaa]
+word:hyttynen
+ [hyttynen]
+word:hyttysen
+ [hyttynen]
+word:hyttystä
+ [hyttynen]
+word:hyttysessä
+ [hyttynen]
+word:hyttysestä
+ [hyttynen]
+word:hyttyseen
+ [hyttynen]
+word:hyttysellä
+ [hyttynen]
+word:hyttyseltä
+ [hyttynen]
+word:hyttyselle
+ [hyttynen]
+word:ampiaiset
+ [ampiainen]
+word:lapinkirvinen
+ [lapinkirvinen]
+word:Pokkinen
+ [Pokkinen]
+word:Nousiainen
+ [Nousiainen]
+word:Alfred
+ [Alfred]
+word:Kanteletar
+ [Kanteletar]
+word:keltainen
+ [keltainen]
+word:arktisuus
+ [arktinen]
+word:pottusyltty
+ [pottu,syltty]
+word:vieras
+ [vieras]
+word:katsella
+ [katsella]
+ [katsella]
+word:katselen
+ [katsella]
+word:katselet
+ [katsella]
+word:katselee
+ [katsella]
+word:katselemme
+ [katsella]
+word:katselette
+ [katsella]
+word:lunastetaan
+ [lunastaa]
+word:adverbisija
+ [adverbi,sija]
+word:Pötsönlahdella
+ [Pötsönlahti]
+word:katselemassa
+ [katsella]
+ [katsella]
+word:katsellessa
+ [katsella]
+word:katselisin
+ [katsella]
+ [katse,lisä]
+word:pahoinpiteli
+ [pahoinpidellä]
+word:hinaajalla
+ [hinata]
+word:Suomi-Sveitsi
+ [suomi,Sveitsi]
+ [Suomi,Sveitsi]
+word:CD-ROM
+ [CD-ROM]
+ [cd-rom]
+ [cd-rom]
+ [CD-ROM]
+word:anonyymisti
+ [anonyymi]
+word:autonikin
+ [auto]
+word:talosikaan
+ [talo,sika]
+ [talo]
+word:talomme
+ [talo]
+word:talonne
+ [talo]
+word:talonsa
+ [talo]
+word:-legenda
+ [legenda]
+word:jäähdytetään
+ [jäähdyttää]
+word:jäähdytettiin
+ [jäähdyttää]
+word:muisto
+ [muistaa]
+word:epäröin
+ [epäröidä]
+ [epäröidä]
+word:kommentoikaa
+ [kommentoida]
+word:olemme
+ [olla]
+word:kielteisemmin
+ [kielteinen]
+word:kielteisimmin
+ [kielteinen]
+word:lienen
+ [olla]
+word:liene
+ [olla]
+word:älkööt
+ [ei]
+word:kukistaneen
+ [kukistaa]
+word:ab
+ [ab]
+word:ab-kissa
+ [ab,kissa]
+word:esiintyjittäin
+ [esiintyä]
+word:espanjalaisittain
+ [Espanja]
+word:Helsinki-alueellinen
+ [Helsinki,alue]
+word:roomalaiskissa
+ [Rooma,kissa]
+word:kissattomuus
+ [kissa]
+word:ei-kenenkään-maa
+ [ei-kenenkään-maa]
+word:yksi
+ [yksi]
+word:kaksituhattakolmetoista
+ [kaksi,kolme]
+word:kahdeksaakymmentä
+ [kahdeksan,kymmentä]
+word:myyty
+ [myydä]
+word:minut
+ [minä]
+word:Aadolfinkatu
+ [Aadolf,katu]
+word:Suur-Sveitsi
+ [Sveitsi]
+word:asuin-Sveitsi
+ [Sveitsi]
+word:juoksekaan
+ [juosta]
+word:neljännentoista
+ [neljäs]
+word:parhaassa
+ [hyvä]
+word:ja
+ [ja]
+word:Gallen-Kallela-Sirén
+ [Gallen-Kallela,Sirén]
+word:-sävellys-
+ [säveltää]
+word:ilman
+ [Ilma]
+ [ilman]
+ [ilma]
+word:suomalais-neuvostoliittolainen
+ [suomalainen,neuvosto,liittolainen]
+ [suomalainen,Neuvostoliitto]
+word:Isossa-Britanniassa
+ [iso,Britannia]
+word:Uusimaa
+ [uusia]
+ [Uusimaa]
+word:Keski-Uusimaa
+ [Uusimaa]
+word:Tyynessämeressä
+ [Tyynimeri]
+word:huhti-toukokuusta
+ [huhti-toukokuu]
+word:viisivuotiskausi
+ [viisi,vuosi,kausi]
+word:AIDS-epidemia
+ [AIDS,epidemia]
+word:vammaisuusaste
+ [vamma,aste]
+word:-nimen
+ [nimi]
+word:Euro-sarja
+ [sarja]
+word:tulee
+ [tulla]
+word:saa
+ [saada]
+ [saada]
+word:julkaistu
+ [julkaista]
+word:julkaistiin
+ [julkaista]
+word:tekijä
+ [tehdä]
+word:urallaan
+ [ura]
+word:käsittelee
+ [käsitellä]
+word:yhdistää
+ [yhdistää]
+ [yhdistää]
+word:pääsee
+ [päästä]
+word:koiralla
+ [koira]
+word:koirallako
+ [koira]
+word:eikö
+ [ei]
+word:koirallakin
+ [koira]
+word:koirallakaan
+ [koira]
+word:juoksin
+ [juosta]
+word:juokseva
+ [juosta]
+word:juostava
+ [juosta]
+word:metsästettävä
+ [metsästää]
+word:juossut
+ [juosta]
+word:juosseet
+ [juosta]
+word:juostu
+ [juosta]
+word:juoksema
+ [juosta]
+word:juoksematon
+ [juosta]
+word:toimii
+ [toimia]
+word:haluavatkin
+ [haluta]
+ [haluta]
+word:vähentävät
+ [vähetä]
+ [vähetä]
+word:jakavat
+ [jakaa]
+ [jakaa]
+word:aikakauslehti
+ [lehti]
+word:ADSL:n
+ [ADSL]
+word:kokevat
+ [kokea]
+ [kokea]
+word:itarin
+ [itara]
+ [itara]
+word:herännäis-kissa
+ [herännäinen,kissa]
+word:nelisormimangusti
+ [neli,sormi,mangusti]
+word:neutraalimpaan
+ [neutraali]
+word:nimeämiskäytännöstä
+ [nimetä,käytäntö]
+word:muokattaisi
+ [muokata]
+word:mutkistuu
+ [mutkistaa]
+word:varo-EU
+ [EU]
+word:alkeissidosta
+ [sidos]
+word:alavireisyyttään
+ [ala,vire]
+word:suunnittelijoita
+ [suunnitella]
+word:avuttomasti
+ [apu]
+ [avu]
+word:talottomampi
+ [talo]
+word:rakennus
+ [rakennus]
+word:palveluita
+ [palvella]
+word:arkistoinnin
+ [arkistoida]
+word:EU-kieli
+ [EU,kieli]
+word:lento
+ [lentää]
+word:sortoa
+ [sortaa]
+word:laulanta
+ [laulaa]
+word:avaruudellinen
+ [avara]
+word:byrokraattistua
+ [byrokraattistaa]
+word:avoselkäinen
+ [selkä]
+word:esijuoksija
+ [juosta]
+word:elämänviisaus
+ [elämä,viisas]
+word:erehtyväinen
+ [erehtyä]
+word:hallitusti
+ [hallita]
+word:hajakylvö
+ [kylvää]
+word:eteläamerikkalainen
+ [etelä,Amerikka]
+word:moottoroitu
+ [moottoroida]
+word:käyttö
+ [käyttää]
+word:kaavoittuma
+ [kaavoittua]
+word:öykkärimäisesti
+ [öykkäri]
+word:HI-virus
+ [HI-virus]
+word:örinä
+ [öristä]
+word:diivailen
+ [diivata]
+word:haukottelee
+ [haukottaa]
+word:havaittavassa
+ [havaita]
+word:halaistua
+ [halaista]
+word:hyödyntäneen
+ [hyödyntää]
+word:Hanna-Liisa
+ [Hanna,Liisa]
+word:hiihtojen
+ [hiihtää]
+word:jättöä
+ [jättää]
+word:jäljittääkseen
+ [jäljittää]
+word:astahtelen
+ [astahtaa]
+word:kastele
+ [kastaa]
+word:luovalle
+ [luoda]
+word:kontti-
+ [kontti]
+word:-kissakoira
+ [kissa,koira]
+word:kuulemat
+ [kuulla]
+word:muistu
+ [muistaa]
+word:lätkäisseessä
+ [lätkäistä]
+word:valvoessaan
+ [valvoa]
+word:kuuntelisi
+ [kuunnella]
+word:kaksijakoisesti
+ [kaksi,jako]
+word:ionisoituu
+ [ionisoida]
+word:näkeekö
+ [nähdä]
+word:nujersivat
+ [nujertaa]
+word:nimekseen
+ [nimi]
+word:muistelleet
+ [muistaa]
+word:johtajattaren
+ [johtaa]
+word:lähentyy
+ [lähetä]
+word:lähennän
+ [lähetä]
+word:lähentelen
+ [lähetä]
+word:rumuus
+ [ruma]
+word:käsiteltyjen
+ [käsitellä]
+word:pyrimme
+ [pyrkiä]
+ [pyrkiä]
+word:putoili
+ [pudota]
+word:pysähtyneisyys
+ [pysähtyä]
+word:signeeraa
+ [signeerata]
+word:peittoaa
+ [peitota]
+word:otettakoon
+ [ottaa]
+word:tekisikö
+ [tehdä]
+word:kavensivat
+ [kaveta]
+word:simpukkamurros
+ [simpukka,murtaa]
+word:tallentelen
+ [tallentaa]
+word:tallentuu
+ [tallentaa]
+word:linnoittautuminen
+ [linnoittaa]
+word:nyhdätän
+ [nyhtää]
+word:linnoittautumisensa
+ [linnoittaa]
+word:suppenevat
+ [supeta]
+ [supeta]
+word:pukemalla
+ [pukea]
+ [pukea]
+word:täräytti
+ [täristä]
+word:täräytyksen
+ [täristä]
+word:keventämällä
+ [kevetä]
+ [kevetä]
+word:kanteleeni
+ [kannel]
+ [kannel]
+word:rikkoneensa
+ [rikkoa]
+word:johtavuus
+ [johtaa]
+word:lehtikultaa
+ [lehti,kulta]
+word:peruskoulukone
+ [perus,koulu,kone]
+word:Pohjois-Texas
+ [pohjoinen,Texas]
+word:murtaakseen
+ [murtaa]
+word:haennoiden
+ [hakea]
+word:liiteli
+ [liitää]
+word:kunnan-
+ [kunta]
+word:kanavittain
+ [kanava]
+word:musiikkioppilaitos
+ [musiikki,oppi,laitos]
+word:marxismi-leninismin
+ [marxismi-leninismi]
+word:väännös
+ [väännös]
+word:pahakseni
+ [paha]
+word:köyhälleen
+ [köyhä]
+word:huutelevat
+ [huutaa]
+ [huutaa]
+word:aterioi
+ [aterioida]
+ [aterioida]
+ [aterioida]
+word:lähdöllä
+ [lähtö]
+word:seitsemästoista
+ [seitsemäs]
+word:kääntelen
+ [kääntää]
+word:soveltelen
+ [soveltaa]
+word:nakertelen
+ [nakertaa]
+word:jäykentelen
+ [jäykentää]
+word:kylittäin
+ [kylä]
+word:ohjattuaan
+ [ohjata]
+word:juostaman
+ [juosta]
+word:kirjailijanimi
+ [kirjata,nimi]
+word:kerrostalo-
+ [kerros,talo]
+word:tarjokkuus
+ [tarjokas]
+word:keskelläkin
+ [keskellä]
+word:rikas-
+ [rikas]
+word:kuljeskelee
+ [kulkea]
+word:komentajuudesta
+ [komentaa]
+word:muttet
+ [mutt,ei]
+word:kohtauksittain
+ [kohdata]
+word:kulta-aarre
+ [kulta,aarre]
+word:rajoittuneisuus
+ [rajoittua]
+word:opiskelleensa
+ [opiskella]
+word:käyttökelvoton
+ [käyttää,kelpo]
+word:mielenterveydellinen
+ [mieli,terve]
+word:juoksekin
+ [juosta]
+word:vesitilavuus
+ [vesi,tilava]
+word:heidänlaisensa
+ [heidänlainen]
+word:puhuu
+ [puhua]
+word:puhuman
+ [puhua]
+ [puhua]
+word:kalinassa
+ [kalista]
+word:piirteli
+ [piirtää]
+word:koskapa
+ [koska]
+word:kannatan
+ [kantaa]
+word:vaihtelisi
+ [vaihtaa]
+word:huhuiltiin
+ [huhuta]
+word:purrussa
+ [purra]
+word:lentelivät
+ [lentää]
+word:kolahti
+ [kolista]
+word:kanneltiin
+ [kantaa]
+word:saatellaan
+ [saattaa]
+word:ammutti
+ [ampua]
+word:VI:ssa
+ []
+word:VI:t
+ []
+word:jaata
+ [jaa]
+word:pantua
+ [panna]
+word:taitaapi
+ [taitaa]
+word:parhaimmat
+ [hyvä]
+word:syöksee
+ [syöstä]
+word:hänetkin
+ [hän]
+word:haltijatar
+ [haltija]
+word:osaamis-
+ [osata]
+word:aita-
+ [aita]
+word:Jack-
+ [Jack]
+word:avo-
+ []
+word:-vuotias
+ [vuotias]
+word:XX-
+ []
+word:live-
+ []
+word:viideksitoista
+ [viisi]
+word:kolmehenkisessä
+ [kolme,henki]
+word:toistasataa
+ [toista,sataa]
+word:parisenkymmentä
+ [parisen,kymmentä]
+word:kymmeniätuhansia
+ [kymmenen,tuhatta]
+word:etkä
+ [ei]
+word:sinfoniaansa
+ [sinfonia]
+ [sinfonia]
+word:kuutisensataa
+ [kuutisen,sataa]
+word:menikään
+ [mennä]
+word:koe-eläin
+ [koe,eläin]
+word:miljardeista
+ [miljardi]
+word:kahdeksisadaksi
+ [kaksi,sataa]
+word:satojatuhansia
+ [sata,tuhatta]
+word:olemattomien
+ [olla]
+word:älähän
+ [ei]
+word:ettet
+ [ett,ei]
+word:-1600-luvun
+ [luku]
+word:EU:kin
+ [EU]
+word:kokoelma-LP
+ [kokoelma,LP]
+word:j
+ [j]
+word:varapj.
+ [varapj.]
+word:voitane
+ [voida]
+word:meikä-r
+ [meikä,r]
+word:200:sta
+ []
+word:-200:sta
+ []
+word:käymisteitse
+ [käydä,tie]
+word:kissankarvoittain
+ [kissa,karva]
+word:koskeekaan
+ [koskea]
+word:hyppäänkään
+ [hypätä]
+word:kissankeltainen
+ [kissa,keltainen]
+word:kolmisen
+ [kolmisen]
+word:hämäräaktiivinen
+ [hämärä,aktiivi]
+word:asiakastyytyväisyyttä
+ [asiakas,tyytyä]
+word:ratakorkeus
+ [rata,korkea]
+word:esikarsinta
+ [karsia]
+word:alikehittynyt
+ [kehittyä]
+word:ylinouseva
+ [nousta]
+word:uudelleenmuotoiltu
+ [muotoilla]
+word:juoksemisestapa
+ [juosta]
+word:hätäistään
+ [hätä]
+word:kpl:in
+ [kpl]
+ [kpl]
+word:arktis-alpiininen
+ [arktinen,alpiininen]
+word:III-divisioona
+ [divisioona]
+word:EU-laitos
+ [EU,laitos]
+word:Kissalaitos
+ [kissa,laitos]
+word:-kissalaitos
+ [kissa,laitos]
+word:kymmenennen
+ [kymmenes]
+word:suosituimmuusaseman
+ [suosia,asema]
+word:voipi
+ [voida]
+word:väylänopeus
+ [väylä,nopea]
+word:pieniniemisyys
+ [pieni,niemi]
+word:mennyllä
+ [mennä]
+word:viisi-
+ [viisi]
+word:kissavanhempiaan
+ [kissa,vanhempi]
+word:ryhtymättä
+ [ryhtyä]
+ [ryhtyä]
+word:kahdenkeskistä
+ [kaksi,keskinen]
+word:kolmen-
+ [kolme]
+word:nopeustutkassa
+ [nopea,tutka]
+word:pikilappu
+ [pikilappu]
+word:akveduktien
+ [akvedukti]
+word:historiallinen
+ [historia]
+word:kissattomat
+ [kissa]
+word:etätyö
+ [työ]
+word:aktivoidumme
+ [aktivoida]
+word:juoksija
+ [juosta]
+word:-kentällisessä
+ [kenttä]
+word:suurempikokoinen
+ [suuri,koko]
+word:sadasosasekunti
+ [sadas,osa,sekunti]
+word:merkittävyyskriteeri
+ [merkitä,kriteeri]
+word:yllättäenkin
+ [yllättää]
+word:oltiin
+ [olla]
+word:oletkaan
+ [olla]
+word:olemmekaan
+ [olla]
+word:saakaan
+ [saada]
+ [saada]
+word:mitkään
+ [mikä]
+word:olkoonkin
+ [olla]
+word:kolmesti
+ [kolme]
+word:kolmikymmenvuotias
+ [kolmikymmen,vuotias]
+word:syötyään
+ [syödä]
+word:kuunneltuamme
+ [kuunnella]
+word:saapas
+ [saada]
+ [saada]
+ [saapas]
+word:XXVII
+ []
+ []
+word:romahtamaisillaan
+ [romahtaa]
+word:tunnettuus
+ [tuntea]
+word:hallittavuus
+ [hallita]
+word:edustavuuden
+ [edustaa]
+word:ollut
+ [olla]
+ [olla]
+word:mitään
+ [mikään]
+word:purrut
+ [purra]
+ [purra]
+word:kunkin
+ [kukin]
+word:juoksinkaan
+ [juosta]
+word:olekaan
+ [olla]
+word:Kanta-
+ [Kanta]
+ [kanta]
+word:juoksemattakin
+ [juosta]
+ [juosta]
+word:olematta
+ [olla]
+ [olla]
+word:tuta
+ [tuta]
+word:tutaan
+ [tuta]
+word:Itäkissa-Sveitsi
+ [itä,kissa,Sveitsi]
+word:Uudessa-Seelannissa
+ [uusi,Seelanti]
+word:Etelä-Pentti
+ [etelä,Pentti]
+word:Pohjois-Suomessa
+ [pohjoinen,suomi]
+ [pohjoinen,Suomi]
+word:heinäisensä
+ [heinä]
+word:heinäisempänsä
+ [heinä]
+word:heinäisimpänsä
+ [heinä]
+word:sairastumisriski
+ [sairastaa,riski]
+word:-litraisilla
+ [litra]
+word:hullunkurisia
+ [hullu,kuri]
+word:ajantasaisuus
+ [aika,tasainen]
+word:aihekokonaisuus
+ [aihe,kokonainen]
+word:ilmoituskokonaisuus
+ [ilmoittaa,kokonainen]
+word:juoksijakokonaisuus
+ [juosta,kokonainen]
+word:kerrostalokokonaisuus
+ [kerros,talo,kokonainen]
+word:turkulaiskokonaisuus
+ [Turku,kokonainen]
+word:Matti-kokonaisuus
+ [Matti,kokonainen]
+word:englantilaistyyppinen
+ [Englanti,tyyppi]
+word:Matti-tyyppinen
+ [Matti,tyyppi]
+word:lähtivät
+ [lähteä]
+word:kehitellyn
+ [kehittää]
+word:miellyttämishaluinen
+ [miellyttää,halu]
+word:tapauskohtainen
+ [tavata,kohta]
+word:epävarmuuden
+ [varma]
+word:asiantuntijuus
+ [asia,tuntea]
+word:asianmyyjyys
+ [asia,myydä]
+word:kolmenmallisessa
+ [kolme,mallinen]
+word:kolmenmallinen
+ [kolme,mallinen]
+word:isovanhemmista
+ [iso,vanhempi]
+ [iso,vanha]
+word:ikäisekseen
+ [ikä]
+word:tyypillisimmillään
+ [tyyppi]
+word:parhaakseen
+ [hyvä]
+word:Isolla-Britannialla
+ [iso,Britannia]
+word:yhteiskuntapoliittinen
+ [yhteinen,kunta,poliittinen]
+ [kunta,poliittinen]
+word:ollaksemme
+ [olla]
+word:Lounais-
+ []
+ [lounas]
+word:Keski-
+ [keski]
+ []
+word:METSÄLUOTEIS-
+ [metsä,luode]
+word:muuanna
+ [muuan]
+word:saartaa
+ [saartaa]
+ [saartaa]
+word:saartavat
+ [saartaa]
+ [saartaa]
+word:tyhmähkö
+ [tyhmä]
+word:ummikoin
+ [ummikko]
+ [ummikko]
+word:21.
+ []

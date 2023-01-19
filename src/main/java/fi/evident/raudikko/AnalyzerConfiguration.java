@@ -43,6 +43,7 @@ public final class AnalyzerConfiguration {
     private boolean includeBasicAttributes = true;
     private boolean includeOrganizationNameAnalysis = true;
     private boolean includeFstOutput = true;
+    private boolean includeBaseFormParts = true;
 
     public boolean isIncludeStructure() {
         return includeStructure;
@@ -84,6 +85,14 @@ public final class AnalyzerConfiguration {
         this.includeFstOutput = includeFstOutput;
     }
 
+    public boolean isIncludeBaseFormParts() {
+        return includeBaseFormParts;
+    }
+
+    public void setIncludeBaseFormParts(boolean includeBaseFormParts) {
+        this.includeBaseFormParts = includeBaseFormParts;
+    }
+
     @Override
     public String toString() {
         return "AnalyzerConfiguration{" +
@@ -92,6 +101,7 @@ public final class AnalyzerConfiguration {
                 ", includeBasicAttributes=" + includeBasicAttributes +
                 ", includeOrganizationNameAnalysis=" + includeOrganizationNameAnalysis +
                 ", includeFstOutput=" + includeFstOutput +
+                ", includeBaseFormParts=" + includeBaseFormParts +
                 '}';
     }
 }
