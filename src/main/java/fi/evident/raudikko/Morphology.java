@@ -78,6 +78,16 @@ public final class Morphology {
      * shared between threads.
      */
     public @NotNull Analyzer newAnalyzer() {
-        return new FinnishVfstAnalyzer(transducer);
+        return newAnalyzer(new AnalyzerConfiguration());
+    }
+
+    /**
+     * Create a new {@link Analyzer} for this morphology.
+     *
+     * The analyzer is a mutable object that can be used repeatedly, but may not be
+     * shared between threads.
+     */
+    public @NotNull Analyzer newAnalyzer(@NotNull AnalyzerConfiguration configuration) {
+        return new FinnishVfstAnalyzer(transducer, configuration);
     }
 }

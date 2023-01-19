@@ -34,6 +34,7 @@ package fi.evident.raudikko.internal.morphology;
 
 import fi.evident.raudikko.Analysis;
 import fi.evident.raudikko.Analyzer;
+import fi.evident.raudikko.AnalyzerConfiguration;
 import fi.evident.raudikko.internal.fst.Symbol;
 import fi.evident.raudikko.internal.fst.UnweightedTransducer;
 import org.jetbrains.annotations.NotNull;
@@ -46,6 +47,7 @@ import static fi.evident.raudikko.internal.morphology.BasicAttributes.parseBasic
 import static fi.evident.raudikko.internal.morphology.Organization.organizationNameAnalysis;
 import static fi.evident.raudikko.internal.morphology.Structure.parseStructure;
 import static fi.evident.raudikko.internal.morphology.Validator.isValidAnalysis;
+import static java.util.Objects.requireNonNull;
 
 public final class FinnishVfstAnalyzer implements Analyzer {
 
@@ -53,12 +55,14 @@ public final class FinnishVfstAnalyzer implements Analyzer {
     private final @NotNull List<Symbol> inputBuffer = new ArrayList<>(2000);
     private final @NotNull Symbol[] output = new Symbol[2000];
     private final @NotNull SymbolBuffer buffer = new SymbolBuffer(2000);
+    private final @NotNull AnalyzerConfiguration configuration;
     private final short[] flags;
     private static final int MAX_WORD_LENGTH = 255;
 
-    public FinnishVfstAnalyzer(@NotNull UnweightedTransducer transducer) {
+    public FinnishVfstAnalyzer(@NotNull UnweightedTransducer transducer, @NotNull AnalyzerConfiguration configuration) {
         this.transducer = transducer;
         this.flags = new short[transducer.flagDiacriticFeatureCount];
+        this.configuration = configuration;
     }
 
     @Override
@@ -72,7 +76,7 @@ public final class FinnishVfstAnalyzer implements Analyzer {
             buffer.reset(output, depth);
 
             if (isValidAnalysis(buffer))
-                createAnalysis(buffer, word.length(), results);
+                createAnalysis(buffer, word.length(), results, configuration);
         });
 
         return results;
@@ -100,20 +104,37 @@ public final class FinnishVfstAnalyzer implements Analyzer {
         return results;
     }
 
-    private static void createAnalysis(@NotNull SymbolBuffer buffer, int wordLength, @NotNull List<Analysis> results) {
-        String structure = parseStructure(buffer, wordLength);
-
+    private static void createAnalysis(@NotNull SymbolBuffer buffer,
+                                       int wordLength,
+                                       @NotNull List<Analysis> results,
+                                       @NotNull AnalyzerConfiguration configuration) {
         Analysis analysis = new Analysis();
-        analysis.setStructure(structure);
-        analysis.setFstOutput(buffer.fullContents());
-        analysis.setBaseForm(parseBaseform(buffer, structure));
 
-        parseBasicAttributes(analysis, buffer);
+        boolean dependsOnStructure =
+                configuration.isIncludeStructure()
+                        || configuration.isIncludeBaseForm()
+                        || configuration.isIncludeOrganizationNameAnalysis();
+
+        String structure = dependsOnStructure ? parseStructure(buffer, wordLength) : null;
+
+        if (configuration.isIncludeStructure())
+            analysis.setStructure(requireNonNull(structure));
+
+        if (configuration.isIncludeBaseForm())
+            analysis.setBaseForm(parseBaseform(buffer, requireNonNull(structure)));
+
+        if (configuration.isIncludeFstOutput())
+            analysis.setFstOutput(buffer.fullContents());
+
+        if (configuration.isIncludeBasicAttributes())
+            parseBasicAttributes(analysis, buffer);
 
         results.add(analysis);
 
-        Analysis organizationNameAnalysis = organizationNameAnalysis(analysis, buffer, structure);
-        if (organizationNameAnalysis != null)
-            results.add(organizationNameAnalysis);
+        if (configuration.isIncludeOrganizationNameAnalysis()) {
+            Analysis organizationNameAnalysis = organizationNameAnalysis(analysis, buffer, requireNonNull(structure));
+            if (organizationNameAnalysis != null)
+                results.add(organizationNameAnalysis);
+        }
     }
 }

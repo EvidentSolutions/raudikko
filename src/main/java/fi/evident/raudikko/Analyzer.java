@@ -61,8 +61,6 @@ public interface Analyzer {
 
     /**
      * Analyze given word and return a list of possible interpretations.
-     *
-     * At most {@code maxResults} results are returned.
      */
     default @NotNull List<String> baseForms(@NotNull CharSequence word) {
         List<Analysis> analyses = analyze(word);
