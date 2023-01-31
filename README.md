@@ -36,9 +36,9 @@ System.out.println(analyzer.analyze("kahdellakymmenelläseitsemällä"));
 Raudikko is carefully tested against Voikko, making sure that the output of Raudikko and Voikko agree for all inputs.
 The below table lists the version of Voikko that Raudikko is tests against.
 
-| Raudikko version       | Voikko version           | Morphology  |
-| ------------- |:-------------:| -----:|
-| 0.1.1    | 4.3 | [9f0d3d](https://github.com/voikko/corevoikko/commit/9f0d3de39ac23a9776d1ec8c30a157a707955a50) |
+| Raudikko version | Voikko version |                                                                                     Morphology |
+|------------------|----------------|------------------------------------------------------------------------------------------------|
+| 0.1.1            |      4.3       | [9f0d3d](https://github.com/voikko/corevoikko/commit/9f0d3de39ac23a9776d1ec8c30a157a707955a50) |
 
 ## Related projects
 
