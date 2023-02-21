@@ -169,19 +169,8 @@ final class BaseForm {
     }
 
     static @NotNull List<String> parseBaseFormParts(@NotNull SymbolBuffer tokenizer) {
-        List<String> parts = new ArrayList<>();
         tokenizer.moveToStart();
-
-        while (tokenizer.nextToken()) {
-            Symbol tag = tokenizer.getCurrentTag();
-            if (tag != null && tag.matches(Tags.xp)) {
-                String part = withoutChar(tokenizer.readXTagContents(), '=');
-                if (!part.isEmpty()) {
-                    parts.add(part);
-                }
-            }
-        }
-        return parts;
+        return new BaseFormPartsParser().parse(tokenizer);
     }
 
     private static final class StructureIterator {

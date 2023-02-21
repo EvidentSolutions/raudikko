@@ -95,6 +95,10 @@ public class Symbol {
     public boolean isBaseFormTag() {
         return matches(Tags.xp) || matches(Tags.xj);
     }
+
+    public boolean isBoundary() {
+        return startsWith(Tags.PREFIX_B);
+    }
 }
 
 final class Diacritic extends Symbol {

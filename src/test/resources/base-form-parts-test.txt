@@ -1,10 +1,29 @@
+word:varainsiirtoveroilmoitus
+ [vara,siirtää,siirto,vero,ilmoittaa,ilmoitus,varainsiirto,varainsiirtovero,siirtovero,siirtoveroilmoitus,veroilmoitus]
+word:varainsiirtoveroilmoituksensa
+ [vara,siirtää,siirto,vero,ilmoittaa,ilmoitus,varainsiirto,varainsiirtovero,siirtovero]
+word:varainsiirtojenveroilmoitus
+ [vara,siirtää,siirto,vero,ilmoittaa,ilmoitus,varainsiirtojenvero,siirtojenvero,siirtojenveroilmoitus,veroilmoitus]
+word:historiallisempi
+ [historia,historiallinen]
+word:tapauskohtainen
+ [tavata,tapaus,kohta,kohtainen]
+word:muuttoilmoitus
+ [muutto,ilmoittaa,ilmoitus]
+ [muuttaa,muutto,ilmoittaa,ilmoitus]
+word:talviurheilu
+ [talvi,urheilla,urheilu]
 word:kissa
  [kissa]
 word:kuorma-auto
  [kuorma,auto]
+word:kuorma-autotalli
+ [kuorma,auto,talli,kuorma-auto,autotalli]
+word:kuorma-autotallikuukausimaksu
+ [kuorma,auto,talli,kuu,kausi,maksu,kuorma-auto,kuorma-autotalli,autotalli,kuorma-autotallikuu,autotallikuu,tallikuu,kuorma-autotallikuukausi,autotallikuukausi,tallikuukausi,kuukausi,autotallikuukausimaksu,tallikuukausimaksu,kuukausimaksu,kausimaksu]
 word:koirra
 word:EU
- [EU]
+ [EU,eu]
 word:alusta
  [alku]
  [alus]
@@ -86,7 +105,7 @@ word:kaksikymmentä
 word:kahtakymmentä
  [kaksi,kymmentä]
 word:kaksikymmentäyksi
- [kaksi,yksi]
+ [kaksi,yksi,kymmentäyksi]
 word:10
  []
 word:kissat
@@ -109,9 +128,9 @@ word:juossee
  [juosta]
 word:juoksemassa
  [juosta]
- [juosta]
+ [juosta,juoksema]
 word:juoksemassamme
- [juosta]
+ [juosta,juoksema]
 word:juostakin
  [juosta]
  [juosta]
@@ -119,10 +138,10 @@ word:juostessa
  [juosta]
 word:juoksemasta
  [juosta]
- [juosta]
+ [juosta,juoksema]
 word:juoksemaan
  [juosta]
- [juosta]
+ [juosta,juoksema]
 word:verohallitus
  [vero,hallitus]
 word:Kaakkois-Panama
@@ -140,11 +159,11 @@ word:hienoinsokerein
 word:sana
  [sana]
 word:relatiivipronomini
- [relatiivipronomini]
+ [relatiivipronomini,pronomini]
 word:hyppely
- [hypellä]
+ [hypellä,hyppely]
 word:ilmaisu
- [ilmaista]
+ [ilmaista,ilmaisu]
 word:Pohjois-
  [Pohjois]
  [pohjoinen]
@@ -199,7 +218,7 @@ word:Välimerta
  [väli,merta]
  [väli,meri]
 word:sämpyläjokilaiva
- [sämpylä,joki,laiva]
+ [sämpylä,joki,laiva,sämpyläjoki,jokilaiva]
 word:haluan
  [haluta]
 word:ryhdymme
@@ -224,23 +243,23 @@ word:he
 word:kovalevy
  [kova,levy]
 word:kovakalloinen
- [kova,kallo]
+ [kova,kallo,kalloinen]
 word:harmaapikasuolattu
- [harmaa,suolata]
+ [harmaa,suolata,suolattu,pikasuolattu]
 word:leikkivä
- [leikkiä]
+ [leikkiä,leikkivä]
 word:leikkinyt
- [leikkiä]
+ [leikkiä,leikkinyt]
 word:piikkinen
- [piikki]
+ [piikki,piikkinen]
 word:piikitön
- [piikki]
+ [piikki,piikitön]
 word:piikkimäinen
- [piikki]
+ [piikki,piikkimäinen]
 word:piikeittäin
- [piikki]
+ [piikki,piikeittäin]
 word:piikkisyys
- [piikki]
+ [piikki,piikkinen,piikkisyys]
 word:ruotsalainen
  [ruotsalainen]
 word:ruotsalainenkin
@@ -256,28 +275,28 @@ word:superhämärästi
 word:tapakristitty
  [tapa,kristitty]
 word:härkäjuoksijana
- [härkä,juosta]
+ [härkä,juosta,juoksija]
 word:kissanvärinen
- [kissa,väri]
+ [kissa,väri,värinen]
 word:ajattelukykyinen
- [ajatella,kyky]
+ [ajatella,ajattelu,kyky,kykyinen]
 word:pikajuoksukykyinen
- [juoksu,kyky]
+ [juoksu,kyky,kykyinen,pikajuoksu,juoksukykyinen]
 word:superbiologinen
- [biologi]
+ [biologi,biologinen]
 word:ahdashenkinen
- [ahdas,henki]
+ [ahdas,henki,henkinen]
 word:ruotsalaishenkinen
- [ruotsalainen,henki]
+ [ruotsalainen,henki,henkinen]
 word:eräs
  [eräs]
 word:jotta
  [jotta]
 word:montenegrolainen
- [Montenegro]
+ [Montenegro,montenegrolainen]
 word:iiii
- []
- []
+ [iiii]
+ [iiii]
 word:jottei
  [jott,ei]
 word:Uudenmaansa
@@ -303,7 +322,7 @@ word:hyttyselle
 word:ampiaiset
  [ampiainen]
 word:lapinkirvinen
- [lapinkirvinen]
+ [lapinkirvinen,kirvinen]
 word:Pokkinen
  [Pokkinen]
 word:Nousiainen
@@ -315,7 +334,7 @@ word:Kanteletar
 word:keltainen
  [keltainen]
 word:arktisuus
- [arktinen]
+ [arktinen,arktisuus]
 word:pottusyltty
  [pottu,syltty]
 word:vieras
@@ -336,12 +355,12 @@ word:katselette
 word:lunastetaan
  [lunastaa]
 word:adverbisija
- [adverbi,sija]
+ [adverbi,verbi,sija,adverbi,verbisija]
 word:Pötsönlahdella
  [Pötsönlahti]
 word:katselemassa
  [katsella]
- [katsella]
+ [katsella,katselema]
 word:katsellessa
  [katsella]
 word:katselisin
@@ -350,15 +369,15 @@ word:katselisin
 word:pahoinpiteli
  [pahoinpidellä]
 word:hinaajalla
- [hinata]
+ [hinata,hinaaja]
 word:Suomi-Sveitsi
  [suomi,Sveitsi]
  [Suomi,Sveitsi]
 word:CD-ROM
- [CD-ROM]
- [cd-rom]
- [cd-rom]
- [CD-ROM]
+ [CD-ROM,cdrom]
+ [cd-rom,rom]
+ [cd-rom,rom]
+ [CD-ROM,cdrom]
 word:anonyymisti
  [anonyymi]
 word:autonikin
@@ -379,7 +398,7 @@ word:jäähdytetään
 word:jäähdytettiin
  [jäähdyttää]
 word:muisto
- [muistaa]
+ [muistaa,muisto]
 word:epäröin
  [epäröidä]
  [epäröidä]
@@ -398,31 +417,31 @@ word:liene
 word:älkööt
  [ei]
 word:kukistaneen
- [kukistaa]
+ [kukistaa,kukistanut]
 word:ab
  [ab]
 word:ab-kissa
  [ab,kissa]
 word:esiintyjittäin
- [esiintyä]
+ [esiintyä,esiintyjittäin]
 word:espanjalaisittain
- [Espanja]
+ [Espanja,espanjalainen,espanjalaisittain]
 word:Helsinki-alueellinen
- [Helsinki,alue]
+ [Helsinki,alue,alueellinen]
 word:roomalaiskissa
- [Rooma,kissa]
+ [Rooma,roomalainen,kissa]
 word:kissattomuus
- [kissa]
+ [kissa,kissaton,kissattomuus]
 word:ei-kenenkään-maa
- [ei-kenenkään-maa]
+ [ei-kenenkään-maa,maa,kenenkäänmaa]
 word:yksi
  [yksi]
 word:kaksituhattakolmetoista
- [kaksi,kolme]
+ [kaksi,kolme,kaksituhattakolme,tuhattakolme]
 word:kahdeksaakymmentä
  [kahdeksan,kymmentä]
 word:myyty
- [myydä]
+ [myydä,myyty]
 word:minut
  [minä]
 word:Aadolfinkatu
@@ -442,31 +461,31 @@ word:ja
 word:Gallen-Kallela-Sirén
  [Gallen-Kallela,Sirén]
 word:-sävellys-
- [säveltää]
+ [säveltää,sävellys]
 word:ilman
  [Ilma]
  [ilman]
  [ilma]
 word:suomalais-neuvostoliittolainen
- [suomalainen,neuvosto,liittolainen]
- [suomalainen,Neuvostoliitto]
+ [suomalainen,neuvosto,liittolainen,suomalaisneuvosto,neuvostoliittolainen]
+ [suomalainen,Neuvostoliitto,liittolainen,neuvostoliittolainen]
 word:Isossa-Britanniassa
  [iso,Britannia]
 word:Uusimaa
- [uusia]
+ [uusia,uusima]
  [Uusimaa]
 word:Keski-Uusimaa
- [Uusimaa]
+ [Uusimaa,keskiuusi]
 word:Tyynessämeressä
  [Tyynimeri]
 word:huhti-toukokuusta
  [huhti-toukokuu]
 word:viisivuotiskausi
- [viisi,vuosi,kausi]
+ [viisi,vuosi,vuotinen,kausi,vuotiskausi]
 word:AIDS-epidemia
  [AIDS,epidemia]
 word:vammaisuusaste
- [vamma,aste]
+ [vamma,vammainen,vammaisuus,aste]
 word:-nimen
  [nimi]
 word:Euro-sarja
@@ -477,11 +496,11 @@ word:saa
  [saada]
  [saada]
 word:julkaistu
- [julkaista]
+ [julkaista,julkaistu]
 word:julkaistiin
  [julkaista]
 word:tekijä
- [tehdä]
+ [tehdä,tekijä]
 word:urallaan
  [ura]
 word:käsittelee
@@ -504,46 +523,46 @@ word:koirallakaan
 word:juoksin
  [juosta]
 word:juokseva
- [juosta]
+ [juosta,juokseva]
 word:juostava
- [juosta]
+ [juosta,juostava]
 word:metsästettävä
- [metsästää]
+ [metsästää,metsästettävä]
 word:juossut
- [juosta]
+ [juosta,juossut]
 word:juosseet
- [juosta]
+ [juosta,juossut]
 word:juostu
- [juosta]
+ [juosta,juostu]
 word:juoksema
- [juosta]
+ [juosta,juoksema]
 word:juoksematon
- [juosta]
+ [juosta,juoksema,juoksematon]
 word:toimii
  [toimia]
 word:haluavatkin
  [haluta]
- [haluta]
+ [haluta,haluava]
 word:vähentävät
- [vähetä]
- [vähetä]
+ [vähetä,vähentää]
+ [vähetä,vähentää,vähentävä]
 word:jakavat
  [jakaa]
- [jakaa]
+ [jakaa,jakava]
 word:aikakauslehti
- [lehti]
+ [lehti,kauslehti]
 word:ADSL:n
  [ADSL]
 word:kokevat
  [kokea]
- [kokea]
+ [kokea,kokeva]
 word:itarin
  [itara]
  [itara]
 word:herännäis-kissa
  [herännäinen,kissa]
 word:nelisormimangusti
- [neli,sormi,mangusti]
+ [neli,sormi,mangusti,nelisormi,sormimangusti]
 word:neutraalimpaan
  [neutraali]
 word:nimeämiskäytännöstä
@@ -551,106 +570,106 @@ word:nimeämiskäytännöstä
 word:muokattaisi
  [muokata]
 word:mutkistuu
- [mutkistaa]
+ [mutkistaa,mutkistua]
 word:varo-EU
- [EU]
+ [EU,eu]
 word:alkeissidosta
  [sidos]
 word:alavireisyyttään
- [ala,vire]
+ [ala,vire,vireinen,vireisyys]
 word:suunnittelijoita
- [suunnitella]
+ [suunnitella,suunnittelija]
 word:avuttomasti
- [apu]
- [avu]
+ [apu,avuton]
+ [avu,avuton]
 word:talottomampi
- [talo]
+ [talo,taloton]
 word:rakennus
  [rakennus]
 word:palveluita
- [palvella]
+ [palvella,palvelu]
 word:arkistoinnin
- [arkistoida]
+ [arkistoida,arkistointi]
 word:EU-kieli
  [EU,kieli]
 word:lento
- [lentää]
+ [lentää,lento]
 word:sortoa
- [sortaa]
+ [sortaa,sorto]
 word:laulanta
- [laulaa]
+ [laulaa,laulanta]
 word:avaruudellinen
- [avara]
+ [avara,avaruus,avaruudellinen]
 word:byrokraattistua
- [byrokraattistaa]
+ [byrokraattistaa,byrokraattistua]
 word:avoselkäinen
- [selkä]
+ [selkä,selkäinen]
 word:esijuoksija
- [juosta]
+ [juosta,juoksija]
 word:elämänviisaus
- [elämä,viisas]
+ [elämä,viisas,viisaus]
 word:erehtyväinen
- [erehtyä]
+ [erehtyä,erehtyvä,erehtyväinen]
 word:hallitusti
- [hallita]
+ [hallita,hallittu]
 word:hajakylvö
- [kylvää]
+ [kylvää,kylvö]
 word:eteläamerikkalainen
- [etelä,Amerikka]
+ [etelä,Amerikka,amerikkalainen]
 word:moottoroitu
- [moottoroida]
+ [moottoroida,moottoroitu]
 word:käyttö
- [käyttää]
+ [käyttää,käyttö]
 word:kaavoittuma
- [kaavoittua]
+ [kaavoittua,kaavoittuma]
 word:öykkärimäisesti
- [öykkäri]
+ [öykkäri,öykkärimäinen]
 word:HI-virus
- [HI-virus]
+ [HI-virus,hivirus]
 word:örinä
- [öristä]
+ [öristä,örinä]
 word:diivailen
- [diivata]
+ [diivata,diivailla]
 word:haukottelee
- [haukottaa]
+ [haukottaa,haukotella]
 word:havaittavassa
- [havaita]
+ [havaita,havaittava]
 word:halaistua
- [halaista]
+ [halaista,halaistu]
 word:hyödyntäneen
- [hyödyntää]
+ [hyödyntää,hyödyntänyt]
 word:Hanna-Liisa
  [Hanna,Liisa]
 word:hiihtojen
- [hiihtää]
+ [hiihtää,hiihto]
 word:jättöä
- [jättää]
+ [jättää,jättö]
 word:jäljittääkseen
  [jäljittää]
 word:astahtelen
- [astahtaa]
+ [astahtaa,astahdella]
 word:kastele
- [kastaa]
+ [kastaa,kastella]
 word:luovalle
- [luoda]
+ [luoda,luova]
 word:kontti-
  [kontti]
 word:-kissakoira
  [kissa,koira]
 word:kuulemat
- [kuulla]
+ [kuulla,kuulema]
 word:muistu
- [muistaa]
+ [muistaa,muistua]
 word:lätkäisseessä
- [lätkäistä]
+ [lätkäistä,lätkäissyt]
 word:valvoessaan
  [valvoa]
 word:kuuntelisi
  [kuunnella]
 word:kaksijakoisesti
- [kaksi,jako]
+ [kaksi,jako,jakoinen]
 word:ionisoituu
- [ionisoida]
+ [ionisoida,ionisoitua]
 word:näkeekö
  [nähdä]
 word:nujersivat
@@ -658,26 +677,26 @@ word:nujersivat
 word:nimekseen
  [nimi]
 word:muistelleet
- [muistaa]
+ [muistaa,muistella,muistellut]
 word:johtajattaren
- [johtaa]
+ [johtaa,johtajatar]
 word:lähentyy
- [lähetä]
+ [lähetä,lähentyä]
 word:lähennän
- [lähetä]
+ [lähetä,lähentää]
 word:lähentelen
- [lähetä]
+ [lähetä,lähennellä]
 word:rumuus
- [ruma]
+ [ruma,rumuus]
 word:käsiteltyjen
- [käsitellä]
+ [käsitellä,käsitelty]
 word:pyrimme
  [pyrkiä]
  [pyrkiä]
 word:putoili
- [pudota]
+ [pudota,putoilla]
 word:pysähtyneisyys
- [pysähtyä]
+ [pysähtyä,pysähtyneisyys]
 word:signeeraa
  [signeerata]
 word:peittoaa
@@ -687,57 +706,57 @@ word:otettakoon
 word:tekisikö
  [tehdä]
 word:kavensivat
- [kaveta]
+ [kaveta,kaventaa]
 word:simpukkamurros
- [simpukka,murtaa]
+ [simpukka,murtaa,murros]
 word:tallentelen
- [tallentaa]
+ [tallentaa,tallennella]
 word:tallentuu
- [tallentaa]
+ [tallentaa,tallentua]
 word:linnoittautuminen
- [linnoittaa]
+ [linnoittaa,linnoittautua]
 word:nyhdätän
- [nyhtää]
+ [nyhtää,nyhdättää]
 word:linnoittautumisensa
- [linnoittaa]
+ [linnoittaa,linnoittautua]
 word:suppenevat
  [supeta]
- [supeta]
+ [supeta,suppeneva]
 word:pukemalla
  [pukea]
- [pukea]
+ [pukea,pukema]
 word:täräytti
- [täristä]
+ [täristä,täräyttää]
 word:täräytyksen
- [täristä]
+ [täristä,täräytys]
 word:keventämällä
- [kevetä]
- [kevetä]
+ [kevetä,keventää]
+ [kevetä,keventää,keventämä]
 word:kanteleeni
  [kannel]
  [kannel]
 word:rikkoneensa
- [rikkoa]
+ [rikkoa,rikkonut]
 word:johtavuus
- [johtaa]
+ [johtaa,johtava,johtavuus]
 word:lehtikultaa
  [lehti,kulta]
 word:peruskoulukone
- [perus,koulu,kone]
+ [perus,koulu,kone,peruskoulu,koulukone]
 word:Pohjois-Texas
  [pohjoinen,Texas]
 word:murtaakseen
  [murtaa]
 word:haennoiden
- [hakea]
+ [hakea,haenta]
 word:liiteli
- [liitää]
+ [liitää,liidellä]
 word:kunnan-
  [kunta]
 word:kanavittain
- [kanava]
+ [kanava,kanavittain]
 word:musiikkioppilaitos
- [musiikki,oppi,laitos]
+ [musiikki,oppi,laitos,musiikkioppi,oppilaitos]
 word:marxismi-leninismin
  [marxismi-leninismi]
 word:väännös
@@ -747,8 +766,8 @@ word:pahakseni
 word:köyhälleen
  [köyhä]
 word:huutelevat
- [huutaa]
- [huutaa]
+ [huutaa,huudella]
+ [huutaa,huudella,huuteleva]
 word:aterioi
  [aterioida]
  [aterioida]
@@ -758,90 +777,90 @@ word:lähdöllä
 word:seitsemästoista
  [seitsemäs]
 word:kääntelen
- [kääntää]
+ [kääntää,käännellä]
 word:soveltelen
- [soveltaa]
+ [soveltaa,sovellella]
 word:nakertelen
- [nakertaa]
+ [nakertaa,nakerrella]
 word:jäykentelen
- [jäykentää]
+ [jäykentää,jäykennellä]
 word:kylittäin
- [kylä]
+ [kylä,kylittäin]
 word:ohjattuaan
- [ohjata]
+ [ohjata,ohjattu]
 word:juostaman
  [juosta]
 word:kirjailijanimi
- [kirjata,nimi]
+ [kirjata,kirjailla,kirjailija,nimi]
 word:kerrostalo-
- [kerros,talo]
+ [kerros,talo,kerrostalo]
 word:tarjokkuus
- [tarjokas]
+ [tarjokas,tarjokkuus]
 word:keskelläkin
  [keskellä]
 word:rikas-
  [rikas]
 word:kuljeskelee
- [kulkea]
+ [kulkea,kuljeskella]
 word:komentajuudesta
- [komentaa]
+ [komentaa,komentajuus]
 word:muttet
  [mutt,ei]
 word:kohtauksittain
- [kohdata]
+ [kohdata,kohtaus,kohtauksittain]
 word:kulta-aarre
  [kulta,aarre]
 word:rajoittuneisuus
- [rajoittua]
+ [rajoittua,rajoittuneisuus]
 word:opiskelleensa
- [opiskella]
+ [opiskella,opiskellut]
 word:käyttökelvoton
- [käyttää,kelpo]
+ [käyttää,käyttö,kelpo,kelvoton]
 word:mielenterveydellinen
- [mieli,terve]
+ [mieli,terve,terveys,terveydellinen]
 word:juoksekin
  [juosta]
 word:vesitilavuus
- [vesi,tilava]
+ [vesi,tilava,tilavuus]
 word:heidänlaisensa
  [heidänlainen]
 word:puhuu
  [puhua]
 word:puhuman
- [puhua]
+ [puhua,puhuma]
  [puhua]
 word:kalinassa
- [kalista]
+ [kalista,kalina]
 word:piirteli
- [piirtää]
+ [piirtää,piirrellä]
 word:koskapa
  [koska]
 word:kannatan
- [kantaa]
+ [kantaa,kannattaa]
 word:vaihtelisi
- [vaihtaa]
+ [vaihtaa,vaihdella]
 word:huhuiltiin
- [huhuta]
+ [huhuta,huhuilla]
 word:purrussa
- [purra]
+ [purra,purtu]
 word:lentelivät
- [lentää]
+ [lentää,lennellä]
 word:kolahti
- [kolista]
+ [kolista,kolahtaa]
 word:kanneltiin
- [kantaa]
+ [kantaa,kannella]
 word:saatellaan
- [saattaa]
+ [saattaa,saatella]
 word:ammutti
- [ampua]
+ [ampua,ammuttaa]
 word:VI:ssa
- []
+ [vi:ssa]
 word:VI:t
- []
+ [vi:t]
 word:jaata
  [jaa]
 word:pantua
- [panna]
+ [panna,pantu]
 word:taitaapi
  [taitaa]
 word:parhaimmat
@@ -851,7 +870,7 @@ word:syöksee
 word:hänetkin
  [hän]
 word:haltijatar
- [haltija]
+ [haltija,haltijatar]
 word:osaamis-
  [osata]
 word:aita-
@@ -863,13 +882,13 @@ word:avo-
 word:-vuotias
  [vuotias]
 word:XX-
- []
+ [xx]
 word:live-
  []
 word:viideksitoista
  [viisi]
 word:kolmehenkisessä
- [kolme,henki]
+ [kolme,henki,henkinen]
 word:toistasataa
  [toista,sataa]
 word:parisenkymmentä
@@ -894,7 +913,7 @@ word:kahdeksisadaksi
 word:satojatuhansia
  [sata,tuhatta]
 word:olemattomien
- [olla]
+ [olla,olema,olematon]
 word:älähän
  [ei]
 word:ettet
@@ -904,7 +923,7 @@ word:-1600-luvun
 word:EU:kin
  [EU]
 word:kokoelma-LP
- [kokoelma,LP]
+ [kokoelma,LP,lp]
 word:j
  [j]
 word:varapj.
@@ -920,7 +939,7 @@ word:-200:sta
 word:käymisteitse
  [käydä,tie]
 word:kissankarvoittain
- [kissa,karva]
+ [kissa,karva,karvoittain]
 word:koskeekaan
  [koskea]
 word:hyppäänkään
@@ -930,30 +949,30 @@ word:kissankeltainen
 word:kolmisen
  [kolmisen]
 word:hämäräaktiivinen
- [hämärä,aktiivi]
+ [hämärä,aktiivi,aktiivinen]
 word:asiakastyytyväisyyttä
- [asiakas,tyytyä]
+ [asiakas,tyytyä,tyytyvä,tyytyväinen,tyytyväisyys]
 word:ratakorkeus
- [rata,korkea]
+ [rata,korkea,korkeus]
 word:esikarsinta
- [karsia]
+ [karsia,karsinta]
 word:alikehittynyt
- [kehittyä]
+ [kehittyä,kehittynyt]
 word:ylinouseva
- [nousta]
+ [nousta,nouseva]
 word:uudelleenmuotoiltu
- [muotoilla]
+ [muotoilla,muotoiltu]
 word:juoksemisestapa
  [juosta]
 word:hätäistään
- [hätä]
+ [hätä,hätäinen]
 word:kpl:in
  [kpl]
  [kpl]
 word:arktis-alpiininen
  [arktinen,alpiininen]
 word:III-divisioona
- [divisioona]
+ [iii,divisioona]
 word:EU-laitos
  [EU,laitos]
 word:Kissalaitos
@@ -963,50 +982,50 @@ word:-kissalaitos
 word:kymmenennen
  [kymmenes]
 word:suosituimmuusaseman
- [suosia,asema]
+ [suosia,suosittu,suosituimmuus,asema]
 word:voipi
  [voida]
 word:väylänopeus
- [väylä,nopea]
+ [väylä,nopea,nopeus]
 word:pieniniemisyys
- [pieni,niemi]
+ [pieni,niemi,nieminen,niemisyys]
 word:mennyllä
- [mennä]
+ [mennä,menty]
 word:viisi-
  [viisi]
 word:kissavanhempiaan
  [kissa,vanhempi]
 word:ryhtymättä
- [ryhtyä]
+ [ryhtyä,ryhtymä]
  [ryhtyä]
 word:kahdenkeskistä
  [kaksi,keskinen]
 word:kolmen-
  [kolme]
 word:nopeustutkassa
- [nopea,tutka]
+ [nopea,nopeus,tutka]
 word:pikilappu
- [pikilappu]
+ [pikilappu,lappu]
 word:akveduktien
  [akvedukti]
 word:historiallinen
- [historia]
+ [historia,historiallinen]
 word:kissattomat
- [kissa]
+ [kissa,kissaton]
 word:etätyö
  [työ]
 word:aktivoidumme
- [aktivoida]
+ [aktivoida,aktivoitua]
 word:juoksija
- [juosta]
+ [juosta,juoksija]
 word:-kentällisessä
- [kenttä]
+ [kenttä,kentällinen]
 word:suurempikokoinen
- [suuri,koko]
+ [suuri,koko,kokoinen]
 word:sadasosasekunti
- [sadas,osa,sekunti]
+ [sadas,osa,sekunti,sadasosa,osasekunti]
 word:merkittävyyskriteeri
- [merkitä,kriteeri]
+ [merkitä,merkittävä,merkittävyys,kriteeri]
 word:yllättäenkin
  [yllättää]
 word:oltiin
@@ -1025,34 +1044,34 @@ word:olkoonkin
 word:kolmesti
  [kolme]
 word:kolmikymmenvuotias
- [kolmikymmen,vuotias]
+ [kolmikymmen,vuotias,kymmenvuotias]
 word:syötyään
- [syödä]
+ [syödä,syöty]
 word:kuunneltuamme
- [kuunnella]
+ [kuunnella,kuunneltu]
 word:saapas
  [saada]
  [saada]
  [saapas]
 word:XXVII
- []
- []
+ [xxvii]
+ [xxvii]
 word:romahtamaisillaan
  [romahtaa]
 word:tunnettuus
- [tuntea]
+ [tuntea,tunnettu,tunnettuus]
 word:hallittavuus
- [hallita]
+ [hallita,hallittava,hallittavuus]
 word:edustavuuden
- [edustaa]
+ [edustaa,edustava,edustavuus]
 word:ollut
- [olla]
- [olla]
+ [olla,oltu]
+ [olla,ollut]
 word:mitään
  [mikään]
 word:purrut
- [purra]
- [purra]
+ [purra,purtu]
+ [purra,purrut]
 word:kunkin
  [kukin]
 word:juoksinkaan
@@ -1064,16 +1083,16 @@ word:Kanta-
  [kanta]
 word:juoksemattakin
  [juosta]
- [juosta]
+ [juosta,juoksema]
 word:olematta
  [olla]
- [olla]
+ [olla,olema]
 word:tuta
  [tuta]
 word:tutaan
  [tuta]
 word:Itäkissa-Sveitsi
- [itä,kissa,Sveitsi]
+ [itä,kissa,Sveitsi,itäkissa,kissasveitsi]
 word:Uudessa-Seelannissa
  [uusi,Seelanti]
 word:Etelä-Pentti
@@ -1082,49 +1101,49 @@ word:Pohjois-Suomessa
  [pohjoinen,suomi]
  [pohjoinen,Suomi]
 word:heinäisensä
- [heinä]
+ [heinä,heinäinen]
 word:heinäisempänsä
- [heinä]
+ [heinä,heinäinen]
 word:heinäisimpänsä
- [heinä]
+ [heinä,heinäinen]
 word:sairastumisriski
- [sairastaa,riski]
+ [sairastaa,sairastua,riski]
 word:-litraisilla
- [litra]
+ [litra,litrainen]
 word:hullunkurisia
- [hullu,kuri]
+ [hullu,kuri,kurinen]
 word:ajantasaisuus
- [aika,tasainen]
+ [aika,tasainen,tasaisuus]
 word:aihekokonaisuus
- [aihe,kokonainen]
+ [aihe,kokonainen,kokonaisuus]
 word:ilmoituskokonaisuus
- [ilmoittaa,kokonainen]
+ [ilmoittaa,ilmoitus,kokonainen,kokonaisuus]
 word:juoksijakokonaisuus
- [juosta,kokonainen]
+ [juosta,juoksija,kokonainen,kokonaisuus]
 word:kerrostalokokonaisuus
- [kerros,talo,kokonainen]
+ [kerros,talo,kokonainen,kokonaisuus,kerrostalo,talokokonaisuus]
 word:turkulaiskokonaisuus
- [Turku,kokonainen]
+ [Turku,turkulainen,kokonainen,kokonaisuus]
 word:Matti-kokonaisuus
- [Matti,kokonainen]
+ [Matti,kokonainen,kokonaisuus]
 word:englantilaistyyppinen
- [Englanti,tyyppi]
+ [Englanti,englantilainen,tyyppi,tyyppinen]
 word:Matti-tyyppinen
- [Matti,tyyppi]
+ [Matti,tyyppi,tyyppinen]
 word:lähtivät
  [lähteä]
 word:kehitellyn
- [kehittää]
+ [kehittää,kehitellä,kehitelty]
 word:miellyttämishaluinen
- [miellyttää,halu]
+ [miellyttää,halu,haluinen]
 word:tapauskohtainen
- [tavata,kohta]
+ [tavata,tapaus,kohta,kohtainen]
 word:epävarmuuden
- [varma]
+ [varma,varmuus]
 word:asiantuntijuus
- [asia,tuntea]
+ [asia,tuntea,tuntijuus]
 word:asianmyyjyys
- [asia,myydä]
+ [asia,myydä,myyjyys]
 word:kolmenmallisessa
  [kolme,mallinen]
 word:kolmenmallinen
@@ -1133,26 +1152,26 @@ word:isovanhemmista
  [iso,vanhempi]
  [iso,vanha]
 word:ikäisekseen
- [ikä]
+ [ikä,ikäinen]
 word:tyypillisimmillään
- [tyyppi]
+ [tyyppi,tyypillinen]
 word:parhaakseen
  [hyvä]
 word:Isolla-Britannialla
  [iso,Britannia]
 word:yhteiskuntapoliittinen
- [yhteinen,kunta,poliittinen]
- [kunta,poliittinen]
+ [yhteinen,kunta,poliittinen,yhteiskunta,kuntapoliittinen]
+ [kunta,poliittinen,yhteiskunta,kuntapoliittinen]
 word:ollaksemme
  [olla]
 word:Lounais-
  []
- [lounas]
+ [lounas,lounainen]
 word:Keski-
  [keski]
  []
 word:METSÄLUOTEIS-
- [metsä,luode]
+ [metsä,luode,luoteinen]
 word:muuanna
  [muuan]
 word:saartaa
@@ -1160,9 +1179,9 @@ word:saartaa
  [saartaa]
 word:saartavat
  [saartaa]
- [saartaa]
+ [saartaa,saartava]
 word:tyhmähkö
- [tyhmä]
+ [tyhmä,tyhmähkö]
 word:ummikoin
  [ummikko]
  [ummikko]
