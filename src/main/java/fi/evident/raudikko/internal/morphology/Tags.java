@@ -42,9 +42,14 @@ public final class Tags {
     static final @NotNull String bc = "[Bc]";
     static final @NotNull String bh = "[Bh]";
 
+    // Comparative
+    static final @NotNull String PREFIX_C = "[C";
+
     static final @NotNull String de = "[De]";
     static final @NotNull String dg = "[Dg]";
 
+    // Clitic
+    static final @NotNull String PREFIX_FK = "[Fk";
     static final @NotNull String fko = "[Fko]";
 
     static final @NotNull String isf = "[Isf]";
@@ -66,12 +71,22 @@ public final class Tags {
     static final @NotNull String ll = "[Ll]";
     static final @NotNull String lep = "[Lep]";
 
-    static final @NotNull String ssti = "[Ssti]";
+    // Plurality
+    static final @NotNull String ny = "[Ny]"; // yksikkö
+
+    // Possessive suffix
+    static final @NotNull String PREFIX_O = "[O";
+
+    // Grammatical case
+    static final @NotNull String PREFIX_S = "[S";
+    static final @NotNull String sn = "[Sn]"; // nominatiivi
+    static final @NotNull String ssti = "[Ssti]"; // kerronto
 
     // Parameters
     public static final String PREFIX_X = "[X";
     public static final @NotNull String xp = "[Xp]"; // perusmuoto
     public static final @NotNull String xj = "[Xj]"; // johtimen perusmuoto
     static final @NotNull String xr = "[Xr]"; // rakenne
+    static final @NotNull String xs = "[Xs]"; // sourceid
     static final @NotNull String x = "[X]"; // end marker
 }
