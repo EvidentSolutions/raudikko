@@ -1,3 +1,9 @@
+## 0.1.3 (2023-02-22)
+
+### Changes
+
+- Improve base form parts analysis ([#3](https://github.com/EvidentSolutions/raudikko/pull/3)) by [@mortterna](https://github.com/mortterna)
+
 ## 0.1.2 (2023-01-31)
 
 ### Changes
