@@ -66,6 +66,7 @@ public final class Analysis implements Cloneable {
     private boolean possibleGeographicalName = false;
     private @Nullable String requireFollowingVerb;
     private @Nullable List<String> baseFormParts;
+    private @Nullable Word word;
 
     public @Nullable String getBaseForm() {
         return baseForm;
@@ -217,6 +218,14 @@ public final class Analysis implements Cloneable {
 
     public @Nullable List<String> getBaseFormParts() {
         return baseFormParts;
+    }
+
+    public void setWord(@Nullable Word word) {
+        this.word = word;
+    }
+
+    public @Nullable Word getWord() {
+        return word;
     }
 
     @Override

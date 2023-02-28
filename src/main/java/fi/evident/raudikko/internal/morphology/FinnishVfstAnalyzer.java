@@ -42,8 +42,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import static fi.evident.raudikko.internal.morphology.BaseForm.parseBaseFormParts;
 import static fi.evident.raudikko.internal.morphology.BaseForm.parseBaseform;
+import static fi.evident.raudikko.internal.morphology.BaseFormParts.parseBaseFormParts;
 import static fi.evident.raudikko.internal.morphology.BasicAttributes.parseBasicAttributes;
 import static fi.evident.raudikko.internal.morphology.Organization.organizationNameAnalysis;
 import static fi.evident.raudikko.internal.morphology.Structure.parseStructure;
@@ -57,6 +57,7 @@ public final class FinnishVfstAnalyzer implements Analyzer {
     private final @NotNull Symbol[] output = new Symbol[2000];
     private final @NotNull SymbolBuffer buffer = new SymbolBuffer(2000);
     private final @NotNull AnalyzerConfiguration configuration;
+    private final @NotNull WordParser wordParser = new WordParser();
     private final short[] flags;
     private static final int MAX_WORD_LENGTH = 255;
 
@@ -77,7 +78,7 @@ public final class FinnishVfstAnalyzer implements Analyzer {
             buffer.reset(output, depth);
 
             if (isValidAnalysis(buffer))
-                createAnalysis(buffer, word.length(), results, configuration);
+                createAnalysis(buffer, word.length(), results, configuration, wordParser);
         });
 
         return results;
@@ -108,7 +109,8 @@ public final class FinnishVfstAnalyzer implements Analyzer {
     private static void createAnalysis(@NotNull SymbolBuffer buffer,
                                        int wordLength,
                                        @NotNull List<Analysis> results,
-                                       @NotNull AnalyzerConfiguration configuration) {
+                                       @NotNull AnalyzerConfiguration configuration,
+                                       @NotNull WordParser wordParser) {
         Analysis analysis = new Analysis();
 
         boolean dependsOnStructure =
@@ -128,7 +130,10 @@ public final class FinnishVfstAnalyzer implements Analyzer {
             analysis.setFstOutput(buffer.fullContents());
 
         if (configuration.isIncludeBaseFormParts())
-            analysis.setBaseFormParts(parseBaseFormParts(buffer));
+            analysis.setBaseFormParts(parseBaseFormParts(buffer, wordParser));
+
+        if (configuration.isIncludeWord())
+            analysis.setWord(wordParser.parseWord(buffer));
 
         if (configuration.isIncludeBasicAttributes())
             parseBasicAttributes(analysis, buffer);

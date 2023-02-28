@@ -44,6 +44,7 @@ public final class AnalyzerConfiguration {
     private boolean includeOrganizationNameAnalysis = true;
     private boolean includeFstOutput = true;
     private boolean includeBaseFormParts = true;
+    private boolean includeWord = false;
 
     public boolean isIncludeStructure() {
         return includeStructure;
@@ -91,6 +92,14 @@ public final class AnalyzerConfiguration {
 
     public void setIncludeBaseFormParts(boolean includeBaseFormParts) {
         this.includeBaseFormParts = includeBaseFormParts;
+    }
+
+    public boolean isIncludeWord() {
+        return includeWord;
+    }
+
+    public void setIncludeWord(boolean includeWord) {
+        this.includeWord = includeWord;
     }
 
     @Override
