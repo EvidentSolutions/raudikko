@@ -34,10 +34,51 @@ package fi.evident.raudikko;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collections;
 import java.util.List;
 
-public interface WordPart {
-    @NotNull List<String> getBaseForms();
-    boolean isInBaseForm();
-    boolean isProperNoun();
+import static fi.evident.raudikko.internal.utils.StringUtils.withoutChar;
+
+public final class StrongMorphemeCompoundWordPart implements WordPart {
+
+    private final @NotNull List<SingleWordPart> parts;
+    private final @NotNull String baseForm;
+
+    public StrongMorphemeCompoundWordPart(@NotNull List<SingleWordPart> parts, @NotNull String baseForm) {
+        this.parts = Collections.unmodifiableList(parts);
+        this.baseForm = baseForm;
+    }
+
+    public @NotNull List<SingleWordPart> getParts() {
+        return parts;
+    }
+
+    public @NotNull String getBaseForm() {
+        return baseForm;
+    }
+
+    @Override
+    public @NotNull List<String> getBaseForms() {
+        return Collections.singletonList(baseForm);
+    }
+
+    @Override
+    public boolean isInBaseForm() {
+        return parts.get(parts.size() - 1).isInBaseForm();
+    }
+
+    @Override
+    public boolean isProperNoun() {
+        return parts.get(0).isProperNoun();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+
+        for (SingleWordPart part : parts)
+            result.append(part.toString());
+
+        return result.toString();
+    }
 }

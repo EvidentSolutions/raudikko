@@ -32,15 +32,14 @@
 
 package fi.evident.raudikko.internal.morphology;
 
-import fi.evident.raudikko.WordAttribute;
-import fi.evident.raudikko.Word;
-import fi.evident.raudikko.WordPart;
+import fi.evident.raudikko.*;
 import fi.evident.raudikko.internal.fst.Symbol;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import static fi.evident.raudikko.internal.utils.StringUtils.withoutChar;
 import static java.util.Objects.requireNonNull;
@@ -48,6 +47,7 @@ import static java.util.Objects.requireNonNull;
 final class WordParser {
 
     private final WordBuilder word = new WordBuilder();
+    private static final Pattern equalSignPattern = Pattern.compile("=");
 
     @NotNull Word parseWord(@NotNull SymbolBuffer tokenizer) {
         tokenizer.moveToStart();
@@ -59,8 +59,15 @@ final class WordParser {
             if (tag == null) {
                 word.append(tokenizer.currentToken.toString());
             } else {
-                if (tag.matches(Tags.xp))
-                    word.addBaseForm(withoutChar(tokenizer.readXTagContents(), '='));
+                if (tag.matches(Tags.xp)) {
+                    String baseForm = tokenizer.readXTagContents();
+                    String[] baseFormParts = equalSignPattern.split(baseForm);
+
+                    if (baseFormParts.length > 1)
+                        word.startStrongMorpheme(baseFormParts);
+                    else
+                        word.addBaseForm(baseForm);
+                }
 
                 else if (tag.matches(Tags.xj))
                     word.addBaseForm(word.getCurrentPart().word + withoutChar(tokenizer.readXTagContents(), '='));
@@ -90,14 +97,15 @@ final class WordParser {
 
     private static final class WordBuilder {
 
-        private @NotNull final WordPartBuilder currentPart = new WordPartBuilder();
+        private @NotNull final SingleWordPartBuilder currentPart = new SingleWordPartBuilder();
+        private @NotNull final StrongMorphemeWordPartBuilder currentStrongMorpheme = new StrongMorphemeWordPartBuilder();
         private @NotNull final List<WordPart> wordParts = new ArrayList<>();
 
         private void append(@NotNull CharSequence s) {
             currentPart.append(s);
         }
 
-        private @NotNull WordPartBuilder getCurrentPart() {
+        private @NotNull SingleWordPartBuilder getCurrentPart() {
             return currentPart;
         }
 
@@ -115,8 +123,21 @@ final class WordParser {
         }
 
         private void endWordPart() {
-            if (currentPart.isNotEmpty())
+            if (!currentStrongMorpheme.isConsumed()) {
+                currentPart.addBaseForm(currentStrongMorpheme.popBaseForm());
+                currentStrongMorpheme.addPart(currentPart.toWordPart());
+
+                if (currentStrongMorpheme.isConsumed()) {
+                    wordParts.add(currentStrongMorpheme.toWordPart());
+                }
+            }
+
+            else if (currentPart.isNotEmpty())
                 wordParts.add(currentPart.toWordPart());
+        }
+
+        private void startStrongMorpheme(@NotNull String[] baseFormParts) {
+            currentStrongMorpheme.startStrongMorpheme(baseFormParts);
         }
 
         private @NotNull Word toWord() {
@@ -127,10 +148,49 @@ final class WordParser {
         private void reset() {
             currentPart.reset();
             wordParts.clear();
+            currentStrongMorpheme.reset();
         }
     }
 
-    private static final class WordPartBuilder {
+    private static final class StrongMorphemeWordPartBuilder {
+
+        private @NotNull String baseForm = "";
+        private @NotNull String[] baseFormParts = new String[0];
+        private int baseFormPartsIndex = 0;
+        private final @NotNull List<SingleWordPart> parts = new ArrayList<>();
+
+        private void startStrongMorpheme(@NotNull String[] baseFormParts) {
+            this.baseForm = String.join("", baseFormParts);
+            this.baseFormParts = baseFormParts;
+            this.baseFormPartsIndex = 0;
+            this.parts.clear();
+        }
+
+        private @NotNull String popBaseForm() {
+            if (isConsumed())
+                throw new IllegalStateException("Base form parts empty");
+
+            return baseFormParts[baseFormPartsIndex++];
+        }
+
+        private void addPart(@NotNull SingleWordPart part) {
+            parts.add(part);
+        }
+
+        private boolean isConsumed() {
+            return baseFormPartsIndex >= baseFormParts.length;
+        }
+
+        private @NotNull StrongMorphemeCompoundWordPart toWordPart() {
+            return new StrongMorphemeCompoundWordPart(new ArrayList<>(parts), baseForm);
+        }
+
+        private void reset() {
+            baseFormPartsIndex = baseFormParts.length;
+        }
+    }
+
+    private static final class SingleWordPartBuilder {
 
         private final @NotNull StringBuilder word = new StringBuilder();
         private final @NotNull List<String> baseForms = new ArrayList<>();
@@ -159,8 +219,8 @@ final class WordParser {
             attributes.clear();
         }
 
-        private @NotNull WordPart toWordPart() {
-            return new WordPart(word.toString(), new ArrayList<>(baseForms), EnumSet.copyOf(attributes));
+        private @NotNull SingleWordPart toWordPart() {
+            return new SingleWordPart(word.toString(), new ArrayList<>(baseForms), EnumSet.copyOf(attributes));
         }
     }
 }

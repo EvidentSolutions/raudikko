@@ -159,7 +159,7 @@ word:hienoinsokerein
 word:sana
  [sana]
 word:relatiivipronomini
- [relatiivipronomini,pronomini]
+ [relatiivipronomini]
 word:hyppely
  [hypellä,hyppely]
 word:ilmaisu
@@ -322,7 +322,7 @@ word:hyttyselle
 word:ampiaiset
  [ampiainen]
 word:lapinkirvinen
- [lapinkirvinen,kirvinen]
+ [lapinkirvinen]
 word:Pokkinen
  [Pokkinen]
 word:Nousiainen
@@ -355,7 +355,7 @@ word:katselette
 word:lunastetaan
  [lunastaa]
 word:adverbisija
- [adverbi,verbi,sija,adverbi,verbisija]
+ [adverbi,sija]
 word:Pötsönlahdella
  [Pötsönlahti]
 word:katselemassa
@@ -468,7 +468,7 @@ word:ilman
  [ilma]
 word:suomalais-neuvostoliittolainen
  [suomalainen,neuvosto,liittolainen,suomalais-neuvosto,neuvostoliittolainen]
- [suomalainen,Neuvostoliitto,liittolainen,neuvostoliittolainen]
+ [suomalainen,Neuvostoliitto]
 word:Isossa-Britanniassa
  [iso,Britannia]
 word:Uusimaa
@@ -1005,7 +1005,7 @@ word:kolmen-
 word:nopeustutkassa
  [nopea,nopeus,tutka]
 word:pikilappu
- [pikilappu,lappu]
+ [pikilappu]
 word:akveduktien
  [akvedukti]
 word:historiallinen

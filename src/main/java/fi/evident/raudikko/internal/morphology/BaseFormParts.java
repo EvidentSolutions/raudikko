@@ -40,6 +40,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import static fi.evident.raudikko.internal.utils.StringUtils.endsWithChar;
+import static fi.evident.raudikko.internal.utils.StringUtils.startsWithChar;
+
 final class BaseFormParts {
 
     private BaseFormParts() {
@@ -55,7 +58,7 @@ final class BaseFormParts {
             result.addAll(wordPart.getBaseForms());
 
             if (wordPart.isInBaseForm() && !wordPart.isProperNoun()) {
-                String wp = wordPart.toStringWithoutHyphens();
+                String wp = removeLeadingAndTrailing(wordPart.toString(), '-');
 
                 if (!result.contains(wp))
                     result.add(wp);
@@ -81,11 +84,21 @@ final class BaseFormParts {
             boolean isLastSubWord = !subWordIterator.hasNext();
 
             if (isLastSubWord)
-                s.append(subWord.toStringWithoutHyphens());
+                s.append(removeLeadingAndTrailing(subWord.toString(), '-'));
             else
                 s.append(subWord.toString());
         }
 
         return s.toString();
+    }
+
+    private static @NotNull String removeLeadingAndTrailing(@NotNull String s, char c) {
+        if (s.isEmpty() || s.equals(String.valueOf(c)))
+            return "";
+
+        int startOffset = startsWithChar(s, c) ? 1 : 0;
+        int endOffset = endsWithChar(s, c) ? 1 : 0;
+
+        return s.substring(startOffset, s.length() - endOffset);
     }
 }
