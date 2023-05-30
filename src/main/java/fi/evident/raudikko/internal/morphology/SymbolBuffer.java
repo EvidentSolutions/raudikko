@@ -192,6 +192,15 @@ public final class SymbolBuffer {
         return nextIndex < tokenCount && isDigit(textBuffer.charAt(startIndices[nextIndex]));
     }
 
+    boolean nextTokenIsBoundary() {
+        int nextIndex = index + 1;
+        if (nextIndex < tokenCount) {
+            Symbol nextTag = tags[nextIndex];
+            return nextTag != null && nextTag.isBoundary();
+        }
+        return false;
+    }
+
     public boolean firstTokenStartsWith(char c) {
         return getTotalLength() != 0 && textBuffer.charAt(0) == c;
     }

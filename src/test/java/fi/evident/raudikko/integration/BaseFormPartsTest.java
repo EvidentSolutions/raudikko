@@ -63,6 +63,7 @@ public class BaseFormPartsTest {
     private static AnalyzerConfiguration createConfiguration() {
         AnalyzerConfiguration configuration = new AnalyzerConfiguration();
         configuration.setIncludeBaseFormParts(true);
+        configuration.setIncludeWord(false);
         configuration.setIncludeStructure(false);
         configuration.setIncludeBaseForm(false);
         configuration.setIncludeFstOutput(false);

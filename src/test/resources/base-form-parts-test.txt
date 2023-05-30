@@ -159,7 +159,7 @@ word:hienoinsokerein
 word:sana
  [sana]
 word:relatiivipronomini
- [relatiivipronomini,pronomini]
+ [relatiivipronomini]
 word:hyppely
  [hypellä,hyppely]
 word:ilmaisu
@@ -322,7 +322,7 @@ word:hyttyselle
 word:ampiaiset
  [ampiainen]
 word:lapinkirvinen
- [lapinkirvinen,kirvinen]
+ [lapinkirvinen]
 word:Pokkinen
  [Pokkinen]
 word:Nousiainen
@@ -355,7 +355,7 @@ word:katselette
 word:lunastetaan
  [lunastaa]
 word:adverbisija
- [adverbi,verbi,sija,adverbi,verbisija]
+ [adverbi,sija]
 word:Pötsönlahdella
  [Pötsönlahti]
 word:katselemassa
@@ -374,10 +374,10 @@ word:Suomi-Sveitsi
  [suomi,Sveitsi]
  [Suomi,Sveitsi]
 word:CD-ROM
- [CD-ROM,cdrom]
+ [CD-ROM,cd-rom]
  [cd-rom,rom]
  [cd-rom,rom]
- [CD-ROM,cdrom]
+ [CD-ROM,cd-rom]
 word:anonyymisti
  [anonyymi]
 word:autonikin
@@ -433,7 +433,7 @@ word:roomalaiskissa
 word:kissattomuus
  [kissa,kissaton,kissattomuus]
 word:ei-kenenkään-maa
- [ei-kenenkään-maa,maa,kenenkäänmaa]
+ [ei-kenenkään-maa,maa,kenenkään-maa]
 word:yksi
  [yksi]
 word:kaksituhattakolmetoista
@@ -467,15 +467,15 @@ word:ilman
  [ilman]
  [ilma]
 word:suomalais-neuvostoliittolainen
- [suomalainen,neuvosto,liittolainen,suomalaisneuvosto,neuvostoliittolainen]
- [suomalainen,Neuvostoliitto,liittolainen,neuvostoliittolainen]
+ [suomalainen,neuvosto,liittolainen,suomalais-neuvosto,neuvostoliittolainen]
+ [suomalainen,Neuvostoliitto]
 word:Isossa-Britanniassa
  [iso,Britannia]
 word:Uusimaa
  [uusia,uusima]
  [Uusimaa]
 word:Keski-Uusimaa
- [Uusimaa,keskiuusi]
+ [Uusimaa,keski-uusi]
 word:Tyynessämeressä
  [Tyynimeri]
 word:huhti-toukokuusta
@@ -625,7 +625,7 @@ word:kaavoittuma
 word:öykkärimäisesti
  [öykkäri,öykkärimäinen]
 word:HI-virus
- [HI-virus,hivirus]
+ [HI-virus,hi-virus]
 word:örinä
  [öristä,örinä]
 word:diivailen
@@ -714,7 +714,7 @@ word:tallentelen
 word:tallentuu
  [tallentaa,tallentua]
 word:linnoittautuminen
- [linnoittaa,linnoittautua]
+ [linnoittaa,linnoittautua,linnoittautuminen]
 word:nyhdätän
  [nyhtää,nyhdättää]
 word:linnoittautumisensa
@@ -793,7 +793,7 @@ word:juostaman
 word:kirjailijanimi
  [kirjata,kirjailla,kirjailija,nimi]
 word:kerrostalo-
- [kerros,talo,kerrostalo]
+ [kerros,talo]
 word:tarjokkuus
  [tarjokas,tarjokkuus]
 word:keskelläkin
@@ -1005,7 +1005,7 @@ word:kolmen-
 word:nopeustutkassa
  [nopea,nopeus,tutka]
 word:pikilappu
- [pikilappu,lappu]
+ [pikilappu]
 word:akveduktien
  [akvedukti]
 word:historiallinen
@@ -1092,7 +1092,7 @@ word:tuta
 word:tutaan
  [tuta]
 word:Itäkissa-Sveitsi
- [itä,kissa,Sveitsi,itäkissa,kissasveitsi]
+ [itä,kissa,Sveitsi,itäkissa,kissa-sveitsi]
 word:Uudessa-Seelannissa
  [uusi,Seelanti]
 word:Etelä-Pentti
