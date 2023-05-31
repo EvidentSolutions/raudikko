@@ -12,18 +12,18 @@ libraries. Raudikko is also quite a bit faster than Voikko's Java-interface.
 Add dependency to your build file:
 
 ```kotlin
-implementation("fi.evident.raudikko:raudikko:0.1.30")
+implementation("fi.evident.raudikko:raudikko:0.1.4")
 ```
 
 Create an analyzer and use it to produce `Analysis`-objects for given words:
 
 ```java
-// First load and compile the morphology. This is a relatively expensive operation 
+// First load and compile the morphology. This is a relatively expensive operation
 // that should be done only once. The loaded morphology is immutable and can be shared.
 Morphology morphology = Morphology.loadBundled();
 
-// Create an analyzer from the morphology. Creating an analyzer is a cheap operation. 
-// Analyzers have some cached state and can't be shared between different threads. 
+// Create an analyzer from the morphology. Creating an analyzer is a cheap operation.
+// Analyzers have some cached state and can't be shared between different threads.
 Analyzer analyzer = morphology.newAnalyzer();
 
 // Analyze some words
@@ -41,6 +41,7 @@ The below table lists the version of Voikko that Raudikko is tests against.
 | 0.1.1            |      4.3       | [9f0d3d](https://github.com/voikko/corevoikko/commit/9f0d3de39ac23a9776d1ec8c30a157a707955a50) |
 | 0.1.2            |      4.3       | [9f0d3d](https://github.com/voikko/corevoikko/commit/9f0d3de39ac23a9776d1ec8c30a157a707955a50) |
 | 0.1.3            |      4.3       | [9f0d3d](https://github.com/voikko/corevoikko/commit/9f0d3de39ac23a9776d1ec8c30a157a707955a50) |
+| 0.1.4            |      4.3       | [9f0d3d](https://github.com/voikko/corevoikko/commit/9f0d3de39ac23a9776d1ec8c30a157a707955a50) |
 
 ## Related projects
 
@@ -49,13 +50,13 @@ The below table lists the version of Voikko that Raudikko is tests against.
 ## Acknowledgements
 
 Most of Raudikko's code is based heavily on Voikko and the used morphology files come directly from Voikko. None
-of this would be possible without the great work of [Harri Pitkänen](https://github.com/hatapitk) and other 
+of this would be possible without the great work of [Harri Pitkänen](https://github.com/hatapitk) and other
 contributors to Voikko.
 
 ## Copyright and license information
 
 Raudikko is available under [GNU General Public License version 3](https://opensource.org/licenses/GPL-3.0),
-or (at your option) any later version.  Apart from the morphology in directory `resources/morpho`, all the 
+or (at your option) any later version.  Apart from the morphology in directory `resources/morpho`, all the
 content in this repository is also licensed under [Mozilla Public License 2.0](https://opensource.org/licenses/MPL-2.0),
 which you may choose to use instead.
 
@@ -63,4 +64,4 @@ Raudikko is a port of Voikko, and therefore Voikko's original copyright holders 
 See Voikko's [LICENSE](https://github.com/voikko/corevoikko/blob/master/LICENSE) and
 [CONTRIBUTORS](https://github.com/voikko/corevoikko/blob/master/voikko-fi/CONTRIBUTORS) for details.
 
-Apart from the original copyright holders of Voikko, Evident Solutions Oy holds copyright on Raudikko. 
+Apart from the original copyright holders of Voikko, Evident Solutions Oy holds copyright on Raudikko.
