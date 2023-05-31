@@ -1,3 +1,9 @@
+## 0.1.4 (2023-05-31)
+
+### Changes
+
+- Expose more detailed analysis of individual words ([#4](https://github.com/EvidentSolutions/raudikko/pull/4)) by [@mortterna](https://github.com/mortterna)
+
 ## 0.1.3 (2023-02-22)
 
 ### Changes
