@@ -1,3 +1,9 @@
+## 0.2.x (unreleased)
+
+### Changes
+
+- Add enums for fields of Analysis where applicable. Breaking change if you were using the fields.
+
 ## 0.1.4 (2023-05-31)
 
 ### Changes

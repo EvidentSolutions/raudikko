@@ -30,42 +30,41 @@
  * the terms of any one of the MPL, the GPL or the LGPL.
  */
 
-package fi.evident.raudikko.internal.morphology;
+package fi.evident.raudikko.analysis;
 
 import org.jetbrains.annotations.NotNull;
 
-// https://github.com/voikko/corevoikko/blob/master/voikko-fi/vvfst/root.lexc
-public final class Tags {
+public enum Mood implements AnalysisClass {
 
-    // Boundaries
-    public static final String PREFIX_B = "[B";
-    static final @NotNull String bc = "[Bc]";
-    static final @NotNull String bh = "[Bh]";
+    INFINITIVE1("A-infinitive", "Tn1"),
+    INFINITIVE2("E-infinitive", "Tn2"),
+    INFINITIVE3("MA-infinitive", "Tn3"),
+    INFINITIVE4("MINEN-infinitive", "Tn4"),
+    INFINITIVE5("MAINEN-infinitive", "Tn5"),
+    INDICATIVE("indicative", "Tt"),
+    CONDITIONAL("conditional", "Te"),
+    IMPERATIVE("imperative", "Tk"),
+    POTENTIAL("potential", "Tm");
 
-    // Comparative
-    static final @NotNull String de = "[De]";
-    static final @NotNull String dg = "[Dg]";
+    private final @NotNull String legacyCode;
+    private final @NotNull String morphologyTag;
 
-    // Clitic
-    static final @NotNull String fko = "[Fko]";
+    Mood(@NotNull String legacyCode, @NotNull String morphologyTag) {
+        this.legacyCode = legacyCode;
+        this.morphologyTag = morphologyTag;
+    }
 
-    static final @NotNull String isf = "[Isf]";
-    static final @NotNull String icu = "[Icu]";
-    static final @NotNull String ica = "[Ica]";
-    static final @NotNull String ion = "[Ion]";
-    static final @NotNull String ivj = "[Ivj]";
-    static final @NotNull String ira = "[Ira]";
-    static final @NotNull String irm = "[Irm]";
+    public boolean isSecondThirdOrFourthInfinitive() {
+        return this == INFINITIVE2 || this == INFINITIVE3 || this == INFINITIVE4;
+    }
 
-    // Classes
-    public static final String PREFIX_L = "[L";
-    public static final String PREFIX_LE = "[Le"; // names
+    @Override
+    public @NotNull String getMorphologyTag() {
+        return morphologyTag;
+    }
 
-    // Parameters
-    public static final String PREFIX_X = "[X";
-    public static final @NotNull String xp = "[Xp]"; // perusmuoto
-    public static final @NotNull String xj = "[Xj]"; // johtimen perusmuoto
-    static final @NotNull String xr = "[Xr]"; // rakenne
-    static final @NotNull String xs = "[Xs]"; // sourceid
-    static final @NotNull String x = "[X]"; // end marker
+    @Override
+    public @NotNull String getLegacyCode() {
+        return legacyCode;
+    }
 }

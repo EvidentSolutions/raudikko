@@ -30,42 +30,46 @@
  * the terms of any one of the MPL, the GPL or the LGPL.
  */
 
-package fi.evident.raudikko.internal.morphology;
+package fi.evident.raudikko.analysis;
 
 import org.jetbrains.annotations.NotNull;
 
-// https://github.com/voikko/corevoikko/blob/master/voikko-fi/vvfst/root.lexc
-public final class Tags {
+public enum WordClass implements AnalysisClass {
 
-    // Boundaries
-    public static final String PREFIX_B = "[B";
-    static final @NotNull String bc = "[Bc]";
-    static final @NotNull String bh = "[Bh]";
+    NOUN("nimisana", "Ln"),
+    ADJECTIVE("laatusana", "Ll"),
+    NOUN_ADJECTIVE("nimisana_laatusana", "Lnl"),
+    INTERJECTION("huudahdussana", "Lh"),
+    FIRST_NAME("etunimi", "Lee"),
+    LAST_NAME("sukunimi", "Les"),
+    TOPONYM("paikannimi", "Lep"),
+    PROPER_NOUN("nimi", "Lem"),
+    PRONOUN("asemosana", "Lr"),
+    NUMERAL("lukusana", "Lu"),
+    NUMERAL_ROMAN("lukusana", "Lur"),
+    VERB("teonsana", "Lt"),
+    ABBREVIATION("lyhenne", "La"),
+    ADVERB("seikkasana", "Ls"),
+    CONJUNCTION("sidesana", "Lc"),
+    ADPOSITION("suhdesana", "Ld"),
+    NEGATION("kieltosana", "Lk"),
+    PREFIX("etuliite", "Lp");
 
-    // Comparative
-    static final @NotNull String de = "[De]";
-    static final @NotNull String dg = "[Dg]";
+    private final @NotNull String legacyCode;
+    private final @NotNull String morphologyTag;
 
-    // Clitic
-    static final @NotNull String fko = "[Fko]";
+    WordClass(@NotNull String legacyCode, @NotNull String morphologyTag) {
+        this.legacyCode = legacyCode;
+        this.morphologyTag = morphologyTag;
+    }
 
-    static final @NotNull String isf = "[Isf]";
-    static final @NotNull String icu = "[Icu]";
-    static final @NotNull String ica = "[Ica]";
-    static final @NotNull String ion = "[Ion]";
-    static final @NotNull String ivj = "[Ivj]";
-    static final @NotNull String ira = "[Ira]";
-    static final @NotNull String irm = "[Irm]";
+    @Override
+    public @NotNull String getMorphologyTag() {
+        return morphologyTag;
+    }
 
-    // Classes
-    public static final String PREFIX_L = "[L";
-    public static final String PREFIX_LE = "[Le"; // names
-
-    // Parameters
-    public static final String PREFIX_X = "[X";
-    public static final @NotNull String xp = "[Xp]"; // perusmuoto
-    public static final @NotNull String xj = "[Xj]"; // johtimen perusmuoto
-    static final @NotNull String xr = "[Xr]"; // rakenne
-    static final @NotNull String xs = "[Xs]"; // sourceid
-    static final @NotNull String x = "[X]"; // end marker
+    @Override
+    public @NotNull String getLegacyCode() {
+        return legacyCode;
+    }
 }

@@ -32,6 +32,7 @@
 
 package fi.evident.raudikko.internal.fst;
 
+import fi.evident.raudikko.analysis.AnalysisClass;
 import fi.evident.raudikko.internal.morphology.Tags;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -82,6 +83,11 @@ public class Symbol {
 
     public boolean matches(@NotNull String s) {
         return this.s.equals(s);
+    }
+
+    public boolean matches(@NotNull AnalysisClass c) {
+        String tag = c.getMorphologyTag();
+        return s.length() == tag.length() + 2 && s.charAt(0) == '[' && s.charAt(s.length() - 1) == ']' && s.indexOf(tag) == 1;
     }
 
     public boolean startsWith(@NotNull String s) {

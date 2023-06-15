@@ -32,6 +32,7 @@
 
 package fi.evident.raudikko;
 
+import fi.evident.raudikko.analysis.*;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -41,30 +42,30 @@ import java.util.Map;
 
 /**
  * Result of analyzing a word.
- *
+ * <p>
  * Note that some of the properties are named in English and some are in Finnish.
  * This is for naming compatibility with Voikko.
  */
 public final class Analysis implements Cloneable {
 
     private @Nullable String baseForm;
-    private @Nullable String wordClass;
-    private @Nullable String sijamuoto;
-    private @Nullable String comparison;
-    private @Nullable String focus;
+    private @Nullable WordClass wordClass;
+    private @Nullable Locative locative;
+    private @Nullable Comparison comparison;
+    private @Nullable FocusParticle focus;
     private @Nullable String fstOutput;
     private @Nullable String structure;
-    private @Nullable String number;
-    private @Nullable String negative;
-    private @Nullable String mood;
-    private @Nullable String participle;
-    private @Nullable String person;
-    private @Nullable String possessive;
-    private @Nullable String tense;
-    private boolean kysymysliite = false;
+    private @Nullable GrammaticalNumber number;
+    private @Nullable Negative negative;
+    private @Nullable Mood mood;
+    private @Nullable Participle participle;
+    private @Nullable Person person;
+    private @Nullable Possessive possessive;
+    private @Nullable Tense tense;
+    private boolean interrogative = false;
     private boolean malagaVapaaJalkiosa = false;
     private boolean possibleGeographicalName = false;
-    private @Nullable String requireFollowingVerb;
+    private @Nullable Mood requireFollowingVerb;
     private @Nullable List<String> baseFormParts;
     private @Nullable Word word;
 
@@ -76,43 +77,43 @@ public final class Analysis implements Cloneable {
         this.baseForm = baseForm;
     }
 
-    public @Nullable String getWordClass() {
+    public @Nullable WordClass getWordClass() {
         return wordClass;
     }
 
-    public void setWordClass(@Nullable String wordClass) {
+    public void setWordClass(@Nullable WordClass wordClass) {
         this.wordClass = wordClass;
     }
 
-    public @Nullable String getSijamuoto() {
-        return sijamuoto;
+    public @Nullable Locative getLocative() {
+        return locative;
     }
 
-    public void setSijamuoto(@Nullable String sijamuoto) {
-        this.sijamuoto = sijamuoto;
+    public void setLocative(@Nullable Locative locative) {
+        this.locative = locative;
     }
 
-    public @Nullable String getNumber() {
+    public @Nullable GrammaticalNumber getNumber() {
         return number;
     }
 
-    public void setNumber(@Nullable String number) {
+    public void setNumber(@Nullable GrammaticalNumber number) {
         this.number = number;
     }
 
-    public @Nullable String getComparison() {
+    public @Nullable Comparison getComparison() {
         return comparison;
     }
 
-    public void setComparison(@Nullable String comparison) {
+    public void setComparison(@Nullable Comparison comparison) {
         this.comparison = comparison;
     }
 
-    public @Nullable String getFocus() {
+    public @Nullable FocusParticle getFocus() {
         return focus;
     }
 
-    public void setFocus(@Nullable String focus) {
+    public void setFocus(@Nullable FocusParticle focus) {
         this.focus = focus;
     }
 
@@ -132,59 +133,59 @@ public final class Analysis implements Cloneable {
         this.structure = structure;
     }
 
-    public @Nullable String getMood() {
+    public @Nullable Mood getMood() {
         return mood;
     }
 
-    public void setMood(@Nullable String mood) {
+    public void setMood(@Nullable Mood mood) {
         this.mood = mood;
     }
 
-    public @Nullable String getParticiple() {
+    public @Nullable Participle getParticiple() {
         return participle;
     }
 
-    public void setParticiple(@Nullable String participle) {
+    public void setParticiple(@Nullable Participle participle) {
         this.participle = participle;
     }
 
-    public @Nullable String getNegative() {
+    public @Nullable Negative getNegative() {
         return negative;
     }
 
-    public void setNegative(@Nullable String negative) {
+    public void setNegative(@Nullable Negative negative) {
         this.negative = negative;
     }
 
-    public boolean isKysymysliite() {
-        return kysymysliite;
+    public boolean isInterrogative() {
+        return interrogative;
     }
 
-    public void setKysymysliite(boolean kysymysliite) {
-        this.kysymysliite = kysymysliite;
+    public void setInterrogative(boolean interrogative) {
+        this.interrogative = interrogative;
     }
 
-    public @Nullable String getPerson() {
+    public @Nullable Person getPerson() {
         return person;
     }
 
-    public void setPerson(@Nullable String person) {
+    public void setPerson(@Nullable Person person) {
         this.person = person;
     }
 
-    public @Nullable String getPossessive() {
+    public @Nullable Possessive getPossessive() {
         return possessive;
     }
 
-    public void setPossessive(@Nullable String possessive) {
+    public void setPossessive(@Nullable Possessive possessive) {
         this.possessive = possessive;
     }
 
-    public @Nullable String getTense() {
+    public @Nullable Tense getTense() {
         return tense;
     }
 
-    public void setTense(@Nullable String tense) {
+    public void setTense(@Nullable Tense tense) {
         this.tense = tense;
     }
 
@@ -204,11 +205,11 @@ public final class Analysis implements Cloneable {
         this.possibleGeographicalName = possibleGeographicalName;
     }
 
-    public @Nullable String getRequireFollowingVerb() {
+    public @Nullable Mood getRequireFollowingVerb() {
         return requireFollowingVerb;
     }
 
-    public void setRequireFollowingVerb(@Nullable String requireFollowingVerb) {
+    public void setRequireFollowingVerb(@Nullable Mood requireFollowingVerb) {
         this.requireFollowingVerb = requireFollowingVerb;
     }
 
@@ -245,7 +246,7 @@ public final class Analysis implements Cloneable {
 
         putIfNotNull(map, "BASEFORM", baseForm);
         putIfNotNull(map, "CLASS", wordClass);
-        putIfNotNull(map, "SIJAMUOTO", sijamuoto);
+        putIfNotNull(map, "SIJAMUOTO", locative);
         putIfNotNull(map, "COMPARISON", comparison);
         putIfNotNull(map, "FOCUS", focus);
         putIfNotNull(map, "FSTOUTPUT", fstOutput);
@@ -258,7 +259,7 @@ public final class Analysis implements Cloneable {
         putIfNotNull(map, "POSSESSIVE", possessive);
         putIfNotNull(map, "TENSE", tense);
         putIfNotNull(map,"REQUIRE_FOLLOWING_VERB", requireFollowingVerb);
-        putIfTrue(map, "KYSYMYSLIITE", kysymysliite);
+        putIfTrue(map, "KYSYMYSLIITE", interrogative);
         putIfTrue(map, "MALAGA_VAPAA_JALKIOSA", malagaVapaaJalkiosa);
         putIfTrue(map, "POSSIBLE_GEOGRAPHICAL_NAME", possibleGeographicalName);
 
@@ -268,6 +269,11 @@ public final class Analysis implements Cloneable {
     private static void putIfNotNull(@NotNull Map<String, String> map, @NotNull String key, @Nullable String value) {
         if (value != null)
             map.put(key, value);
+    }
+
+    private static void putIfNotNull(@NotNull Map<String, String> map, @NotNull String key, @Nullable AnalysisClass value) {
+        if (value != null)
+            map.put(key, value.getLegacyCode());
     }
 
     private static void putIfTrue(@NotNull Map<String, String> map, @NotNull String key, boolean value) {
@@ -280,7 +286,7 @@ public final class Analysis implements Cloneable {
         return "{" +
                 "baseForm='" + baseForm + '\'' +
                 ", wordClass='" + wordClass + '\'' +
-                ", sijamuoto='" + sijamuoto + '\'' +
+                ", sijamuoto='" + locative + '\'' +
                 ", comparison='" + comparison + '\'' +
                 ", focus='" + focus + '\'' +
                 ", fstOutput='" + fstOutput + '\'' +
@@ -292,7 +298,7 @@ public final class Analysis implements Cloneable {
                 ", person='" + person + '\'' +
                 ", possessive='" + possessive + '\'' +
                 ", tense='" + tense + '\'' +
-                ", kysymysliite=" + kysymysliite +
+                ", kysymysliite=" + interrogative +
                 ", malagaVapaaJalkiosa=" + malagaVapaaJalkiosa +
                 ", possibleGeographicalName=" + possibleGeographicalName +
                 ", requireFollowingVerb='" + requireFollowingVerb + '\'' +

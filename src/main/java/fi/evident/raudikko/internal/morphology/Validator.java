@@ -32,6 +32,7 @@
 
 package fi.evident.raudikko.internal.morphology;
 
+import fi.evident.raudikko.analysis.WordClass;
 import fi.evident.raudikko.internal.fst.Symbol;
 import org.jetbrains.annotations.NotNull;
 
@@ -75,7 +76,7 @@ final class Validator {
                     startsWithProperNoun = true; // TODO starts?
                     endsWithNonIcaNoun = false;
 
-                } else if (tag.matches(Tags.ln) || tag.matches(Tags.lnl)) {
+                } else if (tag.matches(WordClass.NOUN) || tag.matches(WordClass.NOUN_ADJECTIVE)) {
                     endsWithNonIcaNoun = true;
 
                 } else if (tag.matches(Tags.dg)) {

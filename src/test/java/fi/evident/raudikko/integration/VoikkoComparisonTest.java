@@ -50,8 +50,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static fi.evident.raudikko.analysis.WordClass.NOUN;
 import static fi.evident.raudikko.integration.TestUtils.locateProjectRoot;
-import static fi.evident.raudikko.internal.morphology.Attributes.NIMISANA;
 import static fi.evident.raudikko.test.ResourceUtils.readLines;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -104,7 +104,7 @@ public class VoikkoComparisonTest {
 
         org.puimula.libvoikko.Analysis analysis = analyses.get(0);
         assertEquals("vatsaneläkeruoka", analysis.get("BASEFORM"));
-        assertEquals(NIMISANA, analysis.get("CLASS"));
+        assertEquals(NOUN.getLegacyCode(), analysis.get("CLASS"));
         assertEquals("[Ln][Xp]vatsa[X]vats[Sg][Ny]an[Bh][Bc][Ln][Xp]eläke[X]eläke[Sn][Ny][Bh][Bc][Ln][Xp]ruoka[X]ruok[Sp][Ny]aa", analysis.get("FSTOUTPUT"));
     }
 

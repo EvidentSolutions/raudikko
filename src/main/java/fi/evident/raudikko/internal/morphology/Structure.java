@@ -35,6 +35,7 @@ package fi.evident.raudikko.internal.morphology;
 import fi.evident.raudikko.internal.fst.Symbol;
 import org.jetbrains.annotations.NotNull;
 
+import static fi.evident.raudikko.analysis.WordClass.*;
 import static fi.evident.raudikko.internal.utils.StringUtils.endsWithChar;
 import static java.lang.Math.max;
 
@@ -126,7 +127,7 @@ final class Structure {
                         defaultTitleCase = true;
                         isAbbr = false;
                     } else {
-                        isAbbr = tag.matches(Tags.la) || tag.matches(Tags.lur) || (tag.matches(Tags.lu) && tokenizer.nextTokenStartsWithDigit());
+                        isAbbr = tag.matches(ABBREVIATION) || tag.matches(NUMERAL_ROMAN) || (tag.matches(NUMERAL) && tokenizer.nextTokenStartsWithDigit());
                     }
                 }
             } else {
@@ -225,7 +226,7 @@ final class Structure {
 
                 } else if (tag.matches(Tags.de))
                     isDe = true;
-                else if (tag.matches(Tags.ln))
+                else if (tag.matches(NOUN))
                     isDe = false;
 
             } else {
@@ -236,11 +237,11 @@ final class Structure {
                         hyphenCount++;
 
                         if (isDe) {
-                            boolean hasLep = tokenizer.containsTagAfterCurrent(Tags.lep);
-                            if (hasLep)
-                                tokenizer.skipUntilTag(Tags.lep);
+                            boolean hasPlace = tokenizer.containsTagAfterCurrent(TOPONYM);
+                            if (hasPlace)
+                                tokenizer.skipUntil(TOPONYM);
 
-                            if (hasLep || tokenizer.isAtLastToken())
+                            if (hasPlace || tokenizer.isAtLastToken())
                                 for (int k = 0; k < structure.length(); k++)
                                     if (structure.charAt(k) == 'i' || structure.charAt(k) == 'p') {
                                         structure.setCharAt(k, 'i');
