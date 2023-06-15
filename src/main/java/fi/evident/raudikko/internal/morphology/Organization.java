@@ -33,6 +33,7 @@
 package fi.evident.raudikko.internal.morphology;
 
 import fi.evident.raudikko.Analysis;
+import fi.evident.raudikko.analysis.Structure;
 import fi.evident.raudikko.analysis.WordClass;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -40,7 +41,6 @@ import org.jetbrains.annotations.Nullable;
 import static fi.evident.raudikko.analysis.WordClass.NOUN;
 import static fi.evident.raudikko.analysis.WordClass.PROPER_NOUN;
 import static fi.evident.raudikko.internal.morphology.BaseForm.parseBaseform;
-import static fi.evident.raudikko.internal.utils.StringUtils.replaceCharAt;
 import static fi.evident.raudikko.internal.utils.StringUtils.startsWithChar;
 
 final class Organization {
@@ -50,10 +50,10 @@ final class Organization {
 
     static @Nullable Analysis organizationNameAnalysis(@NotNull Analysis analysis,
                                                        @NotNull SymbolBuffer tokenizer,
-                                                       @NotNull String oldStructure) {
+                                                       @NotNull Structure oldStructure) {
 
         if (analysis.getWordClass() == NOUN && isOrganizationName(tokenizer)) {
-            String  structure = oldStructure.length() > 1 ? replaceCharAt(oldStructure, 1, 'i') : oldStructure;
+            Structure structure = oldStructure.capitalized();
 
             Analysis newAnalysis = analysis.clone();
             newAnalysis.setWordClass(PROPER_NOUN);

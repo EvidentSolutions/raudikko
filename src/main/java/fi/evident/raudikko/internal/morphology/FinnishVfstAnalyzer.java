@@ -35,6 +35,7 @@ package fi.evident.raudikko.internal.morphology;
 import fi.evident.raudikko.Analysis;
 import fi.evident.raudikko.Analyzer;
 import fi.evident.raudikko.AnalyzerConfiguration;
+import fi.evident.raudikko.analysis.Structure;
 import fi.evident.raudikko.internal.fst.Symbol;
 import fi.evident.raudikko.internal.fst.UnweightedTransducer;
 import org.jetbrains.annotations.NotNull;
@@ -46,7 +47,7 @@ import static fi.evident.raudikko.internal.morphology.BaseForm.parseBaseform;
 import static fi.evident.raudikko.internal.morphology.BaseFormParts.parseBaseFormParts;
 import static fi.evident.raudikko.internal.morphology.BasicAttributes.parseBasicAttributes;
 import static fi.evident.raudikko.internal.morphology.Organization.organizationNameAnalysis;
-import static fi.evident.raudikko.internal.morphology.Structure.parseStructure;
+import static fi.evident.raudikko.internal.morphology.StructureParser.parseStructure;
 import static fi.evident.raudikko.internal.morphology.Validator.isValidAnalysis;
 import static java.util.Objects.requireNonNull;
 
@@ -95,7 +96,7 @@ public final class FinnishVfstAnalyzer implements Analyzer {
             buffer.reset(output, depth);
 
             if (isValidAnalysis(buffer)) {
-                String structure = parseStructure(buffer, word.length());
+                Structure structure = parseStructure(buffer, word.length());
 
                 String baseForm = parseBaseform(buffer, structure);
                 if (baseForm != null && !results.contains(baseForm))
@@ -118,7 +119,7 @@ public final class FinnishVfstAnalyzer implements Analyzer {
                         || configuration.isIncludeBaseForm()
                         || configuration.isIncludeOrganizationNameAnalysis();
 
-        String structure = dependsOnStructure ? parseStructure(buffer, wordLength) : null;
+        Structure structure = dependsOnStructure ? parseStructure(buffer, wordLength) : null;
 
         if (configuration.isIncludeStructure())
             analysis.setStructure(requireNonNull(structure));

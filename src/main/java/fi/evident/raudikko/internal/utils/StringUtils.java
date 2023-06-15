@@ -40,6 +40,7 @@ public final class StringUtils {
     }
 
     public static @NotNull String replaceCharAt(@NotNull String s, int i, char c) {
+        if (s.charAt(i) == c) return s;
         char[] chars = s.toCharArray();
         chars[i] = c;
         return new String(chars);
