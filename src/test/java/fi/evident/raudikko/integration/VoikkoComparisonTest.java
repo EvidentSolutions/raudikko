@@ -42,13 +42,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.puimula.libvoikko.Voikko;
 
-import java.io.*;
+import java.io.File;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.AbstractList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static fi.evident.raudikko.integration.TestUtils.locateProjectRoot;
+import static fi.evident.raudikko.test.ResourceUtils.readLines;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -83,7 +86,7 @@ public class VoikkoComparisonTest {
 
     @BeforeAll
     void loadReferenceWords() throws Exception {
-        referenceWords = readLines("/rautatie-unhyphenated.txt");
+        referenceWords = readLines("rautatie-unhyphenated.txt");
     }
 
     @AfterAll
@@ -170,20 +173,6 @@ public class VoikkoComparisonTest {
 
             double concurrentSpeedUp = ((double) raudikkoMillis) / (concurrentMillis * threadCount);
             System.out.printf("%2d threads:        %5d ms (%d words/s, speedup/thread: %f)\n", threadCount, concurrentMillis, (words.size() * 1000L) / concurrentMillis, concurrentSpeedUp);
-        }
-    }
-
-    private @NotNull List<String> readLines(@SuppressWarnings("SameParameterValue") @NotNull String path) throws IOException {
-        try (InputStream in = getClass().getResourceAsStream(path)) {
-            if (in == null) throw new FileNotFoundException("Could not find " + path);
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
-            String line;
-
-            ArrayList<String> result = new ArrayList<>();
-            while ((line = reader.readLine()) != null)
-                result.add(line);
-            return result;
         }
     }
 
