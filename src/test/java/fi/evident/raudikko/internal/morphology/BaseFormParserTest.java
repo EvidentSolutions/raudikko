@@ -32,6 +32,7 @@
 
 package fi.evident.raudikko.internal.morphology;
 
+import fi.evident.raudikko.analysis.Structure;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.junit.jupiter.api.Test;
@@ -62,6 +63,6 @@ class BaseFormParserTest {
     }
 
     private static @Nullable String parse(@NotNull String fstOutput, @NotNull String structure) {
-        return parseBaseform(SymbolBuffer.parse(fstOutput), structure);
+        return parseBaseform(SymbolBuffer.parse(fstOutput), new Structure(structure));
     }
 }

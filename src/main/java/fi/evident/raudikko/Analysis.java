@@ -54,7 +54,7 @@ public final class Analysis implements Cloneable {
     private @Nullable Comparison comparison;
     private @Nullable FocusParticle focus;
     private @Nullable String fstOutput;
-    private @Nullable String structure;
+    private @Nullable Structure structure;
     private @Nullable GrammaticalNumber number;
     private @Nullable Negative negative;
     private @Nullable Mood mood;
@@ -125,11 +125,11 @@ public final class Analysis implements Cloneable {
         this.fstOutput = fstOutput;
     }
 
-    public @Nullable String getStructure() {
+    public @Nullable Structure getStructure() {
         return structure;
     }
 
-    public void setStructure(@Nullable String structure) {
+    public void setStructure(@Nullable Structure structure) {
         this.structure = structure;
     }
 
@@ -250,7 +250,7 @@ public final class Analysis implements Cloneable {
         putIfNotNull(map, "COMPARISON", comparison);
         putIfNotNull(map, "FOCUS", focus);
         putIfNotNull(map, "FSTOUTPUT", fstOutput);
-        putIfNotNull(map, "STRUCTURE", structure);
+        putIfNotNull(map, "STRUCTURE", structure != null ? structure.toString() : null);
         putIfNotNull(map, "NUMBER", number);
         putIfNotNull(map, "NEGATIVE", negative);
         putIfNotNull(map, "MOOD", mood);

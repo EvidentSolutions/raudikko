@@ -32,6 +32,8 @@
 
 package fi.evident.raudikko.internal.morphology;
 
+import fi.evident.raudikko.analysis.Structure;
+import fi.evident.raudikko.analysis.Structure.StructureIterator;
 import fi.evident.raudikko.internal.fst.Symbol;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -46,7 +48,7 @@ final class BaseForm {
     private BaseForm() {
     }
 
-    static @Nullable String parseBaseform(@NotNull SymbolBuffer tokenizer, @NotNull String structure) {
+    static @Nullable String parseBaseform(@NotNull SymbolBuffer tokenizer, @NotNull Structure structure) {
         StringBuilder baseform = new StringBuilder(tokenizer.getTotalLength());
         @Nullable String latestBaseForm = null;
         int latestXpStartInBaseform = 0;
@@ -55,7 +57,7 @@ final class BaseForm {
         boolean isDe = false;
         boolean classTagSeen = false;
 
-        StructureIterator structureIterator = new StructureIterator(structure);
+        StructureIterator structureIterator = structure.structureIterator();
 
         tokenizer.moveToStart();
         while (tokenizer.nextToken()) {
@@ -164,31 +166,5 @@ final class BaseForm {
             }
         }
         return baseform.toString();
-    }
-
-    private static final class StructureIterator {
-
-        private final @NotNull String structure;
-        private int i = 0;
-
-        StructureIterator(@NotNull String structure) {
-            this.structure = structure;
-            skip();
-        }
-
-        boolean nextOutputCharUpperCased() {
-            if (i < structure.length()) {
-                char c = structure.charAt(i++);
-                skip();
-                return c == 'i' || c == 'j';
-            } else {
-                return false;
-            }
-        }
-
-        private void skip() {
-            while (i < structure.length() && structure.charAt(i) == '=')
-                i++;
-        }
     }
 }

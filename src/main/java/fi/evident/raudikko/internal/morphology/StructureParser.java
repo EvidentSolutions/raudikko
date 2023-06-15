@@ -32,6 +32,7 @@
 
 package fi.evident.raudikko.internal.morphology;
 
+import fi.evident.raudikko.analysis.Structure;
 import fi.evident.raudikko.internal.fst.Symbol;
 import org.jetbrains.annotations.NotNull;
 
@@ -39,40 +40,12 @@ import static fi.evident.raudikko.analysis.WordClass.*;
 import static fi.evident.raudikko.internal.utils.StringUtils.endsWithChar;
 import static java.lang.Math.max;
 
-/*
- STRUCTURE
- =========
-  This attribute describes morpheme boundaries, character case and
-  hyphenation restrictions for the word. The following characters
-  are used in the values of this attribute:
+final class StructureParser {
 
-  = Start of a new morpheme. This must also be present at the start
-    of a word.
-
-  - Hyphen. Word can be split in text processors after this character
-    without inserting an extra hyphen. If the hyphen is at morpheme
-    boundary, the boundary symbol = must be placed after the hyphen.
-
-  p Letter that is written in lower case in the standard form.
-
-  q Letter that is written in lower case in the standard form.
-    Hyphenation is forbidden before this letter.
-
-  i Letter that is written in upper case in the standard form.
-
-  j Letter that is written in upper case in the standard form.
-    Hyphenation is forbidden before this letter.
-
-  Examples:
-   Word: Matti-niminen -> STRUCTURE: =ipppp-=ppppppp
-   Word: DNA-näyte ->     STRUCTURE: =jjj-=ppppp
-   Word: autokauppa ->    STRUCTURE: =pppp=pppppp
- */
-final class Structure {
-    private Structure() {
+    private StructureParser() {
     }
 
-    public static @NotNull String parseStructure(@NotNull SymbolBuffer tokenizer, int wordLength) {
+    public static @NotNull Structure parseStructure(@NotNull SymbolBuffer tokenizer, int wordLength) {
         StringBuilder structure = new StringBuilder(wordLength * 2);
         structure.append('=');
 
@@ -183,7 +156,7 @@ final class Structure {
         createDefaultStructure(structure, charsMissing, defaultTitleCase, isAbbr);
         capitalizeStructure(structure, tokenizer);
 
-        return structure.toString();
+        return new Structure(structure.toString());
     }
 
     private static int decreaseCharsMissing(int charsMissing, int charsSeen, int charsFromDefault) {

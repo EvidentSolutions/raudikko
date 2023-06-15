@@ -37,7 +37,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class StructureTest {
+class StructureParserTest {
 
     @Test
     void structures() {
@@ -59,6 +59,6 @@ class StructureTest {
     }
 
     private static @NotNull String parseStructure(@NotNull String s, int len) {
-        return Structure.parseStructure(SymbolBuffer.parse(s), len);
+        return StructureParser.parseStructure(SymbolBuffer.parse(s), len).toString();
     }
 }
