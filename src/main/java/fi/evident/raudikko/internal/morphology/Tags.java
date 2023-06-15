@@ -43,13 +43,10 @@ public final class Tags {
     static final @NotNull String bh = "[Bh]";
 
     // Comparative
-    static final @NotNull String PREFIX_C = "[C";
-
     static final @NotNull String de = "[De]";
     static final @NotNull String dg = "[Dg]";
 
     // Clitic
-    static final @NotNull String PREFIX_FK = "[Fk";
     static final @NotNull String fko = "[Fko]";
 
     static final @NotNull String isf = "[Isf]";
@@ -62,23 +59,31 @@ public final class Tags {
 
     // Classes
     public static final String PREFIX_L = "[L";
-    public static final String PREFIX_LE = "[Le";
+    public static final String PREFIX_LE = "[Le"; // names
+    static final @NotNull String lee = "[Lee]";
+    static final @NotNull String les = "[Les]";
+    static final @NotNull String lem = "[Lem]";
+    static final @NotNull String lep = "[Lep]";
     static final @NotNull String la = "[La]";
     static final @NotNull String ln = "[Ln]";
     static final @NotNull String lnl = "[Lnl]";
+    static final @NotNull String lh = "[Lh]";
+    static final @NotNull String lt = "[Lt]";
     static final @NotNull String lu = "[Lu]";
+    static final @NotNull String ls = "[Ls]";
+    static final @NotNull String lr = "[Lr]";
+    static final @NotNull String lc = "[Lc]";
+    static final @NotNull String ld = "[Ld]";
+    static final @NotNull String lk = "[Lk]";
+    static final @NotNull String lp = "[Lp]";
     static final @NotNull String lur = "[Lur]";
     static final @NotNull String ll = "[Ll]";
-    static final @NotNull String lep = "[Lep]";
 
     // Plurality
-    static final @NotNull String ny = "[Ny]"; // yksikkö
-
-    // Possessive suffix
-    static final @NotNull String PREFIX_O = "[O";
+    static final @NotNull String ny = "[Ny]";
+    static final @NotNull String nm = "[Nm]";
 
     // Grammatical case
-    static final @NotNull String PREFIX_S = "[S";
     static final @NotNull String sn = "[Sn]"; // nominatiivi
     static final @NotNull String ssti = "[Ssti]"; // kerronto
 

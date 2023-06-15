@@ -39,7 +39,54 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-final class Attributes {
+public final class Attributes {
+
+    // word class
+    public static final @NotNull String NIMISANA = "nimisana";
+    public static final @NotNull String LAATUSANA = "laatusana";
+    public static final @NotNull String NIMISANA_LAATUSANA = "nimisana_laatusana";
+    public static final @NotNull String ETUNIMI = "etunimi";
+    public static final @NotNull String SUKUNIMI = "sukunimi";
+    public static final @NotNull String PAIKANNIMI = "paikannimi";
+    public static final @NotNull String NIMI = "nimi";
+    public static final @NotNull String ASEMOSANA = "asemosana";
+    public static final @NotNull String LUKUSANA = "lukusana";
+    public static final @NotNull String TEONSANA = "teonsana";
+    public static final @NotNull String SEIKKASANA = "seikkasana";
+    public static final @NotNull String ETULIITE = "etuliite";
+
+    // comparison
+    public static final @NotNull String COMPARATIVE = "comparative";
+    public static final @NotNull String SUPERLATIVE = "superlative";
+    public static final @NotNull String POSITIVE = "positive";
+
+    // sijamuoto
+    public static final @NotNull String NIMENTO = "nimento";
+    public static final @NotNull String KERRONTOSTI = "kerrontosti";
+    public static final @NotNull String OMANTO = "omanto";
+    public static final @NotNull String OSANTO = "osanto";
+    public static final @NotNull String OLENTO = "olento";
+    public static final @NotNull String TULENTO = "tulento";
+    public static final @NotNull String SISAOLENTO = "sisaolento";
+    public static final @NotNull String SISAERONTO = "sisaeronto";
+    public static final @NotNull String SISATULENTO = "sisatulento";
+    public static final @NotNull String ULKOOLENTO = "ulkoolento";
+    public static final @NotNull String ULKOERONTO = "ulkoeronto";
+    public static final @NotNull String ULKOTULENTO = "ulkotulento";
+    public static final @NotNull String VAJANTO = "vajanto";
+    public static final @NotNull String SEURANTO = "seuranto";
+    public static final @NotNull String KEINONTO = "keinonto";
+    public static final @NotNull String KOHDANTO = "kohdanto";
+
+    // mood
+    public static final @NotNull String A_INFINITIVE = "A-infinitive";
+    public static final @NotNull String E_INFINITIVE = "E-infinitive";
+    public static final @NotNull String MA_INFINITIVE = "MA-infinitive";
+    public static final @NotNull String MINEN_INFINITIVE = "MINEN-infinitive";
+    public static final @NotNull String MAINEN_INFINITIVE = "MAINEN-infinitive";
+
+    // participle
+    public static final @NotNull String PAST_PASSIVE = "past_passive";
 
     private Attributes() { }
 
@@ -51,57 +98,57 @@ final class Attributes {
 
     static {
 
-        attributeTexts.put("[Ln]", "nimisana");
-        attributeTexts.put("[Ll]", "laatusana");
-        attributeTexts.put("[Lnl]", "nimisana_laatusana");
-        attributeTexts.put("[Lh]", "huudahdussana");
-        attributeTexts.put("[Lee]", "etunimi");
-        attributeTexts.put("[Les]", "sukunimi");
-        attributeTexts.put("[Lep]", "paikannimi");
-        attributeTexts.put("[Lem]", "nimi");
-        attributeTexts.put("[Lt]", "teonsana");
-        attributeTexts.put("[La]", "lyhenne");
-        attributeTexts.put("[Ls]", "seikkasana");
-        attributeTexts.put("[Lu]", "lukusana");
-        attributeTexts.put("[Lur]", "lukusana");
-        attributeTexts.put("[Lr]", "asemosana");
-        attributeTexts.put("[Lc]", "sidesana");
-        attributeTexts.put("[Ld]", "suhdesana");
-        attributeTexts.put("[Lk]", "kieltosana");
-        attributeTexts.put("[Lp]", "etuliite");
+        attributeTexts.put(Tags.ln, NIMISANA);
+        attributeTexts.put(Tags.ll, LAATUSANA);
+        attributeTexts.put(Tags.lnl, NIMISANA_LAATUSANA);
+        attributeTexts.put(Tags.lh, "huudahdussana");
+        attributeTexts.put(Tags.lee, ETUNIMI);
+        attributeTexts.put(Tags.les, SUKUNIMI);
+        attributeTexts.put(Tags.lep, PAIKANNIMI);
+        attributeTexts.put(Tags.lem, NIMI);
+        attributeTexts.put(Tags.lt, TEONSANA);
+        attributeTexts.put(Tags.la, "lyhenne");
+        attributeTexts.put(Tags.ls, SEIKKASANA);
+        attributeTexts.put(Tags.lu, LUKUSANA);
+        attributeTexts.put(Tags.lur, LUKUSANA);
+        attributeTexts.put(Tags.lr, ASEMOSANA);
+        attributeTexts.put(Tags.lc, "sidesana");
+        attributeTexts.put(Tags.ld, "suhdesana");
+        attributeTexts.put(Tags.lk, "kieltosana");
+        attributeTexts.put(Tags.lp, ETULIITE);
 
-        attributeTexts.put("[Cc]", "comparative");
-        attributeTexts.put("[Cs]", "superlative");
+        attributeTexts.put("[Cc]", COMPARATIVE);
+        attributeTexts.put("[Cs]", SUPERLATIVE);
 
-        attributeTexts.put("[Sn]", "nimento");
-        attributeTexts.put("[Sg]", "omanto");
-        attributeTexts.put("[Sp]", "osanto");
-        attributeTexts.put("[Ses]", "olento");
-        attributeTexts.put("[Str]", "tulento");
-        attributeTexts.put("[Sine]", "sisaolento");
-        attributeTexts.put("[Sela]", "sisaeronto");
-        attributeTexts.put("[Sill]", "sisatulento");
-        attributeTexts.put("[Sade]", "ulkoolento");
-        attributeTexts.put("[Sabl]", "ulkoeronto");
-        attributeTexts.put("[Sall]", "ulkotulento");
-        attributeTexts.put("[Sab]", "vajanto");
-        attributeTexts.put("[Sko]", "seuranto");
-        attributeTexts.put("[Sin]", "keinonto");
-        attributeTexts.put("[Ssti]", "kerrontosti");
-        attributeTexts.put("[Sak]", "kohdanto");
+        attributeTexts.put(Tags.sn, NIMENTO);
+        attributeTexts.put("[Sg]", OMANTO);
+        attributeTexts.put("[Sp]", OSANTO);
+        attributeTexts.put("[Ses]", OLENTO);
+        attributeTexts.put("[Str]", TULENTO);
+        attributeTexts.put("[Sine]", SISAOLENTO);
+        attributeTexts.put("[Sela]", SISAERONTO);
+        attributeTexts.put("[Sill]", SISATULENTO);
+        attributeTexts.put("[Sade]", ULKOOLENTO);
+        attributeTexts.put("[Sabl]", ULKOERONTO);
+        attributeTexts.put("[Sall]", ULKOTULENTO);
+        attributeTexts.put("[Sab]", VAJANTO);
+        attributeTexts.put("[Sko]", SEURANTO);
+        attributeTexts.put("[Sin]", KEINONTO);
+        attributeTexts.put("[Ssti]", KERRONTOSTI);
+        attributeTexts.put("[Sak]", KOHDANTO);
 
-        attributeTexts.put("[Tn1]", "A-infinitive");
-        attributeTexts.put("[Tn2]", "E-infinitive");
-        attributeTexts.put("[Tn3]", "MA-infinitive");
-        attributeTexts.put("[Tn4]", "MINEN-infinitive");
-        attributeTexts.put("[Tn5]", "MAINEN-infinitive");
+        attributeTexts.put("[Tn1]", A_INFINITIVE);
+        attributeTexts.put("[Tn2]", E_INFINITIVE);
+        attributeTexts.put("[Tn3]", MA_INFINITIVE);
+        attributeTexts.put("[Tn4]", MINEN_INFINITIVE);
+        attributeTexts.put("[Tn5]", MAINEN_INFINITIVE);
         attributeTexts.put("[Tt]", "indicative");
         attributeTexts.put("[Te]", "conditional");
         attributeTexts.put("[Tk]", "imperative");
         attributeTexts.put("[Tm]", "potential");
 
-        attributeTexts.put("[Ny]", "singular");
-        attributeTexts.put("[Nm]", "plural");
+        attributeTexts.put(Tags.ny, "singular");
+        attributeTexts.put(Tags.nm, "plural");
 
         attributeTexts.put("[P1]", "1");
         attributeTexts.put("[P2]", "2");
@@ -127,7 +174,7 @@ final class Attributes {
         attributeTexts.put("[Rv]", "present_active");
         attributeTexts.put("[Ra]", "present_passive");
         attributeTexts.put("[Ru]", "past_active");
-        attributeTexts.put("[Rt]", "past_passive");
+        attributeTexts.put("[Rt]", PAST_PASSIVE);
         attributeTexts.put("[Rm]", "agent");
         attributeTexts.put("[Re]", "negation");
     }

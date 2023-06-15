@@ -38,7 +38,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-import static fi.evident.raudikko.internal.morphology.Attributes.resolveAttribute;
+import static fi.evident.raudikko.internal.morphology.Attributes.*;
 
 final class BasicAttributes {
 
@@ -57,13 +57,13 @@ final class BasicAttributes {
                     if (analysis.getWordClass() == null) {
                         if (tag.matches(Tags.lnl)) {
                             String comp = analysis.getComparison();
-                            analysis.setWordClass(convertNimiLaatusanaToLaatusana || Objects.equals(comp, "comparative") || Objects.equals(comp, "superlative") || tokenizer.firstTokenIs(Tags.lu) ? "laatusana" : "nimisana_laatusana");
+                            analysis.setWordClass(convertNimiLaatusanaToLaatusana || Objects.equals(comp, COMPARATIVE) || Objects.equals(comp, SUPERLATIVE) || tokenizer.firstTokenIs(Tags.lu) ? LAATUSANA : NIMISANA_LAATUSANA);
                         } else
                             analysis.setWordClass(resolveAttribute(tag));
                     }
                     break;
                 case 'N':
-                    if (analysis.getNumber() == null && (analysis.getWordClass() == null || !analysis.getWordClass().equals("etuliite") && !analysis.getWordClass().equals("seikkasana")))
+                    if (analysis.getNumber() == null && (analysis.getWordClass() == null || !analysis.getWordClass().equals(ETULIITE) && !analysis.getWordClass().equals(SEIKKASANA)))
                         analysis.setNumber(resolveAttribute(tag));
                     break;
                 case 'P':
@@ -71,7 +71,7 @@ final class BasicAttributes {
                         analysis.setPerson(resolveAttribute(tag));
                     break;
                 case 'S':
-                    if (analysis.getWordClass() == null || !analysis.getWordClass().equals("etuliite") && !analysis.getWordClass().equals("seikkasana")) {
+                    if (analysis.getWordClass() == null || !analysis.getWordClass().equals(ETULIITE) && !analysis.getWordClass().equals(SEIKKASANA)) {
                         if (analysis.getSijamuoto() == null)
                             analysis.setSijamuoto(resolveAttribute(tag));
                         if (tag.matches(Tags.ssti))
@@ -108,7 +108,7 @@ final class BasicAttributes {
                     // TODO: Checking the end for [Ln] is done to handle -tUAnne ("kuunneltuanne"). This is for compatibility
                     // with Malaga implementation. See VISK § 543 (temporaalirakenne) for correct analysis.
                     if (analysis.getParticiple() == null && !bcPassed)
-                        if (analysis.getWordClass() == null || analysis.getWordClass().equals("laatusana") || tokenizer.lastTokenIsTag(Tags.ln))
+                        if (analysis.getWordClass() == null || analysis.getWordClass().equals(LAATUSANA) || tokenizer.lastTokenIsTag(Tags.ln))
                             analysis.setParticiple(resolveAttribute(tag));
                     break;
                 case 'I':
@@ -118,10 +118,10 @@ final class BasicAttributes {
                     if (tag.matches(Tags.bc) && analysis.getWordClass() == null) {
                         // is preceded by "-" or "-[Bh]"?
                         boolean match = tokenizer.relativeTokenEndsWithChar(-1, '-')
-                                || (tokenizer.previousTokenIsTag(Tags.bh) && tokenizer.relativeTokenEndsWithChar(-2, '-'));
+                            || (tokenizer.previousTokenIsTag(Tags.bh) && tokenizer.relativeTokenEndsWithChar(-2, '-'));
 
                         if (match) {
-                            analysis.setWordClass("etuliite");
+                            analysis.setWordClass(ETULIITE);
                             bcPassed = true;
                         }
                     }
@@ -133,20 +133,20 @@ final class BasicAttributes {
     }
 
     private static void postProcess(@NotNull Analysis analysis) {
-        if (analysis.getNegative() != null && ((analysis.getWordClass() != null && !analysis.getWordClass().equals("teonsana")) || (Objects.equals(analysis.getMood(), "MINEN-infinitive") || Objects.equals(analysis.getMood(), "E-infinitive") || Objects.equals(analysis.getMood(), "MA-infinitive"))))
+        if (analysis.getNegative() != null && ((analysis.getWordClass() != null && !analysis.getWordClass().equals(TEONSANA)) || (Objects.equals(analysis.getMood(), MINEN_INFINITIVE) || Objects.equals(analysis.getMood(), E_INFINITIVE) || Objects.equals(analysis.getMood(), MA_INFINITIVE))))
             analysis.setNegative(null);
 
-        if (Objects.equals(analysis.getParticiple(), "past_passive"))
-            analysis.setWordClass("laatusana");
+        if (Objects.equals(analysis.getParticiple(), PAST_PASSIVE))
+            analysis.setWordClass(LAATUSANA);
 
-        if (analysis.getNumber() != null && Objects.equals(analysis.getSijamuoto(), "kerrontosti"))
+        if (analysis.getNumber() != null && Objects.equals(analysis.getSijamuoto(), KERRONTOSTI))
             analysis.setNumber(null);
 
         if (analysis.getComparison() == null) {
-            if (Objects.equals(analysis.getWordClass(), "laatusana") || Objects.equals(analysis.getWordClass(), "nimisana_laatusana"))
-                analysis.setComparison("positive");
+            if (Objects.equals(analysis.getWordClass(), LAATUSANA) || Objects.equals(analysis.getWordClass(), NIMISANA_LAATUSANA))
+                analysis.setComparison(POSITIVE);
 
-        } else if (Objects.equals(analysis.getWordClass(), "nimisana"))
+        } else if (Objects.equals(analysis.getWordClass(), NIMISANA))
             analysis.setComparison(null);
     }
 
@@ -156,19 +156,17 @@ final class BasicAttributes {
                 analysis.setMalagaVapaaJalkiosa(true);
         } else if (tag.matches(Tags.ica)) {
             String className = analysis.getWordClass();
-            if (!tokenizer.containsTagAfterCurrent(Tags.bc) && !tokenizer.containsTagAfterCurrent(Tags.ll) && (className == null || className.startsWith("nimisana")))
+            if (!tokenizer.containsTagAfterCurrent(Tags.bc) && !tokenizer.containsTagAfterCurrent(Tags.ll) && (className == null || className.equals(NIMISANA) || className.equals(NIMISANA_LAATUSANA)))
                 analysis.setPossibleGeographicalName(true);
         } else {
             String className = analysis.getWordClass();
             String mood = analysis.getMood();
 
-            if ((mood == null || (!mood.equals("E-infinitive") && !mood.equals("MINEN-infinitive") && !mood.equals("MA-infinitive"))) &&
-                    (className == null || className.equals("teonsana"))) {
-
+            if ((mood == null || (!mood.equals(E_INFINITIVE) && !mood.equals(MINEN_INFINITIVE) && !mood.equals(MA_INFINITIVE))) && (className == null || className.equals(TEONSANA))) {
                 if (tag.matches(Tags.ira))
-                    analysis.setRequireFollowingVerb("A-infinitive");
+                    analysis.setRequireFollowingVerb(A_INFINITIVE);
                 else if (tag.matches(Tags.irm))
-                    analysis.setRequireFollowingVerb("MA-infinitive");
+                    analysis.setRequireFollowingVerb(MA_INFINITIVE);
             }
         }
     }

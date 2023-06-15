@@ -38,6 +38,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
+import static fi.evident.raudikko.internal.morphology.Attributes.NIMI;
+import static fi.evident.raudikko.internal.morphology.Attributes.NIMISANA;
 import static fi.evident.raudikko.internal.morphology.BaseForm.parseBaseform;
 import static fi.evident.raudikko.internal.utils.StringUtils.replaceCharAt;
 import static fi.evident.raudikko.internal.utils.StringUtils.startsWithChar;
@@ -51,11 +53,11 @@ final class Organization {
                                                        @NotNull SymbolBuffer tokenizer,
                                                        @NotNull String oldStructure) {
 
-        if (Objects.equals(analysis.getWordClass(), "nimisana") && isOrganizationName(tokenizer)) {
+        if (Objects.equals(analysis.getWordClass(), NIMISANA) && isOrganizationName(tokenizer)) {
             String  structure = oldStructure.length() > 1 ? replaceCharAt(oldStructure, 1, 'i') : oldStructure;
 
             Analysis newAnalysis = analysis.clone();
-            newAnalysis.setWordClass("nimi");
+            newAnalysis.setWordClass(NIMI);
             newAnalysis.setStructure(structure);
             newAnalysis.setBaseForm(parseBaseform(tokenizer, structure));
             return newAnalysis;
