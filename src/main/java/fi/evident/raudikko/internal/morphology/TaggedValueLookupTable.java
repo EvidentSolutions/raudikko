@@ -32,55 +32,24 @@
 
 package fi.evident.raudikko.internal.morphology;
 
-import fi.evident.raudikko.Analysis;
-import fi.evident.raudikko.analysis.WordClass;
+import fi.evident.raudikko.analysis.AnalysisClass;
+import fi.evident.raudikko.internal.fst.Symbol;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import static fi.evident.raudikko.analysis.WordClass.NOUN;
-import static fi.evident.raudikko.analysis.WordClass.PROPER_NOUN;
-import static fi.evident.raudikko.internal.morphology.BaseForm.parseBaseform;
-import static fi.evident.raudikko.internal.utils.StringUtils.replaceCharAt;
-import static fi.evident.raudikko.internal.utils.StringUtils.startsWithChar;
+import java.util.HashMap;
+import java.util.Map;
 
-final class Organization {
+final class TaggedValueLookupTable<T extends Enum<T> & AnalysisClass> {
 
-    private Organization() {
+    private final @NotNull Map<String, T> map = new HashMap<>();
+
+    TaggedValueLookupTable(@NotNull Class<T> cl) {
+        for (T c : cl.getEnumConstants())
+            map.put('[' + c.getMorphologyTag() + ']', c);
     }
 
-    static @Nullable Analysis organizationNameAnalysis(@NotNull Analysis analysis,
-                                                       @NotNull SymbolBuffer tokenizer,
-                                                       @NotNull String oldStructure) {
-
-        if (analysis.getWordClass() == NOUN && isOrganizationName(tokenizer)) {
-            String  structure = oldStructure.length() > 1 ? replaceCharAt(oldStructure, 1, 'i') : oldStructure;
-
-            Analysis newAnalysis = analysis.clone();
-            newAnalysis.setWordClass(PROPER_NOUN);
-            newAnalysis.setStructure(structure);
-            newAnalysis.setBaseForm(parseBaseform(tokenizer, structure));
-            return newAnalysis;
-        } else {
-            return null;
-        }
-    }
-
-    private static boolean isOrganizationName(@NotNull SymbolBuffer buffer) {
-        buffer.moveToStart();
-
-        if (!buffer.nextToken() || startsWithChar(buffer.currentToken, '-') || buffer.matchesTag(WordClass.ABBREVIATION))
-            return false;
-
-        buffer.moveToEnd();
-
-        while (buffer.previousToken()) {
-            if (buffer.matchesTag(Tags.bc))
-                return false;
-
-            if (buffer.matchesTag(Tags.ion))
-                return buffer.containsTagBeforeCurrent(Tags.bc);
-        }
-
-        return false;
+    @Nullable T get(@NotNull Symbol tag) {
+        return map.get(tag.toString());
     }
 }

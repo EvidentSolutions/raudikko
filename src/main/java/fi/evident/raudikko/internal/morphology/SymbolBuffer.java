@@ -32,6 +32,7 @@
 
 package fi.evident.raudikko.internal.morphology;
 
+import fi.evident.raudikko.analysis.AnalysisClass;
 import fi.evident.raudikko.internal.fst.Symbol;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -205,16 +206,16 @@ public final class SymbolBuffer {
         return getTotalLength() != 0 && textBuffer.charAt(0) == c;
     }
 
-    public boolean firstTokenIs(@NotNull  String tag) {
+    public boolean firstTokenIs(@NotNull AnalysisClass tag) {
         if (tokenCount == 0) return false;
         Symbol first = tags[0];
         return first != null && first.matches(tag);
     }
 
-    public boolean lastTokenIsTag(@NotNull String tag) {
+    public boolean lastTokenIs(@NotNull AnalysisClass cl) {
         if (tokenCount == 0) return false;
         Symbol last = tags[tokenCount-1];
-        return last != null && last.matches(tag);
+        return last != null && last.matches(cl);
     }
 
     @NotNull String readXTagContents() {
@@ -230,10 +231,16 @@ public final class SymbolBuffer {
     }
 
     void skipXTag() {
-        skipUntilTag(Tags.x);
+        skipUntil(Tags.x);
     }
 
-    void skipUntilTag(@NotNull String tag) {
+    void skipUntil(@NotNull AnalysisClass wc) {
+        while (nextToken())
+            if (matchesTag(wc))
+                break;
+    }
+
+    void skipUntil(@NotNull String tag) {
         while (nextToken())
             if (matchesTag(tag))
                 break;
@@ -254,6 +261,20 @@ public final class SymbolBuffer {
     boolean matchesTag(@NotNull String s) {
         Symbol tag = getCurrentTag();
         return tag != null && tag.matches(s);
+    }
+
+    boolean matchesTag(@NotNull AnalysisClass s) {
+        Symbol tag = getCurrentTag();
+        return tag != null && tag.matches(s);
+    }
+
+    boolean containsTagAfterCurrent(@NotNull AnalysisClass s) {
+        for (int i = index + 1; i < tokenCount; i++) {
+            Symbol tag = tags[i];
+            if (tag != null && tag.matches(s))
+                return true;
+        }
+        return false;
     }
 
     boolean containsTagAfterCurrent(@NotNull String s) {
@@ -290,7 +311,7 @@ public final class SymbolBuffer {
         }
 
         @Override
-        public CharSequence subSequence(int start, int end) {
+        public @NotNull CharSequence subSequence(int start, int end) {
             int offset = getCurrentOffset();
             return textBuffer.subSequence(offset + start, offset + end);
         }

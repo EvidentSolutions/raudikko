@@ -36,6 +36,7 @@ import fi.evident.raudikko.internal.fst.Symbol;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import static fi.evident.raudikko.analysis.WordClass.*;
 import static fi.evident.raudikko.internal.utils.StringUtils.*;
 import static java.lang.Character.isDigit;
 import static java.lang.Character.toUpperCase;
@@ -72,7 +73,7 @@ final class BaseForm {
                 else if (tag.matches(Tags.de))
                     isDe = !ignoreNextDe;
 
-                else if (!classTagSeen && tag.matches(Tags.lu)) {
+                else if (!classTagSeen && tag.matches(NUMERAL)) {
                     classTagSeen = true;
                     // we will try completely different rules here and get back if it does not work out
                     String numeralBaseform = parseNumeralBaseform(tokenizer.copy());
@@ -83,7 +84,7 @@ final class BaseForm {
                 } else if (tag.isClassTag()) {
                     classTagSeen = true;
                     isDe = false;
-                    ignoreNextDe = !tag.matches(Tags.ll) && !tag.matches(Tags.lnl);
+                    ignoreNextDe = !tag.matches(ADJECTIVE) && !tag.matches(NOUN_ADJECTIVE);
                 }
             } else {
                 CharSequence token = tokenizer.currentToken;
@@ -96,7 +97,7 @@ final class BaseForm {
                         else {
                             // Compound place name such as "Isolla-Britannialla" needs to have "Isolla" replaced with "Iso".
                             // However "-is" is never replaced with "-nen" ("Pohjois-Suomella").
-                            if (isDe && latestBaseForm != null && !matchesAt(token, i - 2, "is-") && tokenizer.containsTagAfterCurrent(Tags.lep)) {
+                            if (isDe && latestBaseForm != null && !matchesAt(token, i - 2, "is-") && tokenizer.containsTagAfterCurrent(TOPONYM)) {
                                 baseform.setLength(latestXpStartInBaseform);
                                 baseform.append(capitalize(latestBaseForm));
                             }
@@ -150,7 +151,7 @@ final class BaseForm {
                         return null; // incomplete numeral is really a prefix
                     xpPassed = false;
 
-                } else if (tag.matches(Tags.ln) || tag.matches(Tags.ll) || tag.matches(Tags.lnl)) {
+                } else if (tag.matches(NOUN) || tag.matches(ADJECTIVE) || tag.matches(NOUN_ADJECTIVE)) {
                     return null; // give up and return to standard algorithm
                 }
             } else if (isInDigitSequence || !xpPassed) {
