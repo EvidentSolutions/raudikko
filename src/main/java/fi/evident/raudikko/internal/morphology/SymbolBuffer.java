@@ -33,13 +33,17 @@
 package fi.evident.raudikko.internal.morphology;
 
 import fi.evident.raudikko.analysis.AnalysisClass;
+import fi.evident.raudikko.analysis.Structure;
 import fi.evident.raudikko.internal.fst.Symbol;
+import fi.evident.raudikko.internal.utils.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.TestOnly;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import static fi.evident.raudikko.internal.utils.StringUtils.countOccurrences;
 import static java.lang.Character.isDigit;
 
 public final class SymbolBuffer {
@@ -230,19 +234,25 @@ public final class SymbolBuffer {
         }
     }
 
+    @NotNull List<Structure.StructureSymbol> readStructure() {
+        nextToken();
+
+        List<Structure.StructureSymbol> result = new ArrayList<>();
+
+        if (!matchesTag(Tags.x)) {
+            for (int i = 0, len = currentToken.length(); i < len; i++)
+                result.add(Structure.StructureSymbol.forCode(currentToken.charAt(i)));
+
+            nextToken();
+            assert (matchesTag(Tags.x)) : currentToken + " from " + fullContents();
+        }
+
+        return result;
+    }
+
     void skipXTag() {
-        skipUntil(Tags.x);
-    }
-
-    void skipUntil(@NotNull AnalysisClass wc) {
         while (nextToken())
-            if (matchesTag(wc))
-                break;
-    }
-
-    void skipUntil(@NotNull String tag) {
-        while (nextToken())
-            if (matchesTag(tag))
+            if (matchesTag(Tags.x))
                 break;
     }
 
@@ -296,10 +306,12 @@ public final class SymbolBuffer {
     }
 
     /**
-     * A CharSequence representing the current token. Note that to avoid allocation, this
-     * sequence is only valid while the token is active
+     * The current token. Note that to avoid allocation, this sequence is only valid while the token is active.
      */
-    final @NotNull CharSequence currentToken = new CharSequence() {
+    final @NotNull CurrentToken currentToken = new CurrentToken();
+
+    final class CurrentToken implements CharSequence {
+
         @Override
         public int length() {
             return startIndices[index + 1] - startIndices[index];
@@ -324,5 +336,25 @@ public final class SymbolBuffer {
                 sb.append(charAt(i));
             return sb.toString();
         }
-    };
+
+        public char start() {
+            return charAt(0);
+        }
+
+        public boolean startsWithDigit() {
+            return Character.isDigit(start());
+        }
+
+        public boolean startsWithChar(char c) {
+            return start() == c;
+        }
+
+        public boolean matchesAt(int i, @NotNull String s) {
+            return StringUtils.matchesAt(this, i, s);
+        }
+
+        public int count(char c) {
+            return countOccurrences(this, c);
+        }
+    }
 }

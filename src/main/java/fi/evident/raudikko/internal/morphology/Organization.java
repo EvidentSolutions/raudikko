@@ -41,7 +41,6 @@ import org.jetbrains.annotations.Nullable;
 import static fi.evident.raudikko.analysis.WordClass.NOUN;
 import static fi.evident.raudikko.analysis.WordClass.PROPER_NOUN;
 import static fi.evident.raudikko.internal.morphology.BaseForm.parseBaseform;
-import static fi.evident.raudikko.internal.utils.StringUtils.startsWithChar;
 
 final class Organization {
 
@@ -68,7 +67,7 @@ final class Organization {
     private static boolean isOrganizationName(@NotNull SymbolBuffer buffer) {
         buffer.moveToStart();
 
-        if (!buffer.nextToken() || startsWithChar(buffer.currentToken, '-') || buffer.matchesTag(WordClass.ABBREVIATION))
+        if (!buffer.nextToken() || buffer.currentToken.startsWithChar('-') || buffer.matchesTag(WordClass.ABBREVIATION))
             return false;
 
         buffer.moveToEnd();

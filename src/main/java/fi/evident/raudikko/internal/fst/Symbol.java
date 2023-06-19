@@ -90,8 +90,12 @@ public class Symbol {
         return s.length() == tag.length() + 2 && s.charAt(0) == '[' && s.charAt(s.length() - 1) == ']' && s.indexOf(tag) == 1;
     }
 
-    public boolean startsWith(@NotNull String s) {
-        return this.s.startsWith(s);
+    public boolean isNameTag() {
+        return startsWith(Tags.PREFIX_LE);
+    }
+
+    public boolean isXParameter() {
+        return startsWith(Tags.PREFIX_X);
     }
 
     public boolean isClassTag() {
@@ -104,6 +108,10 @@ public class Symbol {
 
     public boolean isBoundary() {
         return startsWith(Tags.PREFIX_B);
+    }
+
+    private boolean startsWith(@NotNull String s) {
+        return this.s.startsWith(s);
     }
 }
 

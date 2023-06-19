@@ -41,7 +41,6 @@ import java.util.Iterator;
 
 import static fi.evident.raudikko.analysis.WordClass.*;
 import static fi.evident.raudikko.internal.utils.StringUtils.*;
-import static java.lang.Character.isDigit;
 
 final class BaseForm {
 
@@ -53,8 +52,8 @@ final class BaseForm {
         @Nullable String latestBaseForm = null;
         int latestXpStartInBaseform = 0;
         int hyphensInLatestXp = 0;
-        boolean ignoreNextDe = false;
-        boolean isDe = false;
+        boolean allowDe = true;
+        boolean isInsideDe = false;
         boolean classTagSeen = false;
 
         Iterator<Structure.StructureSymbol> structureIterator = structure.nonMorphemes();
@@ -67,29 +66,31 @@ final class BaseForm {
                     latestXpStartInBaseform = baseform.length();
 
                     latestBaseForm = withoutChar(tokenizer.readXTagContents(), '=');
-                    hyphensInLatestXp += countOccurrences(latestBaseForm, '-');
+                    hyphensInLatestXp = countOccurrences(latestBaseForm, '-');
 
-                } else if (tag.startsWith(Tags.PREFIX_X))
+                } else if (tag.isXParameter()) {
                     tokenizer.skipXTag();
 
-                else if (tag.matches(Tags.de))
-                    isDe = !ignoreNextDe;
+                } else if (tag.matches(Tags.de)) {
+                    isInsideDe = allowDe;
 
-                else if (!classTagSeen && tag.matches(NUMERAL)) {
-                    classTagSeen = true;
-                    // we will try completely different rules here and get back if it does not work out
-                    String numeralBaseform = parseNumeralBaseform(tokenizer.copy());
-                    if (numeralBaseform != null) {
-                        baseform.append(numeralBaseform);
-                        return baseform.toString();
-                    }
                 } else if (tag.isClassTag()) {
+
+                    // We will try completely different rules here and get back if it does not work out
+                    if (!classTagSeen && tag.matches(NUMERAL)) {
+                        String numeralBaseform = parseNumeralBaseform(tokenizer.copy());
+                        if (numeralBaseform != null) {
+                            baseform.append(numeralBaseform);
+                            return baseform.toString();
+                        }
+                    }
+
                     classTagSeen = true;
-                    isDe = false;
-                    ignoreNextDe = !tag.matches(ADJECTIVE) && !tag.matches(NOUN_ADJECTIVE);
+                    isInsideDe = false;
+                    allowDe = tag.matches(ADJECTIVE) || tag.matches(NOUN_ADJECTIVE);
                 }
             } else {
-                CharSequence token = tokenizer.currentToken;
+                SymbolBuffer.CurrentToken token = tokenizer.currentToken;
 
                 for (int i = 0, len = token.length(); i < len; i++) {
                     char nextChar = token.charAt(i);
@@ -99,13 +100,13 @@ final class BaseForm {
                         else {
                             // Compound place name such as "Isolla-Britannialla" needs to have "Isolla" replaced with "Iso".
                             // However, "-is" is never replaced with "-nen" ("Pohjois-Suomella").
-                            if (isDe && latestBaseForm != null && !matchesAt(token, i - 2, "is-") && tokenizer.containsTagAfterCurrent(TOPONYM)) {
+                            if (isInsideDe && latestBaseForm != null && !token.matchesAt(i - 2, "is-") && tokenizer.containsTagAfterCurrent(TOPONYM)) {
                                 baseform.setLength(latestXpStartInBaseform);
                                 baseform.append(capitalize(latestBaseForm));
                             }
                             latestBaseForm = null;
                         }
-                        isDe = false;
+                        isInsideDe = false;
                     }
 
                     baseform.append(structureIterator.hasNext() ? structureIterator.next().convert(nextChar) : nextChar);
@@ -128,8 +129,7 @@ final class BaseForm {
 
         boolean first = true;
         while (tokenizer.nextToken()) {
-            CharSequence token = tokenizer.currentToken;
-            if (first && (isDigit(token.charAt(0)) || token.charAt(0) == '-'))
+            if (first && (tokenizer.currentToken.startsWithDigit() || tokenizer.currentToken.startsWithChar('-')))
                 isInDigitSequence = true;
 
             first = false;
@@ -145,7 +145,7 @@ final class BaseForm {
                     baseform.append(tokenizer.readXTagContents());
                     xpPassed = true;
 
-                } else if (tag.startsWith(Tags.PREFIX_X)) {
+                } else if (tag.isXParameter()) {
                     tokenizer.skipXTag();
 
                 } else if (tag.matches(Tags.bc)) {
@@ -160,6 +160,7 @@ final class BaseForm {
                 baseform.append(tokenizer.currentToken);
 
             } else {
+                SymbolBuffer.CurrentToken token = tokenizer.currentToken;
                 for (int i = 0, len = token.length(); i < len; i++)
                     if (token.charAt(i) == '-' && i + 1 < len)
                         baseform.append(token.charAt(++i));

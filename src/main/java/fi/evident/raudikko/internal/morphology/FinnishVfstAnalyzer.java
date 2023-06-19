@@ -77,9 +77,7 @@ public final class FinnishVfstAnalyzer implements Analyzer {
 
         transducer.transduce(word, inputBuffer, flags, output, depth -> {
             buffer.reset(output, depth);
-
-            if (isValidAnalysis(buffer))
-                createAnalysis(buffer, word.length(), results, configuration, wordParser);
+            createAnalysis(buffer, word.length(), results, configuration, wordParser);
         });
 
         return results;
@@ -112,6 +110,9 @@ public final class FinnishVfstAnalyzer implements Analyzer {
                                        @NotNull List<Analysis> results,
                                        @NotNull AnalyzerConfiguration configuration,
                                        @NotNull WordParser wordParser) {
+        if (!isValidAnalysis(buffer))
+            return;
+
         Analysis analysis = new Analysis();
 
         boolean dependsOnStructure =
