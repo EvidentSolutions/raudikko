@@ -2,6 +2,7 @@
 
 ### Changes
 
+- Add a spelling suggester ([#7](https://github.com/EvidentSolutions/raudikko/pull/7))
 - Add enums for fields of Analysis where applicable. Breaking change if you were using the fields.
 - Bump the minimum supported Java version to 17
 - Update morphology to [d3f4a0](https://github.com/voikko/corevoikko/commit/d3f4a065aa89c322f9c2476ea4d777bc4ba9ac6f)

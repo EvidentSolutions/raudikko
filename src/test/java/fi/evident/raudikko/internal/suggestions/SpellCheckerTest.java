@@ -30,65 +30,43 @@
  * the terms of any one of the MPL, the GPL or the LGPL.
  */
 
-package fi.evident.raudikko.internal.utils;
+package fi.evident.raudikko.internal.suggestions;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import fi.evident.raudikko.Morphology;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 
-import static java.util.Collections.unmodifiableCollection;
+@TestInstance(PER_CLASS)
+class SpellCheckerTest {
 
-public final class CharMap<T> {
+    private SpellChecker spellChecker;
 
-    private final Object[] low = new Object[256];
-    private @Nullable Map<Character, T> high = null;
-
-    public void put(char key, T value) {
-        if (key < low.length)
-            low[key] = value;
-        else {
-            if (high == null)
-                high = new HashMap<>();
-
-            high.put(key, value);
-        }
+    @BeforeAll
+    void setup() {
+        var morphology = Morphology.loadBundled();
+        spellChecker = new SpellChecker(morphology.newAnalyzer());
     }
 
-    @SuppressWarnings("unchecked")
-    public @Nullable T get(char key) {
-        if (key < low.length)
-            return (T) low[key];
-        else if (high != null)
-            return high.get(key);
-        else
-            return null;
+    @Test
+    void unknownWord() {
+        assertNull(spellChecker.spellCheck("an-english-phrase-is-not-a-finnish-word"));
     }
 
-    public @NotNull T getOrDefault(char key, @NotNull T defaultValue) {
-        var result = get(key);
-        return result != null ? result : defaultValue;
+    @Test
+    void knownWordCapitalizedCorrectly() {
+        var result = spellChecker.spellCheck("kissa");
+        assertNotNull(result);
+        assertEquals("kissa", result.word());
     }
 
-    public @NotNull Collection<Character> keys() {
-        var result = new ArrayList<Character>();
-        for (int i = 0; i < low.length; i++)
-            if (low[i] != null)
-                result.add((char) i);
-
-        if (high != null)
-            result.addAll(high.keySet());
-
-        return unmodifiableCollection(result);
-    }
-
-    public @NotNull CharMap<T> copy() {
-        var result = new CharMap<T>();
-        System.arraycopy(low, 0, result.low, 0, low.length);
-        result.high = high != null ? new HashMap<>(high) : null;
-        return result;
+    @Test
+    void knownWordCapitalizedIncorrectly() {
+        var result = spellChecker.spellCheck("helsinki");
+        assertNotNull(result);
+        assertEquals("Helsinki", result.word());
     }
 }

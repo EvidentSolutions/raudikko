@@ -34,18 +34,14 @@ package fi.evident.raudikko.internal.utils;
 
 import org.jetbrains.annotations.NotNull;
 
-import static java.lang.Character.toUpperCase;
+import java.util.stream.IntStream;
+
+import static fi.evident.raudikko.internal.utils.CharUtils.equalsIgnoreCase;
+import static java.lang.Character.*;
 
 public final class StringUtils {
 
     private StringUtils() {
-    }
-
-    public static @NotNull String replaceCharAt(@NotNull String s, int i, char c) {
-        if (s.charAt(i) == c) return s;
-        var chars = s.toCharArray();
-        chars[i] = c;
-        return new String(chars);
     }
 
     public static @NotNull String withoutChar(@NotNull CharSequence s, char removed) {
@@ -89,19 +85,32 @@ public final class StringUtils {
         return s.chars().noneMatch(Character::isUpperCase);
     }
 
+    public static @NotNull IntStream charIndices(@NotNull String word, char ch) {
+        IntStream.Builder result = IntStream.builder();
+
+        for (int i = word.indexOf(ch); i != -1; i = word.indexOf(ch, i + 1))
+            result.add(i);
+
+        return result.build();
+    }
+
     public static @NotNull String capitalize(@NotNull String s) {
-        if (s.isEmpty()) return s;
+        if (s.isEmpty() || isUpperCase(s.charAt(0))) return s;
 
         return toUpperCase(s.charAt(0)) + s.substring(1);
+    }
+
+    public static @NotNull String decapitalize(@NotNull String s) {
+        if (s.isEmpty() || isLowerCase(s.charAt(0))) return s;
+
+        return toLowerCase(s.charAt(0)) + s.substring(1);
     }
 
     public static @NotNull String removeRange(@NotNull String s, int startIndex, int endIndex) {
         if (endIndex < startIndex)
             throw new IndexOutOfBoundsException();
-        else if (endIndex == startIndex)
-            return s;
-        else
-            return s.substring(0, startIndex) + s.substring(endIndex);
+
+        return endIndex == startIndex ? s : s.substring(0, startIndex) + s.substring(endIndex);
     }
 
     public static boolean contains(@NotNull CharSequence s, char c) {
@@ -113,7 +122,7 @@ public final class StringUtils {
     }
 
     public static int indexOf(@NotNull CharSequence s, char c, int fromIndex) {
-        for (int i = fromIndex, n = s.length(); i < n; i++)
+        for (int i = fromIndex, len = s.length(); i < len; i++)
             if (s.charAt(i) == c)
                 return  i;
         return -1;
@@ -123,11 +132,40 @@ public final class StringUtils {
         if (offset < 0 || offset + needle.length() > haystack.length())
             return false;
 
-        for (int i = 0; i < needle.length(); i++)
+        for (int i = 0, len = needle.length(); i < len; i++)
             if (haystack.charAt(i + offset) != needle.charAt(i))
                 return false;
 
         return true;
+    }
+
+    public static @NotNull String swap(@NotNull String s, int i, int j) {
+        var chars = s.toCharArray();
+        chars[i] = s.charAt(j);
+        chars[j] = s.charAt(i);
+        return new String(chars);
+    }
+
+    public static @NotNull String replaceCharAt(@NotNull String s, int i, char ch) {
+        if (s.charAt(i) == ch) return s;
+        return s.substring(0, i) + ch + s.substring(i + 1);
+    }
+
+    public static @NotNull String replaceTwoChars(@NotNull String word, int i, char to) {
+        var chars = word.toCharArray();
+        chars[i] = to;
+        chars[i + 1] = to;
+        return new String(chars);
+    }
+
+    public static boolean containsAdjacentCharacterIgnoringCase(@NotNull String s, int i, char ch) {
+        return (i > 0 && equalsIgnoreCase(ch, s.charAt(i - 1)))
+            || (i < s.length() && equalsIgnoreCase(ch, s.charAt(i)));
+    }
+
+    public static boolean containsInSubstring(@NotNull String word, int start, int end, char ch) {
+        int i = word.indexOf(ch, start);
+        return i != -1 && i < end;
     }
 
     public static @NotNull String removeLeadingAndTrailing(@NotNull String s, char c) {
