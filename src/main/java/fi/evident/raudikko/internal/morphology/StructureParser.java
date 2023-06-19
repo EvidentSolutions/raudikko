@@ -36,8 +36,11 @@ import fi.evident.raudikko.analysis.Structure;
 import fi.evident.raudikko.internal.fst.Symbol;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static fi.evident.raudikko.analysis.Structure.StructureSymbol.*;
 import static fi.evident.raudikko.analysis.WordClass.*;
-import static fi.evident.raudikko.internal.utils.StringUtils.endsWithChar;
 import static java.lang.Math.max;
 
 final class StructureParser {
@@ -46,8 +49,8 @@ final class StructureParser {
     }
 
     public static @NotNull Structure parseStructure(@NotNull SymbolBuffer tokenizer, int wordLength) {
-        StringBuilder structure = new StringBuilder(wordLength * 2);
-        structure.append('=');
+        StructureBuilder structure = new StructureBuilder(wordLength * 2);
+        structure.add(MORPHEME_START);
 
         int charsMissing = wordLength;
         int charsSeen = 0;
@@ -62,16 +65,16 @@ final class StructureParser {
             if (tag != null) {
                 if (tag.startsWith(Tags.PREFIX_B) && !tag.matches(Tags.bh)) {
                     if (tokenizer.getCurrentOffset() == 1)
-                        structure.append('=');
+                        structure.add(MORPHEME_START);
 
                     if (charsSeen > charsFromDefault) {
                         defaultTitleCase = createDefaultStructure(structure, charsSeen - charsFromDefault, defaultTitleCase, isAbbr);
                         charsMissing = decreaseCharsMissing(charsMissing, charsSeen, charsFromDefault);
                     }
 
-                    // TODO: Why is 'tokenizer.getStart() + 5' necessary? Make the meaning clearer.
-                    if (tokenizer.getCurrentOffset() != 1 && tokenizer.getCurrentOffset() + 5 < tokenizer.getTotalLength() && structure.length() != 0 && !endsWithChar(structure, '='))
-                        structure.append('=');
+                    // TODO: Why is 'tokenizer.getCurrentOffset() + 5' necessary? Make the meaning clearer.
+                    if (tokenizer.getCurrentOffset() != 1 && tokenizer.getCurrentOffset() + 5 < tokenizer.getTotalLength())
+                        structure.ensureEndsWithNewMorpheme();
 
                     charsSeen = 0;
                     charsFromDefault = 0;
@@ -83,11 +86,11 @@ final class StructureParser {
                         String currentToken = tokenizer.readXTagContents();
 
                         for (int i = 0, len = currentToken.length(); i < len && charsMissing != 0; i++) {
-                            char c = currentToken.charAt(i);
-                            structure.append(c);
-                            if (c != '=') {
+                            Structure.StructureSymbol c = Structure.StructureSymbol.forCode(currentToken.charAt(i));
+                            structure.add(c);
+                            if (c != MORPHEME_START) {
                                 charsFromDefault++;
-                                if (c != '-')
+                                if (c != HYPHEN)
                                     charsMissing--;
                             }
                         }
@@ -111,25 +114,25 @@ final class StructureParser {
                         case '-':
                             if (charsSeen > charsFromDefault) {
                                 defaultTitleCase =
-                                        createDefaultStructure(structure,
-                                                charsSeen - charsFromDefault,
-                                                defaultTitleCase,
-                                                isAbbr
-                                        );
+                                    createDefaultStructure(structure,
+                                        charsSeen - charsFromDefault,
+                                        defaultTitleCase,
+                                        isAbbr
+                                    );
                                 charsMissing = decreaseCharsMissing(charsMissing, charsSeen, charsFromDefault);
-                                structure.append('-');
+                                structure.add(HYPHEN);
                                 charsSeen = 0;
                                 charsFromDefault = 0;
                             } else if (!tokenizer.isAtFirstToken() || i != 0) {
                                 if (charsSeen == charsFromDefault)
-                                    structure.append('-');
+                                    structure.add(HYPHEN);
                                 else
                                     charsSeen++;
                             }
                             if (charsMissing != 0)
                                 charsMissing--;
-                            if (structure.length() == 1)
-                                structure.setCharAt(0, '-');
+                            if (structure.size() == 1)
+                                structure.replaceStartWithHyphen();
                             break;
                         case ':':
                             if (isAbbr) {
@@ -141,7 +144,7 @@ final class StructureParser {
                                 }
                                 isAbbr = false;
                             }
-                            structure.append(':');
+                            structure.add(COLON);
                             if (charsMissing != 0)
                                 charsMissing--;
                             break;
@@ -156,28 +159,28 @@ final class StructureParser {
         createDefaultStructure(structure, charsMissing, defaultTitleCase, isAbbr);
         capitalizeStructure(structure, tokenizer);
 
-        return new Structure(structure.toString());
+        return structure.build();
     }
 
     private static int decreaseCharsMissing(int charsMissing, int charsSeen, int charsFromDefault) {
         return max(0, charsMissing - (charsSeen - charsFromDefault));
     }
 
-    private static boolean createDefaultStructure(@NotNull StringBuilder sb, int charsMissing, boolean defaultTitleCase, boolean abbr) {
-        boolean titleCase = defaultTitleCase;
+    private static boolean createDefaultStructure(@NotNull StructureBuilder result, int charsMissing, boolean titleCase, boolean abbr) {
+        if (charsMissing == 0)
+            return titleCase;
 
-        for (int i = 0; i < charsMissing; i++) {
-            if (titleCase) {
-                sb.append(abbr ? 'j' : 'i');
-                titleCase = false;
-            } else {
-                sb.append(abbr ? 'q' : 'p');
-            }
+        if (titleCase) {
+            result.add(abbr ? UPPERCASE_NO_HYPHENATION : UPPERCASE);
+            charsMissing--;
         }
-        return titleCase;
+
+        result.add(abbr ? LOWERCASE_NO_HYPHENATION : LOWERCASE, charsMissing);
+
+        return false;
     }
 
-    private static void capitalizeStructure(@NotNull StringBuilder structure, @NotNull SymbolBuffer tokenizer) {
+    private static void capitalizeStructure(@NotNull StructureBuilder structure, @NotNull SymbolBuffer tokenizer) {
         boolean isDe = false;
         int hyphenCount = 0;
 
@@ -189,12 +192,12 @@ final class StructureParser {
                 if (tag.matches(Tags.dg)) {
                     int hyphensInStructure = 0;
 
-                    for (int i = 0, len = structure.length(); i < len; i++)
-                        if (structure.charAt(i) == 'i') {
+                    for (int i = 0, len = structure.size(); i < len; i++)
+                        if (structure.get(i) == UPPERCASE) {
                             if (hyphensInStructure == hyphenCount)
-                                structure.setCharAt(i, 'p');
+                                structure.set(i, LOWERCASE);
 
-                        } else if (structure.charAt(i) == '-')
+                        } else if (structure.get(i) == HYPHEN)
                             hyphensInStructure++;
 
                 } else if (tag.matches(Tags.de))
@@ -215,15 +218,61 @@ final class StructureParser {
                                 tokenizer.skipUntil(TOPONYM);
 
                             if (hasPlace || tokenizer.isAtLastToken())
-                                for (int k = 0; k < structure.length(); k++)
-                                    if (structure.charAt(k) == 'i' || structure.charAt(k) == 'p') {
-                                        structure.setCharAt(k, 'i');
+                                for (int k = 0; k < structure.size(); k++) {
+                                    Structure.StructureSymbol sym = structure.get(k);
+                                    if (sym == UPPERCASE)
+                                        return;
+                                    else if (sym == LOWERCASE) {
+                                        structure.set(k, UPPERCASE);
                                         return;
                                     }
+                                }
                         }
                     }
                 }
             }
+        }
+    }
+
+    private static final class StructureBuilder {
+        private final @NotNull List<Structure.StructureSymbol> symbols;
+
+        StructureBuilder(int capacity) {
+            this.symbols = new ArrayList<>(capacity);
+        }
+
+        public void add(@NotNull Structure.StructureSymbol symbol) {
+            symbols.add(symbol);
+        }
+
+        public void add(@NotNull Structure.StructureSymbol symbol, int count) {
+            for (int i = 0; i < count; i++)
+                add(symbol);
+        }
+
+        public void ensureEndsWithNewMorpheme() {
+            if (symbols.get(symbols.size() - 1) != MORPHEME_START)
+                add(MORPHEME_START);
+        }
+
+        public int size() {
+            return symbols.size();
+        }
+
+        public void replaceStartWithHyphen() {
+            symbols.set(0, HYPHEN);
+        }
+
+        public @NotNull Structure build() {
+            return new Structure(symbols);
+        }
+
+        public @NotNull Structure.StructureSymbol get(int i) {
+            return symbols.get(i);
+        }
+
+        public void set(int i, @NotNull Structure.StructureSymbol symbol) {
+            symbols.set(i, symbol);
         }
     }
 }

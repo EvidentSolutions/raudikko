@@ -34,47 +34,52 @@ package fi.evident.raudikko.analysis;
 
 import org.jetbrains.annotations.NotNull;
 
-import static fi.evident.raudikko.internal.utils.StringUtils.replaceCharAt;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
-/*
-  This attribute describes morpheme boundaries, character case and
-  hyphenation restrictions for the word. The following characters
-  are used in the values of this attribute:
+import static fi.evident.raudikko.analysis.Structure.StructureSymbol.MORPHEME_START;
+import static fi.evident.raudikko.internal.utils.CollectionUtils.count;
+import static java.lang.Character.toLowerCase;
+import static java.lang.Character.toUpperCase;
 
-  = Start of a new morpheme. This must also be present at the start
-    of a word.
-
-  - Hyphen. Word can be split in text processors after this character
-    without inserting an extra hyphen. If the hyphen is at morpheme
-    boundary, the boundary symbol = must be placed after the hyphen.
-
-  p Letter that is written in lower case in the standard form.
-
-  q Letter that is written in lower case in the standard form.
-    Hyphenation is forbidden before this letter.
-
-  i Letter that is written in upper case in the standard form.
-
-  j Letter that is written in upper case in the standard form.
-    Hyphenation is forbidden before this letter.
-
-  Examples:
-   Word: Matti-niminen -> STRUCTURE: =ipppp-=ppppppp
-   Word: DNA-näyte ->     STRUCTURE: =jjj-=ppppp
-   Word: autokauppa ->    STRUCTURE: =pppp=pppppp
+/**
+ * This class describes morpheme boundaries, character case and hyphenation restrictions for the word.
+ *
+ * <table>
+ *     <caption>Examples</caption>
+ *     <tr>
+ *         <td>Matti-niminen</td>
+ *         <td>=ipppp-=ppppppp</td>
+ *     </tr>
+ *     <tr>
+ *         <td>DNA-näyte</td>
+ *         <td>=jjj-=ppppp</td>
+ *     </tr>
+ *     <tr>
+ *         <td>autokauppa</td>
+ *         <td>=pppp=pppppp</td>
+ *     </tr>
+ * </table>
  */
 public final class Structure {
 
-    private final @NotNull String structure;
+    private final @NotNull List<StructureSymbol> structure;
 
-    public Structure(@NotNull String structure) {
+    public Structure(@NotNull List<StructureSymbol> structure) {
         if (structure.isEmpty()) throw new IllegalArgumentException("empty structure");
+
         this.structure = structure;
     }
 
     @Override
     public String toString() {
-        return structure;
+        return structure.stream().map(it -> String.valueOf(it.code)).collect(Collectors.joining(""));
+    }
+
+    public int getMorphemeCount() {
+        return count(structure, MORPHEME_START);
     }
 
     @Override
@@ -89,37 +94,122 @@ public final class Structure {
         return structure.hashCode();
     }
 
+    /**
+     * Returns a structure that is otherwise identical to this one, but starts with a capital letter.
+     */
     public @NotNull Structure capitalized() {
-        return new Structure(structure.length() > 1 ? replaceCharAt(structure, 1, 'i') : structure);
+        if (structure.size() <= 1 || structure.get(1) == StructureSymbol.UPPERCASE)
+            return this;
+
+        List<StructureSymbol> copy = new ArrayList<>(structure);
+        copy.set(1, StructureSymbol.UPPERCASE);
+        return new Structure(copy);
     }
 
-    public @NotNull StructureIterator structureIterator() {
-        return new StructureIterator(structure);
+    /**
+     * Returns al the token symbols of this structure (i.e. excludes morpheme start).
+     */
+    public @NotNull Iterator<StructureSymbol> nonMorphemes() {
+        return structure.stream().filter(it -> it != MORPHEME_START).iterator();
     }
 
-    public static final class StructureIterator {
+    /**
+     * Converts given word to follow this structure.
+     */
+    public @NotNull String apply(@NotNull CharSequence word) {
+        Iterator<StructureSymbol> it = nonMorphemes();
 
-        private final @NotNull String structure;
-        private int i = 0;
+        StringBuilder sb = new StringBuilder(word.length());
 
-        StructureIterator(@NotNull String structure) {
-            this.structure = structure;
-            skip();
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            sb.append(it.hasNext() ? it.next().convert(c) : c);
         }
 
-        public boolean nextOutputCharUpperCased() {
-            if (i < structure.length()) {
-                char c = structure.charAt(i++);
-                skip();
-                return c == 'i' || c == 'j';
-            } else {
-                return false;
+        return sb.toString();
+    }
+
+    public enum StructureSymbol {
+
+        /**
+         * Start of a new morpheme. This must also be present at the start of a word.
+         */
+        MORPHEME_START('='),
+
+        /**
+         * Letter that is written in upper case in the standard form.
+         */
+        UPPERCASE('i'),
+
+        /**
+         * Letter that is written in upper case in the standard form. Hyphenation is forbidden before this letter.
+         */
+        UPPERCASE_NO_HYPHENATION('j'),
+
+        /**
+         * Letter that is written in lower case in the standard form.
+         */
+        LOWERCASE('p'),
+
+        /**
+         * Letter that is written in lower case in the standard form. Hyphenation is forbidden before this letter.
+         */
+        LOWERCASE_NO_HYPHENATION('q'),
+
+        /**
+         * Hyphen. Word can be split in text processors after this character without inserting an extra hyphen.
+         * If the hyphen is at morpheme boundary, the boundary symbol = must be placed after the hyphen.
+         */
+        HYPHEN('-'),
+
+        /** Colon in the word. */
+        COLON(':');
+
+        final char code;
+
+        StructureSymbol(char code) {
+            this.code = code;
+        }
+
+        public static @NotNull StructureSymbol forCode(char c) {
+            for (StructureSymbol symbol : values())
+                if (symbol.code == c)
+                    return symbol;
+
+            throw new IllegalArgumentException("unknown structure-code" + c);
+        }
+
+        public char convert(char c) {
+            return isUpperCase() ? toUpperCase(c)
+                : isLowerCase() ? toLowerCase(c)
+                : c;
+        }
+
+        public boolean agrees(char ch) {
+            switch (this) {
+                case MORPHEME_START:
+                    return true;
+                case UPPERCASE:
+                case UPPERCASE_NO_HYPHENATION:
+                    return !Character.isLowerCase(ch);
+                case LOWERCASE:
+                case LOWERCASE_NO_HYPHENATION:
+                    return !Character.isUpperCase(ch);
+                case HYPHEN:
+                    return ch == '-';
+                case COLON:
+                    return ch == ':';
+                default:
+                    throw new IllegalStateException("Unexpected type: " + this);
             }
         }
 
-        private void skip() {
-            while (i < structure.length() && structure.charAt(i) == '=')
-                i++;
+        public boolean isLowerCase() {
+            return this == LOWERCASE || this == LOWERCASE_NO_HYPHENATION;
+        }
+
+        public boolean isUpperCase() {
+            return this == UPPERCASE || this == UPPERCASE_NO_HYPHENATION;
         }
     }
 }

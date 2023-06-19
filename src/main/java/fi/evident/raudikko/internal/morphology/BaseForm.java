@@ -33,15 +33,15 @@
 package fi.evident.raudikko.internal.morphology;
 
 import fi.evident.raudikko.analysis.Structure;
-import fi.evident.raudikko.analysis.Structure.StructureIterator;
 import fi.evident.raudikko.internal.fst.Symbol;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Iterator;
+
 import static fi.evident.raudikko.analysis.WordClass.*;
 import static fi.evident.raudikko.internal.utils.StringUtils.*;
 import static java.lang.Character.isDigit;
-import static java.lang.Character.toUpperCase;
 
 final class BaseForm {
 
@@ -57,7 +57,7 @@ final class BaseForm {
         boolean isDe = false;
         boolean classTagSeen = false;
 
-        StructureIterator structureIterator = structure.structureIterator();
+        Iterator<Structure.StructureSymbol> structureIterator = structure.nonMorphemes();
 
         tokenizer.moveToStart();
         while (tokenizer.nextToken()) {
@@ -98,7 +98,7 @@ final class BaseForm {
                             hyphensInLatestXp--;
                         else {
                             // Compound place name such as "Isolla-Britannialla" needs to have "Isolla" replaced with "Iso".
-                            // However "-is" is never replaced with "-nen" ("Pohjois-Suomella").
+                            // However, "-is" is never replaced with "-nen" ("Pohjois-Suomella").
                             if (isDe && latestBaseForm != null && !matchesAt(token, i - 2, "is-") && tokenizer.containsTagAfterCurrent(TOPONYM)) {
                                 baseform.setLength(latestXpStartInBaseform);
                                 baseform.append(capitalize(latestBaseForm));
@@ -108,7 +108,7 @@ final class BaseForm {
                         isDe = false;
                     }
 
-                    baseform.append(structureIterator.nextOutputCharUpperCased() ? toUpperCase(nextChar) : nextChar);
+                    baseform.append(structureIterator.hasNext() ? structureIterator.next().convert(nextChar) : nextChar);
                 }
             }
         }
