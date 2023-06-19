@@ -43,6 +43,7 @@ final class Validator {
 
     private static final @NotNull String VOWELS = "aeiouyäö";
 
+    // TODO: instead of separate validation step, we could just bail out from parsing if analysis is invalid
     public static boolean isValidAnalysis(@NotNull SymbolBuffer tokenizer) {
         char beforeLastChar = '\0';
         char lastChar = '\0';
@@ -72,7 +73,7 @@ final class Validator {
                     requiredHyphenMissing = false;
                     endsWithNonIcaNoun = false;
 
-                } else if (tag.startsWith(Tags.PREFIX_LE)) {
+                } else if (tag.isNameTag()) {
                     startsWithProperNoun = true; // TODO starts?
                     endsWithNonIcaNoun = false;
 
@@ -82,14 +83,16 @@ final class Validator {
                 } else if (tag.matches(Tags.dg)) {
                     startsWithProperNoun = false;
 
-                } else if (tag.startsWith(Tags.PREFIX_X)) {
+                } else if (tag.isXParameter()) {
                     tokenizer.skipXTag();
 
                 } else if (tag.matches(Tags.bh)) {
                     boundaryPassed = true;
                     hyphenPresent = false;
+
                     if (requiredHyphenMissing)
                         return false;
+
                     if (hyphenRequired)
                         requiredHyphenMissing = true;
                 }

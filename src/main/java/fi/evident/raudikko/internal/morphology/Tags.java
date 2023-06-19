@@ -41,6 +41,7 @@ public final class Tags {
     public static final String PREFIX_B = "[B";
     static final @NotNull String bc = "[Bc]";
     static final @NotNull String bh = "[Bh]";
+    static final @NotNull String bm = "[Bm]";
 
     // Comparative
     static final @NotNull String de = "[De]";
@@ -59,7 +60,7 @@ public final class Tags {
 
     // Classes
     public static final String PREFIX_L = "[L";
-    public static final String PREFIX_LE = "[Le"; // names
+    public static final String PREFIX_LE = "[Le";
 
     // Parameters
     public static final String PREFIX_X = "[X";
@@ -67,5 +68,5 @@ public final class Tags {
     public static final @NotNull String xj = "[Xj]"; // johtimen perusmuoto
     static final @NotNull String xr = "[Xr]"; // rakenne
     static final @NotNull String xs = "[Xs]"; // sourceid
-    static final @NotNull String x = "[X]"; // end marker
+    public static final @NotNull String x = "[X]"; // end marker
 }
