@@ -37,6 +37,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.junit.jupiter.api.Test;
 
+import java.util.stream.Collectors;
+
 import static fi.evident.raudikko.internal.morphology.BaseForm.parseBaseform;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -63,6 +65,6 @@ class BaseFormParserTest {
     }
 
     private static @Nullable String parse(@NotNull String fstOutput, @NotNull String structure) {
-        return parseBaseform(SymbolBuffer.parse(fstOutput), new Structure(structure));
+        return parseBaseform(SymbolBuffer.parse(fstOutput), new Structure(structure.chars().mapToObj(c -> Structure.StructureSymbol.forCode((char) c)).collect(Collectors.toList())));
     }
 }

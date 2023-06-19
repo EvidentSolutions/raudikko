@@ -34,6 +34,8 @@ package fi.evident.raudikko.internal.utils;
 
 import org.jetbrains.annotations.NotNull;
 
+import static java.lang.Character.toUpperCase;
+
 public final class StringUtils {
 
     private StringUtils() {
@@ -75,10 +77,46 @@ public final class StringUtils {
         return len != 0 && s.charAt(0) == c;
     }
 
+    public static @NotNull String capitalizeIfLower(@NotNull String s) {
+        return isAllLower(s) ? capitalize(s) : s;
+    }
+
+    public static boolean isAllUpper(@NotNull CharSequence s) {
+        return s.chars().noneMatch(Character::isLowerCase);
+    }
+
+    public static boolean isAllLower(@NotNull CharSequence s) {
+        return s.chars().noneMatch(Character::isUpperCase);
+    }
+
     public static @NotNull String capitalize(@NotNull String s) {
         if (s.isEmpty()) return s;
 
-        return Character.toUpperCase(s.charAt(0)) + s.substring(1);
+        return toUpperCase(s.charAt(0)) + s.substring(1);
+    }
+
+    public static @NotNull String removeRange(@NotNull String s, int startIndex, int endIndex) {
+        if (endIndex < startIndex)
+            throw new IndexOutOfBoundsException();
+        else if (endIndex == startIndex)
+            return s;
+        else
+            return s.substring(0, startIndex) + s.substring(endIndex);
+    }
+
+    public static boolean contains(@NotNull CharSequence s, char c) {
+        return indexOf(s, c) != -1;
+    }
+
+    public static int indexOf(@NotNull CharSequence s, char c) {
+        return indexOf(s, c, 0);
+    }
+
+    public static int indexOf(@NotNull CharSequence s, char c, int fromIndex) {
+        for (int i = fromIndex, n = s.length(); i < n; i++)
+            if (s.charAt(i) == c)
+                return  i;
+        return -1;
     }
 
     public static boolean matchesAt(@NotNull CharSequence haystack, int offset, @NotNull CharSequence needle) {
