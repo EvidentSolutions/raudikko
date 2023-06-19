@@ -13,6 +13,12 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: 17
+      - name: Install voikko
+        run: |
+            sudo apt-get update
+            sudo apt-get install -y voikko-fi libvoikko1
       - uses: gradle/gradle-build-action@v2
         with:
-          arguments: build
+            arguments: build
+        env:
+            VOIKKO_LIBRARY_PATH: /usr/lib/x86_64-linux-gnu
