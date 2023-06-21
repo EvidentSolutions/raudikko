@@ -73,7 +73,7 @@ public final class Morphology {
 
     /**
      * Create a new {@link Analyzer} for this morphology.
-     *
+     * <p>
      * The analyzer is a mutable object that can be used repeatedly, but may not be
      * shared between threads.
      */
@@ -83,7 +83,7 @@ public final class Morphology {
 
     /**
      * Create a new {@link Analyzer} for this morphology.
-     *
+     * <p>
      * The analyzer is a mutable object that can be used repeatedly, but may not be
      * shared between threads.
      */

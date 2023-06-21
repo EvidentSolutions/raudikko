@@ -39,7 +39,7 @@ import java.util.List;
 
 /**
  * Interface implemented by morphological analyzer.
- *
+ * <p>
  * The implementations of this instance are <em>not thread-safe</em> unless explicitly noted
  * by the implementation.
  */
@@ -54,7 +54,7 @@ public interface Analyzer {
 
     /**
      * Analyze given word and return a list of possible interpretations.
-     *
+     * <p>
      * At most {@code maxResults} results are returned.
      */
     @NotNull List<Analysis> analyze(@NotNull CharSequence word, int maxResults);
