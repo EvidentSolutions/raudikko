@@ -32,6 +32,11 @@ java {
     }
 }
 
+tasks.javadoc {
+    // Silence doclint's warnings about missing @param and @return tags
+    (options as CoreJavadocOptions).addStringOption("Xdoclint:-missing", "-quiet")
+}
+
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
 }
