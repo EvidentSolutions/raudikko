@@ -186,22 +186,13 @@ public final class Structure {
         }
 
         public boolean agrees(char ch) {
-            switch (this) {
-                case MORPHEME_START:
-                    return true;
-                case UPPERCASE:
-                case UPPERCASE_NO_HYPHENATION:
-                    return !Character.isLowerCase(ch);
-                case LOWERCASE:
-                case LOWERCASE_NO_HYPHENATION:
-                    return !Character.isUpperCase(ch);
-                case HYPHEN:
-                    return ch == '-';
-                case COLON:
-                    return ch == ':';
-                default:
-                    throw new IllegalStateException("Unexpected type: " + this);
-            }
+            return switch (this) {
+                case MORPHEME_START -> true;
+                case UPPERCASE, UPPERCASE_NO_HYPHENATION -> !Character.isLowerCase(ch);
+                case LOWERCASE, LOWERCASE_NO_HYPHENATION -> !Character.isUpperCase(ch);
+                case HYPHEN -> ch == '-';
+                case COLON -> ch == ':';
+            };
         }
 
         public boolean isLowerCase() {

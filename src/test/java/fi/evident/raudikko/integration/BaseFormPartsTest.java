@@ -45,9 +45,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -93,7 +93,7 @@ public class BaseFormPartsTest {
             List<String> lines = new BufferedReader(new InputStreamReader(in, UTF_8)).lines()
                     .map(String::trim)
                     .filter(it -> !it.isEmpty())
-                    .collect(Collectors.toList());
+                    .toList();
 
             BaseFormPartsTest.WordTest current = null;
 

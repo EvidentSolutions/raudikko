@@ -110,7 +110,7 @@ final class StructureParser {
                 for (int i = 0, len = currentToken.length(); i < len; i++) {
                     char c = currentToken.charAt(i);
                     switch (c) {
-                        case '-':
+                        case '-' -> {
                             if (charsSeen > charsFromDefault) {
                                 defaultTitleCase =
                                     createDefaultStructure(structure,
@@ -132,8 +132,8 @@ final class StructureParser {
                                 charsMissing--;
                             if (structure.size() == 1)
                                 structure.replaceStartWithHyphen();
-                            break;
-                        case ':':
+                        }
+                        case ':' -> {
                             if (isAbbr) {
                                 if (charsSeen > charsFromDefault) {
                                     defaultTitleCase = createDefaultStructure(structure, charsSeen - charsFromDefault, defaultTitleCase, true);
@@ -146,10 +146,8 @@ final class StructureParser {
                             structure.add(COLON);
                             if (charsMissing != 0)
                                 charsMissing--;
-                            break;
-                        default:
-                            charsSeen++;
-                            break;
+                        }
+                        default -> charsSeen++;
                     }
                 }
             }

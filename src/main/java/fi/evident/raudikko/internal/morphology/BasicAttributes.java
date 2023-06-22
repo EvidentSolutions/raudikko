@@ -70,67 +70,65 @@ final class BasicAttributes {
             if (tag == null) continue;
 
             switch (tag.toString().charAt(1)) {
-                case 'L':
+                case 'L' -> {
                     if (analysis.getWordClass() == null) {
                         if (tag.matches(NOUN_ADJECTIVE))
                             analysis.setWordClass(convertNimiLaatusanaToLaatusana || analysis.getComparison() == COMPARATIVE || analysis.getComparison() == SUPERLATIVE || tokenizer.firstTokenIs(NUMERAL) ? ADJECTIVE : NOUN_ADJECTIVE);
                         else
                             analysis.setWordClass(wordClasses.get(tag));
                     }
-                    break;
-                case 'N':
+                }
+                case 'N' -> {
                     if (analysis.getNumber() == null && analysis.getWordClass() != PREFIX && analysis.getWordClass() != ADVERB)
                         analysis.setNumber(grammaticalNumbers.get(tag));
-                    break;
-                case 'P':
+                }
+                case 'P' -> {
                     if (analysis.getPerson() == null)
                         analysis.setPerson(persons.get(tag));
-                    break;
-                case 'S':
+                }
+                case 'S' -> {
                     if (analysis.getWordClass() != PREFIX && analysis.getWordClass() != ADVERB) {
                         if (analysis.getLocative() == null)
                             analysis.setLocative(locatives.get(tag));
                         if (tag.matches(INSTRUCTIVE_STI))
                             convertNimiLaatusanaToLaatusana = true;
                     }
-                    break;
-                case 'T':
+                }
+                case 'T' -> {
                     if (analysis.getMood() == null && analysis.getWordClass() == null)
                         analysis.setMood(moods.get(tag));
-                    break;
-                case 'A':
+                }
+                case 'A' -> {
                     if (analysis.getTense() == null)
                         analysis.setTense(tenses.get(tag));
-                    break;
-                case 'F':
+                }
+                case 'F' -> {
                     if (tag.matches(Tags.fko))
                         analysis.setInterrogative(true);
                     else if (analysis.getFocus() == null)
                         analysis.setFocus(focusParticles.get(tag));
-                    break;
-                case 'O':
+                }
+                case 'O' -> {
                     if (analysis.getPossessive() == null)
                         analysis.setPossessive(possessives.get(tag));
-                    break;
-                case 'C':
+                }
+                case 'C' -> {
                     if (analysis.getWordClass() == null && analysis.getComparison() == null)
                         analysis.setComparison(comparisons.get(tag));
-                    break;
-                case 'E':
+                }
+                case 'E' -> {
                     if (analysis.getNegative() == null)
                         analysis.setNegative(negatives.get(tag));
-                    break;
-                case 'R':
+                }
+                case 'R' -> {
                     // TODO: Checking the end for [Ln] is done to handle -tUAnne ("kuunneltuanne"). This is for compatibility
                     // with Malaga implementation. See VISK § 543 (temporaalirakenne) for correct analysis.
                     if (analysis.getParticiple() == null && !bcPassed)
                         if (analysis.getWordClass() == null || analysis.getWordClass() == ADJECTIVE || tokenizer.lastTokenIs(NOUN))
                             analysis.setParticiple(participles.get(tag));
-                    break;
-                case 'I':
-                    addInfoFlag(tag, analysis, tokenizer);
-                    break;
-                case 'B':
+                }
+                case 'I' -> addInfoFlag(tag, analysis, tokenizer);
+                case 'B' -> {
                     if (tag.matches(Tags.bc) && analysis.getWordClass() == null) {
                         // is preceded by "-" or "-[Bh]"?
                         boolean match = tokenizer.relativeTokenEndsWithChar(-1, '-')
@@ -141,7 +139,7 @@ final class BasicAttributes {
                             bcPassed = true;
                         }
                     }
-                    break;
+                }
             }
         }
 

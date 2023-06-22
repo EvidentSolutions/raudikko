@@ -46,7 +46,7 @@ public final class MyInputStream {
     private int position = 0;
 
     public MyInputStream(@NotNull InputStream stream) {
-        this.stream = (stream instanceof BufferedInputStream) ? (BufferedInputStream) stream : new BufferedInputStream(stream);
+        this.stream = (stream instanceof BufferedInputStream s) ? s : new BufferedInputStream(stream);
     }
 
     public int readByte() throws IOException {
@@ -93,8 +93,7 @@ public final class MyInputStream {
             strBytes.write(b);
         }
 
-        //noinspection StringOperationCanBeSimplified
-        return new String(strBytes.toByteArray(), UTF_8);
+        return strBytes.toString(UTF_8);
     }
 
     public boolean hasMore() throws IOException {

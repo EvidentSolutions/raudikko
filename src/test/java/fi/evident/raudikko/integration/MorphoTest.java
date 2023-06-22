@@ -48,7 +48,6 @@ import java.io.InputStreamReader;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.lang.Integer.parseInt;
@@ -108,7 +107,7 @@ public class MorphoTest {
 
             List<String> lines = new BufferedReader(new InputStreamReader(in, UTF_8)).lines()
                     .filter(it -> !it.isEmpty() && !it.startsWith("#"))
-                    .collect(Collectors.toList());
+                    .toList();
 
             WordTest current = null;
 

@@ -130,26 +130,28 @@ public final class UnweightedTransducer {
 
     private boolean flagDiacriticCheck(short[] flags, @NotNull Diacritic ofv, short value) {
         switch (ofv.op) {
-            case P:
+            case P -> {
                 flags[ofv.feature] = ofv.value;
                 return true;
-            case C:
+            }
+            case C -> {
                 flags[ofv.feature] = Diacritic.Neutral;
                 return true;
-            case U: {
+            }
+            case U -> {
                 if (value != Diacritic.Neutral)
                     return value == ofv.value;
                 else
                     flags[ofv.feature] = ofv.value;
                 return true;
             }
-            case R: {
+            case R -> {
                 boolean ok = (ofv.value != Diacritic.Any || value != Diacritic.Neutral) && (ofv.value == Diacritic.Any || value == ofv.value);
                 if (ok)
                     flags[ofv.feature] = value;
                 return ok;
             }
-            case D: {
+            case D -> {
                 boolean ok = (ofv.value != Diacritic.Any || value == Diacritic.Neutral) && value != ofv.value;
                 if (ok)
                     flags[ofv.feature] = value;

@@ -60,12 +60,8 @@ public final class Morphology {
         if (stream == null)
             throw new IllegalStateException("Failed to find bundled morphology");
 
-        try {
-            try {
-                return new Morphology(UnweightedVfstLoader.load(stream));
-            } finally {
-                stream.close();
-            }
+        try (stream) {
+            return new Morphology(UnweightedVfstLoader.load(stream));
         } catch (IOException e) {
             throw new UncheckedIOException("Failed to load bundled morphology", e);
         }

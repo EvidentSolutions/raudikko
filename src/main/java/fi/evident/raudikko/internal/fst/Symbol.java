@@ -37,7 +37,7 @@ import fi.evident.raudikko.internal.morphology.Tags;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class Symbol {
+public sealed class Symbol permits Diacritic {
 
     private final @NotNull String s;
 
@@ -52,7 +52,7 @@ public class Symbol {
     }
 
     public @Nullable Diacritic getDiacritic() {
-        return this instanceof Diacritic ? (Diacritic) this : null;
+        return this instanceof Diacritic d ? d : null;
     }
 
     public boolean isFinal() {
