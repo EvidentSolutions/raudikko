@@ -3,6 +3,7 @@
 ### Changes
 
 - Add enums for fields of Analysis where applicable. Breaking change if you were using the fields.
+- Bump the minimum supported Java version to 17
 
 ## 0.1.4 (2023-05-31)
 
