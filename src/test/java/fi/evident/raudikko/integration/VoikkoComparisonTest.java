@@ -53,7 +53,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static fi.evident.raudikko.analysis.WordClass.NOUN;
 import static fi.evident.raudikko.integration.TestUtils.locateProjectRoot;
 import static fi.evident.raudikko.test.ResourceUtils.readLines;
-import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
@@ -122,8 +121,8 @@ public class VoikkoComparisonTest {
     @Test
     void compareReferenceText() {
         for (String word : referenceWords) {
-            List<Map<String, ?>> voikkoResult = voikko.analyze(word).stream().map(VoikkoComparisonTest::withoutUnsupportedAttributes).collect(toList());
-            List<Map<String, ?>> raudikkoResult = analyzer.analyze(word).stream().map(Analysis::toVoikkoFormat).collect(toList());
+            List<? extends Map<String, ?>> voikkoResult = voikko.analyze(word).stream().map(VoikkoComparisonTest::withoutUnsupportedAttributes).toList();
+            List<Map<String, String>> raudikkoResult = analyzer.analyze(word).stream().map(Analysis::toVoikkoFormat).toList();
             assertEquals(voikkoResult, raudikkoResult);
         }
     }
