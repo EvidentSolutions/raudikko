@@ -40,7 +40,7 @@ import java.io.InputStream;
 import java.util.*;
 
 /**
- * Loads [UnweightedTransducer] from [VFST-file](https://github.com/voikko/corevoikko/wiki/vfst-fileformat).
+ * Loads [UnweightedTransducer] from a <a href="https://github.com/voikko/corevoikko/wiki/vfst-fileformat">VFST-file</a>.
  */
 public final class UnweightedVfstLoader {
 
