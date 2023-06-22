@@ -40,7 +40,10 @@ import org.junit.jupiter.api.TestInstance;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -115,9 +118,9 @@ class UnweightedTransducerTest {
 
     @Test
     void baseFormForOrdinal() {
-        assertMatches("kahdennellakymmenennellä", setOf("[Lu][Xp]kahdes[X]kahde[Sade][Ny]nnella[Bc][Lu][Bc][Xp]kymmenes[X][Sade][Ny]kymmenennellä", "[Lu][Xp]kahdes[X]kahde[Sade][Ny]nnella[Bc][Xp]kymmenes[X][Sade][Ny]kymmenennellä"));
-        assertMatches("kolmannellasadannella", setOf("[Lu][Xp]kolmas[X]kolma[Sade][Ny]nnella[Bc][Lu][Bc][Xp]sadas[X][Sade][Ny]sadannella", "[Lu][Xp]kolmas[X]kolma[Sade][Ny]nnella[Bc][Xp]sadas[X][Sade][Ny]sadannella"));
-        assertMatches("kolmannellamiljoonannella", setOf("[Lu][Xp]kolmas[X]kolma[Sade][Ny]nnella[Bc][Lu][Bc][Xp]miljoonas[X][Sade][Ny]miljoonannella", "[Lu][Xp]kolmas[X]kolma[Sade][Ny]nnella[Bc][Xp]miljoonas[X][Sade][Ny]miljoonannella"));
+        assertMatches("kahdennellakymmenennellä", Set.of("[Lu][Xp]kahdes[X]kahde[Sade][Ny]nnella[Bc][Lu][Bc][Xp]kymmenes[X][Sade][Ny]kymmenennellä", "[Lu][Xp]kahdes[X]kahde[Sade][Ny]nnella[Bc][Xp]kymmenes[X][Sade][Ny]kymmenennellä"));
+        assertMatches("kolmannellasadannella", Set.of("[Lu][Xp]kolmas[X]kolma[Sade][Ny]nnella[Bc][Lu][Bc][Xp]sadas[X][Sade][Ny]sadannella", "[Lu][Xp]kolmas[X]kolma[Sade][Ny]nnella[Bc][Xp]sadas[X][Sade][Ny]sadannella"));
+        assertMatches("kolmannellamiljoonannella", Set.of("[Lu][Xp]kolmas[X]kolma[Sade][Ny]nnella[Bc][Lu][Bc][Xp]miljoonas[X][Sade][Ny]miljoonannella", "[Lu][Xp]kolmas[X]kolma[Sade][Ny]nnella[Bc][Xp]miljoonas[X][Sade][Ny]miljoonannella"));
     }
 
     @Test
@@ -133,10 +136,5 @@ class UnweightedTransducerTest {
     @Test
     void baseFormForCapitalizedWord() {
         assertSingle("kissa", "[Ln][Xp]kissa[X]kiss[Sn][Ny]a");
-    }
-
-    @SafeVarargs
-    private static <T> Set<T> setOf(T... args) {
-        return new HashSet<>(Arrays.asList(args));
     }
 }

@@ -39,8 +39,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
-import static java.util.Arrays.asList;
-import static java.util.Collections.singletonList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 
@@ -109,10 +109,10 @@ class FinnishVfstAnalyzerTest {
     @Test
     void compoundWords() {
         assertBaseForm("Iso-Britannia", "Isolla-Britannialla");
-        assertEquals(asList("pohjois-suomi", "Pohjois-Suomi"), analyzer.baseForms("Pohjois-Suomella"));
+        assertEquals(List.of("pohjois-suomi", "Pohjois-Suomi"), analyzer.baseForms("Pohjois-Suomella"));
     }
 
     private void assertBaseForm(@NotNull String expected, @NotNull String word) {
-        assertEquals(singletonList(expected), analyzer.baseForms(word));
+        assertEquals(List.of(expected), analyzer.baseForms(word));
     }
 }

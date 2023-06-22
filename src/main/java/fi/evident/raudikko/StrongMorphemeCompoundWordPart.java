@@ -57,7 +57,7 @@ public final class StrongMorphemeCompoundWordPart implements WordPart {
 
     @Override
     public @NotNull List<String> getBaseForms() {
-        return Collections.singletonList(baseForm);
+        return List.of(baseForm);
     }
 
     @Override

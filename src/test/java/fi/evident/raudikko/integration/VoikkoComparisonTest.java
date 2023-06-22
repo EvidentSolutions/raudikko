@@ -45,7 +45,6 @@ import org.puimula.libvoikko.Voikko;
 import java.io.File;
 import java.net.URL;
 import java.util.AbstractList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -144,7 +143,7 @@ public class VoikkoComparisonTest {
         long raudikkoMillis = System.currentTimeMillis() - raudikkoStart;
         System.out.printf("raudikko:          %5d ms (%d words/s)\n", raudikkoMillis, (words.size() * 1000L) / raudikkoMillis);
 
-        for (int threadCount : Arrays.asList(2, 4, 8, 16)) {
+        for (int threadCount : List.of(2, 4, 8, 16)) {
             long concurrentStart = System.currentTimeMillis();
             AtomicInteger next = new AtomicInteger(0);
             AtomicInteger analyzed = new AtomicInteger(0);
