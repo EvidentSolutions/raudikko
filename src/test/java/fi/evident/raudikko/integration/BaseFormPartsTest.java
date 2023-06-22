@@ -32,6 +32,7 @@
 
 package fi.evident.raudikko.integration;
 
+import fi.evident.raudikko.Analysis;
 import fi.evident.raudikko.Analyzer;
 import fi.evident.raudikko.AnalyzerConfiguration;
 import fi.evident.raudikko.Morphology;
@@ -74,15 +75,9 @@ public class BaseFormPartsTest {
     @ParameterizedTest(name = "{0}")
     @MethodSource("testData")
     void baseFormPartsTest(@NotNull BaseFormPartsTest.WordTest data) {
-        var analyze = analyzer.analyze(data.word);
+        var parts = analyzer.analyze(data.word).stream().map(Analysis::getBaseFormParts).toList();
 
-        assertEquals(data.expectedBaseFormParts.size(), analyze.size());
-
-        for (int i = 0; i < data.expectedBaseFormParts.size(); i++) {
-            List<String> expected = data.expectedBaseFormParts.get(i);
-            List<String> actual = analyze.get(i).getBaseFormParts();
-            assertEquals(expected, actual);
-        }
+        assertEquals(data.expectedBaseFormParts, parts);
     }
 
     private static @NotNull Stream<BaseFormPartsTest.WordTest> testData() throws IOException {

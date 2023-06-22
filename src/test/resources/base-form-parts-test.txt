@@ -68,8 +68,8 @@ word:juosta
 word:nopea
  [nopea]
 word:hyvin
- [hyvä]
  [hyvin]
+ [hyvä]
 word:taistolainen
  [taistolainen]
 word:joka
@@ -81,8 +81,8 @@ word:ohi
 word:hei
  [hei]
 word:eli
- [elää]
  [eli]
+ [elää]
 word:Tiina
  [Tiina]
 word:Pitkänen
@@ -226,8 +226,8 @@ word:ryhdymme
 word:juoksemme
  [juosta]
 word:minä
- [minä]
  [mikä]
+ [minä]
  [minä]
 word:sinä
  [se]
@@ -364,15 +364,15 @@ word:katselemassa
 word:katsellessa
  [katsella]
 word:katselisin
- [katsella]
  [katse,lisä]
+ [katsella]
 word:pahoinpiteli
  [pahoinpidellä]
 word:hinaajalla
  [hinata,hinaaja]
 word:Suomi-Sveitsi
- [suomi,Sveitsi]
  [Suomi,Sveitsi]
+ [suomi,Sveitsi]
 word:CD-ROM
  [CD-ROM,cd-rom]
  [cd-rom,rom]
@@ -463,17 +463,17 @@ word:Gallen-Kallela-Sirén
 word:-sävellys-
  [säveltää,sävellys]
 word:ilman
- [Ilma]
  [ilman]
  [ilma]
+ [Ilma]
 word:suomalais-neuvostoliittolainen
  [suomalainen,neuvosto,liittolainen,suomalais-neuvosto,neuvostoliittolainen]
  [suomalainen,Neuvostoliitto]
 word:Isossa-Britanniassa
  [iso,Britannia]
 word:Uusimaa
- [uusia,uusima]
  [Uusimaa]
+ [uusia,uusima]
 word:Keski-Uusimaa
  [Uusimaa,keski-uusi]
 word:Tyynessämeressä
@@ -1050,9 +1050,9 @@ word:syötyään
 word:kuunneltuamme
  [kuunnella,kuunneltu]
 word:saapas
- [saada]
- [saada]
  [saapas]
+ [saada]
+ [saada]
 word:XXVII
  [xxvii]
  [xxvii]
@@ -1165,8 +1165,8 @@ word:yhteiskuntapoliittinen
 word:ollaksemme
  [olla]
 word:Lounais-
- []
  [lounas,lounainen]
+ []
 word:Keski-
  [keski]
  []
