@@ -32,7 +32,6 @@
 
 package fi.evident.raudikko.integration;
 
-import fi.evident.raudikko.Analysis;
 import fi.evident.raudikko.Analyzer;
 import fi.evident.raudikko.Morphology;
 import org.jetbrains.annotations.NotNull;
@@ -43,10 +42,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.*;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
@@ -64,19 +61,19 @@ public class MorphoTest {
     @ParameterizedTest(name = "{0}")
     @MethodSource("testData")
     void morphoTest(@NotNull MorphoTest.WordTest data) {
-        List<Analysis> analyses = analyzer.analyze(data.word);
+        var analyses = analyzer.analyze(data.word);
 
         if (data.expected != null)
             assertEquals(data.expected, analyses.size());
 
-        for (Map<String, String> expectedAnalysis : data.analyses) {
+        for (var expectedAnalysis : data.analyses) {
 
             // These are not supported by Raudikko
             expectedAnalysis.remove("WORDIDS");
             expectedAnalysis.remove("WORDBASES");
 
-            boolean anyMatch = false;
-            for (Analysis analysis : analyses) {
+            var anyMatch = false;
+            for (var analysis : analyses) {
                 Map<String, String> map = analysis.toVoikkoFormat();
                 map.keySet().retainAll(expectedAnalysis.keySet());
                 if (map.equals(expectedAnalysis))
@@ -88,34 +85,33 @@ public class MorphoTest {
         }
 
         if (!data.forbiddenKeys.isEmpty() || !data.forbiddenValues.isEmpty())
-            for (Analysis analysis : analyses) {
-                Map<String, String> map = analysis.toVoikkoFormat();
+            for (var analysis : analyses) {
+                var map = analysis.toVoikkoFormat();
 
-                for (String forbidden : data.forbiddenKeys)
+                for (var forbidden : data.forbiddenKeys)
                     if (map.containsKey(forbidden))
                         fail("Analysis contains forbidden key " + forbidden);
 
-                for (String forbidden : data.forbiddenValues)
+                for (var forbidden : data.forbiddenValues)
                     if (map.containsValue(forbidden))
                         fail("Analysis contains forbidden value " + forbidden);
             }
     }
 
     private static @NotNull Stream<WordTest> testData() throws IOException {
-        try (InputStream in = MorphoTest.class.getResourceAsStream("/morpho-test.txt")) {
+        try (var in = MorphoTest.class.getResourceAsStream("/morpho-test.txt")) {
             assertNotNull(in, "could not find morphology test data");
 
-            List<String> lines = new BufferedReader(new InputStreamReader(in, UTF_8)).lines()
+            var lines = new BufferedReader(new InputStreamReader(in, UTF_8)).lines()
                     .filter(it -> !it.isEmpty() && !it.startsWith("#"))
                     .toList();
 
             WordTest current = null;
 
-            List<WordTest> result = new ArrayList<>();
+            var result = new ArrayList<WordTest>();
+            var keyValuePattern = Pattern.compile("(\\w+)=(.+)");
 
-            Pattern keyValuePattern = Pattern.compile("(\\w+)=(.+)");
-
-            for (String line : lines) {
+            for (var line : lines) {
                 line = normalizeLine(line);
 
                 if (line.startsWith("word:")) {
@@ -137,11 +133,11 @@ public class MorphoTest {
                     current.analyses.add(new HashMap<>());
 
                 } else {
-                    Matcher m = keyValuePattern.matcher(line);
+                    var m = keyValuePattern.matcher(line);
                     if (m.matches()) {
                         if (current.analyses.isEmpty()) continue; // TODO: fix test file
 
-                        Map<String, String> currentAnalysis = current.analyses.get(current.analyses.size() - 1);
+                        var currentAnalysis = current.analyses.get(current.analyses.size() - 1);
                         currentAnalysis.put(m.group(1), m.group(2));
                     } else {
                         fail("unknown line: '" + line + "'");

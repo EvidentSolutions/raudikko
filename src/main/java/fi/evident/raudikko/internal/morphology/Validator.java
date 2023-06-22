@@ -33,7 +33,6 @@
 package fi.evident.raudikko.internal.morphology;
 
 import fi.evident.raudikko.analysis.WordClass;
-import fi.evident.raudikko.internal.fst.Symbol;
 import org.jetbrains.annotations.NotNull;
 
 import static java.lang.Character.isDigit;
@@ -45,20 +44,20 @@ final class Validator {
 
     // TODO: instead of separate validation step, we could just bail out from parsing if analysis is invalid
     public static boolean isValidAnalysis(@NotNull SymbolBuffer tokenizer) {
-        char beforeLastChar = '\0';
-        char lastChar = '\0';
-        boolean boundaryPassed = false;
-        boolean hyphenPresent = false;
-        boolean hyphenUnconditionallyAllowed = false;
-        boolean hyphenUnconditionallyAllowedJustSet = false;
-        boolean hyphenRequired = false;
-        boolean requiredHyphenMissing = false;
-        boolean startsWithProperNoun = false;
-        boolean endsWithNonIcaNoun = false;
+        var beforeLastChar = '\0';
+        var lastChar = '\0';
+        var boundaryPassed = false;
+        var hyphenPresent = false;
+        var hyphenUnconditionallyAllowed = false;
+        var hyphenUnconditionallyAllowedJustSet = false;
+        var hyphenRequired = false;
+        var requiredHyphenMissing = false;
+        var startsWithProperNoun = false;
+        var endsWithNonIcaNoun = false;
 
         tokenizer.moveToStart();
         while (tokenizer.nextToken()) {
-            Symbol tag = tokenizer.getCurrentTag();
+            var tag = tokenizer.getCurrentTag();
             if (tag != null) {
                 if (tag.matches(Tags.isf)) {
                     hyphenUnconditionallyAllowed = true;

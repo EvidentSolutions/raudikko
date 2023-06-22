@@ -84,7 +84,7 @@ public final class MyInputStream {
 
     @NotNull
     public String readUtf8String() throws IOException {
-        ByteArrayOutputStream strBytes = new ByteArrayOutputStream();
+        var strBytes = new ByteArrayOutputStream();
         strBytes.reset();
 
         while (true) {

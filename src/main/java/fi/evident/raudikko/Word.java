@@ -34,15 +34,17 @@ package fi.evident.raudikko;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collections;
 import java.util.List;
+
+import static java.util.Collections.unmodifiableList;
+import static java.util.stream.Collectors.joining;
 
 public final class Word {
 
     private @NotNull final List<WordPart> wordParts;
 
     public Word(@NotNull List<WordPart> wordParts) {
-        this.wordParts = Collections.unmodifiableList(wordParts);
+        this.wordParts = unmodifiableList(wordParts);
     }
 
     public @NotNull List<WordPart> getWordParts() {
@@ -51,11 +53,6 @@ public final class Word {
 
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder();
-
-        for (WordPart wordPart : wordParts)
-            result.append(wordPart);
-
-        return result.toString();
+        return wordParts.stream().map(WordPart::toString).collect(joining());
     }
 }

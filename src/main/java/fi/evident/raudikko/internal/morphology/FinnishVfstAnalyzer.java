@@ -70,7 +70,7 @@ public final class FinnishVfstAnalyzer implements Analyzer {
 
     @Override
     public @NotNull List<Analysis> analyze(@NotNull CharSequence word, int maxResults) {
-        ArrayList<Analysis> results = new ArrayList<>();
+        var results = new ArrayList<Analysis>();
 
         if (word.length() > MAX_WORD_LENGTH)
             return results;
@@ -85,7 +85,7 @@ public final class FinnishVfstAnalyzer implements Analyzer {
 
     @Override
     public @NotNull List<String> baseForms(@NotNull CharSequence word) {
-        ArrayList<String> results = new ArrayList<>();
+        var results = new ArrayList<String>();
 
         if (word.length() > MAX_WORD_LENGTH)
             return results;
@@ -113,14 +113,14 @@ public final class FinnishVfstAnalyzer implements Analyzer {
         if (!isValidAnalysis(buffer))
             return;
 
-        Analysis analysis = new Analysis();
+        var analysis = new Analysis();
 
-        boolean dependsOnStructure =
-                configuration.isIncludeStructure()
-                        || configuration.isIncludeBaseForm()
-                        || configuration.isIncludeOrganizationNameAnalysis();
+        var dependsOnStructure =
+            configuration.isIncludeStructure()
+                || configuration.isIncludeBaseForm()
+                || configuration.isIncludeOrganizationNameAnalysis();
 
-        Structure structure = dependsOnStructure ? parseStructure(buffer, wordLength) : null;
+        var structure = dependsOnStructure ? parseStructure(buffer, wordLength) : null;
 
         if (configuration.isIncludeStructure())
             analysis.setStructure(requireNonNull(structure));
@@ -143,7 +143,7 @@ public final class FinnishVfstAnalyzer implements Analyzer {
         results.add(analysis);
 
         if (configuration.isIncludeOrganizationNameAnalysis()) {
-            Analysis organizationNameAnalysis = organizationNameAnalysis(analysis, buffer, requireNonNull(structure));
+            var organizationNameAnalysis = organizationNameAnalysis(analysis, buffer, requireNonNull(structure));
             if (organizationNameAnalysis != null)
                 results.add(organizationNameAnalysis);
         }

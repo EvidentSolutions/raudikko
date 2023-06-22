@@ -39,7 +39,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -56,7 +55,7 @@ class UnweightedTransducerTest {
 
     @BeforeAll
     public void setup() throws Exception {
-        try (InputStream stream = UnweightedTransducer.class.getResourceAsStream("/morpho/5/mor-morpho/mor.vfst")) {
+        try (var stream = UnweightedTransducer.class.getResourceAsStream("/morpho/5/mor-morpho/mor.vfst")) {
             if (stream == null) throw new FileNotFoundException("could not load morphology");
 
             transducer = UnweightedVfstLoader.load(stream);
@@ -64,11 +63,11 @@ class UnweightedTransducerTest {
     }
 
     private @NotNull List<String> transduce(@NotNull String word) {
-        Symbol[] output = new Symbol[2000];
-        SymbolBuffer buffer = new SymbolBuffer(2000);
-        ArrayList<Symbol> inputBuffer = new ArrayList<>();
-        ArrayList<String> result = new ArrayList<>();
-        short[] flags = new short[transducer.flagDiacriticFeatureCount];
+        var output = new Symbol[2000];
+        var buffer = new SymbolBuffer(2000);
+        var inputBuffer = new ArrayList<Symbol>();
+        var result = new ArrayList<String>();
+        var flags = new short[transducer.flagDiacriticFeatureCount];
 
         transducer.transduce(word, inputBuffer, flags, output, depth -> {
             buffer.reset(output, depth);
@@ -79,7 +78,7 @@ class UnweightedTransducerTest {
     }
 
     private void assertSingle(@NotNull String word, @NotNull String expected) {
-        List<String> result = transduce(word);
+        var result = transduce(word);
         if (result.size() != 1)
             fail("expected single result, got " + result.size() + ": " + result);
 
@@ -104,7 +103,6 @@ class UnweightedTransducerTest {
     void baseFormForCompoundWord2() {
         assertSingle("hevosrakenteinen", "[Ln][Xp]hevonen[X]hevos[Bh][Bc][Ll][Xp]rakenteinen[X]rakentei[Sn][Ny]nen");
     }
-
 
     @Test
     void baseFormForNounDerivedFromVerb() {

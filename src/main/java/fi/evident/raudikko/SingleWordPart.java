@@ -88,7 +88,7 @@ public final class SingleWordPart implements WordPart {
     }
 
     public boolean hasAnyAttribute(@NotNull WordAttribute... attributes) {
-        for (WordAttribute flag : attributes)
+        for (var flag : attributes)
             if (hasAttribute(flag))
                 return true;
 

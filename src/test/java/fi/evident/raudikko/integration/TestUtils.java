@@ -42,7 +42,7 @@ import static java.util.Objects.requireNonNull;
 final class TestUtils {
 
     static @NotNull File locateProjectRoot() {
-        File dir = new File("").getAbsoluteFile();
+        var dir = new File("").getAbsoluteFile();
 
         while (dir != null) {
             if (Arrays.asList(requireNonNull(dir.list())).contains("gradlew"))

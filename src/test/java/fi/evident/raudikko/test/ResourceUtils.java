@@ -34,24 +34,21 @@ package fi.evident.raudikko.test;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 public final class ResourceUtils {
 
      public static @NotNull List<String> readLines(@NotNull String path) throws IOException {
-        try (InputStream in = ResourceUtils.class.getClassLoader().getResourceAsStream(path)) {
+        try (var in = ResourceUtils.class.getClassLoader().getResourceAsStream(path)) {
             if (in == null) throw new FileNotFoundException("Could not find " + path);
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(in, StandardCharsets.UTF_8));
-            String line;
-
-            ArrayList<String> result = new ArrayList<>();
-            while ((line = reader.readLine()) != null)
-                result.add(line);
-            return result;
+            return new BufferedReader(new InputStreamReader(in, UTF_8)).lines().toList();
         }
     }
 }

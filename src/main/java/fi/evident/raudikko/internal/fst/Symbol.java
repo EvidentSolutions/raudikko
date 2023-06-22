@@ -86,7 +86,7 @@ public sealed class Symbol permits Diacritic {
     }
 
     public boolean matches(@NotNull AnalysisClass c) {
-        String tag = c.getMorphologyTag();
+        var tag = c.getMorphologyTag();
         return s.length() == tag.length() + 2 && s.charAt(0) == '[' && s.charAt(s.length() - 1) == ']' && s.indexOf(tag) == 1;
     }
 

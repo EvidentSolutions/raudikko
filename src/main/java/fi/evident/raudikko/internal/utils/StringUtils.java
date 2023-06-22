@@ -43,13 +43,13 @@ public final class StringUtils {
 
     public static @NotNull String replaceCharAt(@NotNull String s, int i, char c) {
         if (s.charAt(i) == c) return s;
-        char[] chars = s.toCharArray();
+        var chars = s.toCharArray();
         chars[i] = c;
         return new String(chars);
     }
 
     public static @NotNull String withoutChar(@NotNull CharSequence s, char removed) {
-        StringBuilder sb = new StringBuilder(s.length());
+        var sb = new StringBuilder(s.length());
         for (int i = 0, len = s.length(); i < len; i++) {
             char c = s.charAt(i);
             if (c != removed)

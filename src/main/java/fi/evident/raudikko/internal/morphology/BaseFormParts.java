@@ -32,12 +32,10 @@
 
 package fi.evident.raudikko.internal.morphology;
 
-import fi.evident.raudikko.Word;
 import fi.evident.raudikko.WordPart;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import static fi.evident.raudikko.internal.utils.StringUtils.removeLeadingAndTrailing;
@@ -48,16 +46,16 @@ final class BaseFormParts {
     }
 
     static @NotNull List<String> parseBaseFormParts(@NotNull SymbolBuffer tokenizer, @NotNull WordParser wordParser) {
-        Word word = wordParser.parseWord(tokenizer);
+        var word = wordParser.parseWord(tokenizer);
 
-        List<String> result = new ArrayList<>();
-        List<WordPart> wordParts = word.getWordParts();
+        var result = new ArrayList<String>();
+        var wordParts = word.getWordParts();
 
-        for (WordPart wordPart : wordParts) {
+        for (var wordPart : wordParts) {
             result.addAll(wordPart.getBaseForms());
 
             if (wordPart.isInBaseForm() && !wordPart.isProperNoun()) {
-                String wp = removeLeadingAndTrailing(wordPart.toString(), '-');
+                var wp = removeLeadingAndTrailing(wordPart.toString(), '-');
 
                 if (!result.contains(wp))
                     result.add(wp);
@@ -65,7 +63,7 @@ final class BaseFormParts {
         }
 
         for (int i = 0; i < wordParts.size(); i++) {
-            boolean isLast = i == wordParts.size() - 1;
+            var isLast = i == wordParts.size() - 1;
 
             if (wordParts.get(i).isInBaseForm())
                 for (int j = isLast ? 1 : 0; j < i; j++)
@@ -76,11 +74,11 @@ final class BaseFormParts {
     }
 
     private static @NotNull String joinSubCompoundWord(@NotNull List<WordPart> subList) {
-        StringBuilder s = new StringBuilder();
+        var s = new StringBuilder();
 
-        for (Iterator<WordPart> subWordIterator = subList.iterator(); subWordIterator.hasNext();) {
-            WordPart subWord = subWordIterator.next();
-            boolean isLastSubWord = !subWordIterator.hasNext();
+        for (var subWordIterator = subList.iterator(); subWordIterator.hasNext();) {
+            var subWord = subWordIterator.next();
+            var isLastSubWord = !subWordIterator.hasNext();
 
             if (isLastSubWord)
                 s.append(removeLeadingAndTrailing(subWord.toString(), '-'));

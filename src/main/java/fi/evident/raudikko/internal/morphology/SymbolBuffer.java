@@ -68,7 +68,7 @@ public final class SymbolBuffer {
 
     @TestOnly
     static @NotNull SymbolBuffer parse(@NotNull String cs) {
-        ArrayList<Symbol> symbols = new ArrayList<>();
+        var symbols = new ArrayList<Symbol>();
 
         int offset = 0;
         while (offset < cs.length()) {
@@ -83,7 +83,7 @@ public final class SymbolBuffer {
             }
         }
 
-        SymbolBuffer buffer = new SymbolBuffer(2000);
+        var buffer = new SymbolBuffer(2000);
         buffer.reset(symbols.toArray(new Symbol[0]), symbols.size());
         return buffer;
     }
@@ -92,9 +92,9 @@ public final class SymbolBuffer {
         textBuffer.setLength(0);
         int index = 0;
 
-        boolean previousChar = false;
+        var previousChar = false;
         for (int i = 0; i < length; i++) {
-            Symbol symbol = symbols[i];
+            var symbol = symbols[i];
 
             if (symbol.isChar()) {
                 if (!previousChar) {

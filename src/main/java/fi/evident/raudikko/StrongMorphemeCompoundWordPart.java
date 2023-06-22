@@ -34,8 +34,10 @@ package fi.evident.raudikko;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collections;
 import java.util.List;
+
+import static java.util.Collections.unmodifiableList;
+import static java.util.stream.Collectors.joining;
 
 public final class StrongMorphemeCompoundWordPart implements WordPart {
 
@@ -43,7 +45,7 @@ public final class StrongMorphemeCompoundWordPart implements WordPart {
     private final @NotNull String baseForm;
 
     public StrongMorphemeCompoundWordPart(@NotNull List<SingleWordPart> parts, @NotNull String baseForm) {
-        this.parts = Collections.unmodifiableList(parts);
+        this.parts = unmodifiableList(parts);
         this.baseForm = baseForm;
     }
 
@@ -72,11 +74,6 @@ public final class StrongMorphemeCompoundWordPart implements WordPart {
 
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder();
-
-        for (SingleWordPart part : parts)
-            result.append(part.toString());
-
-        return result.toString();
+        return parts.stream().map(SingleWordPart::toString).collect(joining());
     }
 }

@@ -43,7 +43,6 @@ import org.junit.jupiter.api.TestInstance;
 import org.puimula.libvoikko.Voikko;
 
 import java.io.File;
-import java.net.URL;
 import java.util.AbstractList;
 import java.util.List;
 import java.util.Map;
@@ -67,11 +66,11 @@ public class VoikkoComparisonTest {
 
     @BeforeAll
     void setupVoikko() {
-        String voikkoPath = System.getenv("VOIKKO_LIBRARY_PATH");
+        var voikkoPath = System.getenv("VOIKKO_LIBRARY_PATH");
         assumeTrue(voikkoPath != null, "VOIKKO_LIBRARY_PATH not defined, skipping voikko tests");
         Voikko.addLibraryPath(voikkoPath);
 
-        URL morphologyUrl = getClass().getResource("/morpho/5/mor-morpho/mor.vfst");
+        var morphologyUrl = getClass().getResource("/morpho/5/mor-morpho/mor.vfst");
         assertNotNull(morphologyUrl);
 
         voikko = new Voikko("fi-x-morpho", new File(locateProjectRoot(), "src/main/resources/morpho").toString());
@@ -96,11 +95,11 @@ public class VoikkoComparisonTest {
 
     @Test
     void voikkoSmokeTest() {
-        List<org.puimula.libvoikko.Analysis> analyses = voikko.analyze("vatsaneläkeruokaa");
+        var analyses = voikko.analyze("vatsaneläkeruokaa");
 
         assertEquals(1, analyses.size());
 
-        org.puimula.libvoikko.Analysis analysis = analyses.get(0);
+        var analysis = analyses.get(0);
         assertEquals("vatsaneläkeruoka", analysis.get("BASEFORM"));
         assertEquals(NOUN.getLegacyCode(), analysis.get("CLASS"));
         assertEquals("[Ln][Xp]vatsa[X]vats[Sg][Ny]an[Bh][Bc][Ln][Xp]eläke[X]eläke[Sn][Ny][Bh][Bc][Ln][Xp]ruoka[X]ruok[Sp][Ny]aa", analysis.get("FSTOUTPUT"));
@@ -109,7 +108,7 @@ public class VoikkoComparisonTest {
     @Test
     void failures() {
         int failures = 0;
-        for (String word : referenceWords)
+        for (var word : referenceWords)
             if (analyzer.analyze(word).isEmpty())
                 failures++;
 
@@ -119,9 +118,10 @@ public class VoikkoComparisonTest {
 
     @Test
     void compareReferenceText() {
-        for (String word : referenceWords) {
-            List<? extends Map<String, ?>> voikkoResult = voikko.analyze(word).stream().map(VoikkoComparisonTest::withoutUnsupportedAttributes).toList();
-            List<Map<String, String>> raudikkoResult = analyzer.analyze(word).stream().map(Analysis::toVoikkoFormat).toList();
+        for (var word : referenceWords) {
+            var voikkoResult = voikko.analyze(word).stream().map(VoikkoComparisonTest::withoutUnsupportedAttributes).toList();
+            var raudikkoResult = analyzer.analyze(word).stream().map(Analysis::toVoikkoFormat).toList();
+
             assertEquals(voikkoResult, raudikkoResult);
         }
     }
@@ -129,11 +129,12 @@ public class VoikkoComparisonTest {
     @Test
     void times() throws Exception {
         int loops = 1;
-        List<String> words = new RepeatedList<>(referenceWords, loops);
+        var words = new RepeatedList<>(referenceWords, loops);
 
         long voikkoStart = System.currentTimeMillis();
         for (String word : words)
             voikko.analyze(word);
+
         long voikkoMillis = System.currentTimeMillis() - voikkoStart;
         System.out.printf("voikko:            %5d ms (%d words/s)\n", voikkoMillis, (words.size() * 1000L) / voikkoMillis);
 
@@ -144,11 +145,11 @@ public class VoikkoComparisonTest {
         System.out.printf("raudikko:          %5d ms (%d words/s)\n", raudikkoMillis, (words.size() * 1000L) / raudikkoMillis);
 
         for (int threadCount : List.of(2, 4, 8, 16)) {
-            long concurrentStart = System.currentTimeMillis();
-            AtomicInteger next = new AtomicInteger(0);
-            AtomicInteger analyzed = new AtomicInteger(0);
+            var concurrentStart = System.currentTimeMillis();
+            var next = new AtomicInteger(0);
+            var analyzed = new AtomicInteger(0);
 
-            Thread[] threads = new Thread[threadCount];
+            var threads = new Thread[threadCount];
             for (int t = 0; t < threads.length; t++) {
                 threads[t] = new Thread(() -> {
                     Analyzer myAnalyzer = morphology.newAnalyzer();
@@ -163,7 +164,7 @@ public class VoikkoComparisonTest {
                 threads[t].start();
             }
 
-            for (Thread t : threads)
+            for (var t : threads)
                 t.join();
 
             assertEquals(words.size(), analyzed.get());

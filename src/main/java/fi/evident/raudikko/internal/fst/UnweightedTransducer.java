@@ -52,7 +52,7 @@ public final class UnweightedTransducer {
         this.rootState = rootState;
         this.flagDiacriticFeatureCount = flagDiacriticFeatureCount;
 
-        for (Symbol symbol : symbols)
+        for (var symbol : symbols)
             if (symbol.isChar())
                 charToSymbol.put(symbol.charValue(), symbol);
     }
@@ -73,7 +73,7 @@ public final class UnweightedTransducer {
         inputSymbols.clear();
 
         for (int i = 0, len = input.length(); i < len; i++) {
-            Symbol symbol = charToSymbol.get(toLowerCase(input.charAt(i)));
+            var symbol = charToSymbol.get(toLowerCase(input.charAt(i)));
             if (symbol == null)
                 return false;
 
@@ -98,7 +98,7 @@ public final class UnweightedTransducer {
         }
 
         for (DiacriticTransition transition : st.diacriticTransitions) {
-            Diacritic diacritic = transition.in;
+            var diacritic = transition.in;
 
             if (diacritic == Diacritic.EPSILON) {
                 output[depth] = transition.symOut;
@@ -117,9 +117,9 @@ public final class UnweightedTransducer {
         if (inputPos < input.size()) {
             char ch  = input.get(inputPos).charValue();
 
-            CharTransition[] transitions = st.charTransitions;
+            var transitions = st.charTransitions;
             for (int i = st.firstCharacterTransitionFor(ch); i < transitions.length; i++) {
-                CharTransition transition = transitions[i];
+                var transition = transitions[i];
                 if (ch != transition.in) break;
 
                 output[depth] = transition.symOut;

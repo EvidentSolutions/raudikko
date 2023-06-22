@@ -60,13 +60,13 @@ final class BasicAttributes {
     private static final @NotNull TaggedValueLookupTable<Possessive> possessives = new TaggedValueLookupTable<>(Possessive.class);
 
     static void parseBasicAttributes(@NotNull Analysis analysis, @NotNull SymbolBuffer tokenizer) {
-        boolean convertNimiLaatusanaToLaatusana = false;
-        boolean bcPassed = false;
+        var convertNimiLaatusanaToLaatusana = false;
+        var bcPassed = false;
 
         tokenizer.moveToEnd();
 
         while (tokenizer.previousToken()) {
-            Symbol tag = tokenizer.getCurrentTag();
+            var tag = tokenizer.getCurrentTag();
             if (tag == null) continue;
 
             switch (tag.toString().charAt(1)) {
@@ -147,7 +147,7 @@ final class BasicAttributes {
     }
 
     private static void postProcess(@NotNull Analysis analysis) {
-        Mood mood = analysis.getMood();
+        var mood = analysis.getMood();
 
         if (analysis.getNegative() != null && ((analysis.getWordClass() != null && analysis.getWordClass() != VERB) || (mood != null && mood.isSecondThirdOrFourthInfinitive())))
             analysis.setNegative(null);
@@ -171,12 +171,12 @@ final class BasicAttributes {
             if (!tokenizer.firstTokenStartsWith('-'))
                 analysis.setMalagaVapaaJalkiosa(true);
         } else if (tag.matches(Tags.ica)) {
-            WordClass wordClass = analysis.getWordClass();
+            var wordClass = analysis.getWordClass();
             if (!tokenizer.containsTagAfterCurrent(Tags.bc) && !tokenizer.containsTagAfterCurrent(ADJECTIVE) && (wordClass == null || wordClass == NOUN || wordClass == NOUN_ADJECTIVE))
                 analysis.setPossibleGeographicalName(true);
         } else {
-            WordClass wordClass = analysis.getWordClass();
-            Mood mood = analysis.getMood();
+            var wordClass = analysis.getWordClass();
+            var mood = analysis.getMood();
 
             if ((mood == null || !mood.isSecondThirdOrFourthInfinitive()) && (wordClass == null || wordClass == VERB)) {
                 if (tag.matches(Tags.ira))

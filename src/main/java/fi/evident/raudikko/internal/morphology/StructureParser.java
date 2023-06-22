@@ -34,7 +34,6 @@ package fi.evident.raudikko.internal.morphology;
 
 import fi.evident.raudikko.analysis.Structure;
 import fi.evident.raudikko.analysis.Structure.StructureSymbol;
-import fi.evident.raudikko.internal.fst.Symbol;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -49,18 +48,18 @@ final class StructureParser {
     }
 
     public static @NotNull Structure parseStructure(@NotNull SymbolBuffer tokenizer, int wordLength) {
-        StructureBuilder structure = new StructureBuilder(wordLength * 2);
+        var structure = new StructureBuilder(wordLength * 2);
 
-        int charsMissing = wordLength;
-        int charsSeen = 0;
-        int charsFromDefault = 0;
-        boolean defaultTitleCase = false;
-        boolean isAbbr = false;
+        var charsMissing = wordLength;
+        var charsSeen = 0;
+        var charsFromDefault = 0;
+        var defaultTitleCase = false;
+        var isAbbr = false;
 
         tokenizer.moveToStart();
 
         while (tokenizer.nextToken()) {
-            Symbol tag = tokenizer.getCurrentTag();
+            var tag = tokenizer.getCurrentTag();
             if (tag != null) {
                 if (tag.matches(Tags.bc) || tag.matches(Tags.bm)) {
                     if (tokenizer.getCurrentOffset() == 1)
@@ -81,9 +80,7 @@ final class StructureParser {
                 } else if (tag.matches(Tags.xr)) {
                     defaultTitleCase = false;
 
-                    List<StructureSymbol> structureSymbols = tokenizer.readStructure();
-
-                    for (StructureSymbol c : structureSymbols) {
+                    for (StructureSymbol c : tokenizer.readStructure()) {
                         if (charsMissing == 0)
                             break;
 
@@ -106,7 +103,7 @@ final class StructureParser {
                     isAbbr = tag.matches(ABBREVIATION) || tag.matches(NUMERAL_ROMAN) || (tag.matches(NUMERAL) && tokenizer.nextTokenStartsWithDigit());
                 }
             } else {
-                SymbolBuffer.CurrentToken currentToken = tokenizer.currentToken;
+                var currentToken = tokenizer.currentToken;
                 for (int i = 0, len = currentToken.length(); i < len; i++) {
                     char c = currentToken.charAt(i);
                     switch (c) {
@@ -174,13 +171,13 @@ final class StructureParser {
     }
 
     private static void capitalizeStructure(@NotNull StructureBuilder structure, @NotNull SymbolBuffer tokenizer) {
-        boolean isDe = false;
-        int totalHyphens = 0;
+        var isDe = false;
+        var totalHyphens = 0;
 
         tokenizer.moveToStart();
 
         while (tokenizer.nextToken()) {
-            Symbol tag = tokenizer.getCurrentTag();
+            var tag = tokenizer.getCurrentTag();
             if (tag != null) {
                 if (tag.matches(Tags.dg))
                     structure.changeToLowerCaseAtHyphenIndex(totalHyphens);
@@ -190,7 +187,7 @@ final class StructureParser {
                     isDe = false;
 
             } else {
-                int hyphens = tokenizer.currentToken.count('-');
+                var hyphens = tokenizer.currentToken.count('-');
 
                 if (hyphens > 0 && isDe) {
                     if (tokenizer.containsTagAfterCurrent(TOPONYM) || tokenizer.isAtLastToken()) {
@@ -256,7 +253,7 @@ final class StructureParser {
             // TODO: The code does not handle UPPERCASE_NO_HYPHENATION and LOWERCASE_NO_HYPHENATION, which is somewhat
             //       suspicious. They probably can't occur in the call-path, but it's still a bit sketchy.
             for (int i = 0; i < symbols.size(); i++) {
-                StructureSymbol sym = symbols.get(i);
+                var sym = symbols.get(i);
                 if (sym == UPPERCASE)
                     break;
                 else if (sym == LOWERCASE) {
@@ -267,10 +264,10 @@ final class StructureParser {
         }
 
         private void changeToLowerCaseAtHyphenIndex(int hyphenIndex) {
-            int seenHyphens = 0;
+            var seenHyphens = 0;
 
             for (int i = 0, len = size(); i < len; i++) {
-                StructureSymbol current = symbols.get(i);
+                var current = symbols.get(i);
                 if (current == UPPERCASE) {
                     if (seenHyphens == hyphenIndex)
                         set(i, LOWERCASE);

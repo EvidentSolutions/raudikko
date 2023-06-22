@@ -33,11 +33,8 @@
 package fi.evident.raudikko.internal.morphology;
 
 import fi.evident.raudikko.analysis.Structure;
-import fi.evident.raudikko.internal.fst.Symbol;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Iterator;
 
 import static fi.evident.raudikko.analysis.WordClass.*;
 import static fi.evident.raudikko.internal.utils.StringUtils.*;
@@ -48,19 +45,19 @@ final class BaseForm {
     }
 
     static @Nullable String parseBaseform(@NotNull SymbolBuffer tokenizer, @NotNull Structure structure) {
-        StringBuilder baseform = new StringBuilder(tokenizer.getTotalLength());
+        var baseform = new StringBuilder(tokenizer.getTotalLength());
         @Nullable String latestBaseForm = null;
-        int latestXpStartInBaseform = 0;
-        int hyphensInLatestXp = 0;
-        boolean allowDe = true;
-        boolean isInsideDe = false;
-        boolean classTagSeen = false;
+        var latestXpStartInBaseform = 0;
+        var hyphensInLatestXp = 0;
+        var allowDe = true;
+        var isInsideDe = false;
+        var classTagSeen = false;
 
-        Iterator<Structure.StructureSymbol> structureIterator = structure.nonMorphemes();
+        var structureIterator = structure.nonMorphemes();
 
         tokenizer.moveToStart();
         while (tokenizer.nextToken()) {
-            Symbol tag = tokenizer.getCurrentTag();
+            var tag = tokenizer.getCurrentTag();
             if (tag != null) {
                 if (tag.isBaseFormTag()) {
                     latestXpStartInBaseform = baseform.length();
@@ -90,7 +87,7 @@ final class BaseForm {
                     allowDe = tag.matches(ADJECTIVE) || tag.matches(NOUN_ADJECTIVE);
                 }
             } else {
-                SymbolBuffer.CurrentToken token = tokenizer.currentToken;
+                var token = tokenizer.currentToken;
 
                 for (int i = 0, len = token.length(); i < len; i++) {
                     char nextChar = token.charAt(i);
@@ -123,9 +120,9 @@ final class BaseForm {
     }
 
     private static @Nullable String parseNumeralBaseform(@NotNull SymbolBuffer tokenizer) {
-        boolean isInDigitSequence = false;
-        boolean xpPassed = false;
-        StringBuilder baseform = new StringBuilder();
+        var isInDigitSequence = false;
+        var xpPassed = false;
+        var baseform = new StringBuilder();
 
         boolean first = true;
         while (tokenizer.nextToken()) {
@@ -134,7 +131,7 @@ final class BaseForm {
 
             first = false;
 
-            Symbol tag = tokenizer.getCurrentTag();
+            var tag = tokenizer.getCurrentTag();
             if (tag != null) {
                 if (isInDigitSequence) {
                     isInDigitSequence = false;

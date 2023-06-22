@@ -32,7 +32,6 @@
 
 package fi.evident.raudikko.integration;
 
-import fi.evident.raudikko.Analysis;
 import fi.evident.raudikko.Analyzer;
 import fi.evident.raudikko.AnalyzerConfiguration;
 import fi.evident.raudikko.Morphology;
@@ -43,9 +42,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
@@ -61,7 +60,7 @@ public class BaseFormPartsTest {
     private final @NotNull Analyzer analyzer = morphology.newAnalyzer(createConfiguration());
 
     private static AnalyzerConfiguration createConfiguration() {
-        AnalyzerConfiguration configuration = new AnalyzerConfiguration();
+        var configuration = new AnalyzerConfiguration();
         configuration.setIncludeBaseFormParts(true);
         configuration.setIncludeWord(false);
         configuration.setIncludeStructure(false);
@@ -75,7 +74,7 @@ public class BaseFormPartsTest {
     @ParameterizedTest(name = "{0}")
     @MethodSource("testData")
     void baseFormPartsTest(@NotNull BaseFormPartsTest.WordTest data) {
-        List<Analysis> analyze = analyzer.analyze(data.word);
+        var analyze = analyzer.analyze(data.word);
 
         assertEquals(data.expectedBaseFormParts.size(), analyze.size());
 
@@ -87,21 +86,20 @@ public class BaseFormPartsTest {
     }
 
     private static @NotNull Stream<BaseFormPartsTest.WordTest> testData() throws IOException {
-        try (InputStream in = BaseFormPartsTest.class.getResourceAsStream("/base-form-parts-test.txt")) {
+        try (var in = BaseFormPartsTest.class.getResourceAsStream("/base-form-parts-test.txt")) {
             assertNotNull(in, "could not find base form parts test data");
 
-            List<String> lines = new BufferedReader(new InputStreamReader(in, UTF_8)).lines()
+            var lines = new BufferedReader(new InputStreamReader(in, UTF_8)).lines()
                     .map(String::trim)
                     .filter(it -> !it.isEmpty())
                     .toList();
 
             BaseFormPartsTest.WordTest current = null;
 
-            List<BaseFormPartsTest.WordTest> result = new ArrayList<>();
+            var result = new ArrayList<WordTest>();
+            var splitPattern = Pattern.compile(",");
 
-            Pattern splitPattern = Pattern.compile(",");
-
-            for (String line : lines) {
+            for (var line : lines) {
                 if (line.startsWith("word:")) {
                     current = new BaseFormPartsTest.WordTest(line.substring("word:".length()));
                     result.add(current);
@@ -109,13 +107,10 @@ public class BaseFormPartsTest {
                     fail();
                 } else {
                     if (line.startsWith("[") && line.endsWith("]")) {
-                        ArrayList<String> parts = new ArrayList<>();
-                        for (String part : splitPattern.split(line.substring(1, line.length() - 1))) {
-                            if (!part.isEmpty()) {
-                                parts.add(part);
-                            }
-                        }
-                        current.expectedBaseFormParts.add(parts);
+                        current.expectedBaseFormParts.add(Arrays.stream(splitPattern.split(line.substring(1, line.length() - 1)))
+                            .filter(part -> !part.isEmpty())
+                            .toList());
+
                     } else {
                         fail("unknown line: '" + line + "'");
                     }

@@ -36,7 +36,6 @@ import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -46,16 +45,16 @@ class SymbolBufferTest {
 
     @Test
     void tokenizeVfstOutput() {
-        SymbolBuffer buffer = SymbolBuffer.parse("[Lee][Xp]Outi[X]out[Sn][Ny]i-[Bc][Lee][Xp]Marjukka[X]marjukk[Sn][Ny]a");
-        List<String> expectedTokens = Arrays.asList("[Lee]", "[Xp]", "Outi", "[X]", "out", "[Sn]", "[Ny]", "i-", "[Bc]", "[Lee]", "[Xp]", "Marjukka", "[X]", "marjukk", "[Sn]", "[Ny]", "a");
+        var buffer = SymbolBuffer.parse("[Lee][Xp]Outi[X]out[Sn][Ny]i-[Bc][Lee][Xp]Marjukka[X]marjukk[Sn][Ny]a");
+        var expectedTokens = List.of("[Lee]", "[Xp]", "Outi", "[X]", "out", "[Sn]", "[Ny]", "i-", "[Bc]", "[Lee]", "[Xp]", "Marjukka", "[X]", "marjukk", "[Sn]", "[Ny]", "a");
 
-        ArrayList<String> tokens = new ArrayList<>();
+        var tokens = new ArrayList<>();
         while (buffer.nextToken())
             tokens.add(buffer.currentToken.toString());
 
         assertEquals(expectedTokens, tokens);
 
-        ArrayList<String> reverseTokens = new ArrayList<>();
+        var reverseTokens = new ArrayList<>();
         buffer.moveToEnd();
         while (buffer.previousToken())
             reverseTokens.add(buffer.currentToken.toString());
@@ -64,7 +63,7 @@ class SymbolBufferTest {
     }
 
     private static <T> @NotNull List<T> reverse(@NotNull List<T> list) {
-        ArrayList<T> copy = new ArrayList<>(list);
+        var copy = new ArrayList<>(list);
         Collections.reverse(copy);
         return copy;
     }

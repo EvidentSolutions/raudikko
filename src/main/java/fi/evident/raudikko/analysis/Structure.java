@@ -37,12 +37,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static fi.evident.raudikko.analysis.Structure.StructureSymbol.MORPHEME_START;
 import static fi.evident.raudikko.internal.utils.CollectionUtils.count;
 import static java.lang.Character.toLowerCase;
 import static java.lang.Character.toUpperCase;
+import static java.util.stream.Collectors.joining;
 
 /**
  * This class describes morpheme boundaries, character case and hyphenation restrictions for the word.
@@ -75,7 +75,7 @@ public final class Structure {
 
     @Override
     public String toString() {
-        return structure.stream().map(it -> String.valueOf(it.code)).collect(Collectors.joining(""));
+        return structure.stream().map(it -> String.valueOf(it.code)).collect(joining());
     }
 
     public int getMorphemeCount() {
@@ -101,7 +101,7 @@ public final class Structure {
         if (structure.size() <= 1 || structure.get(1) == StructureSymbol.UPPERCASE)
             return this;
 
-        List<StructureSymbol> copy = new ArrayList<>(structure);
+        var copy = new ArrayList<>(structure);
         copy.set(1, StructureSymbol.UPPERCASE);
         return new Structure(copy);
     }
@@ -117,9 +117,9 @@ public final class Structure {
      * Converts given word to follow this structure.
      */
     public @NotNull String apply(@NotNull CharSequence word) {
-        Iterator<StructureSymbol> it = nonMorphemes();
+        var it = nonMorphemes();
 
-        StringBuilder sb = new StringBuilder(word.length());
+        var sb = new StringBuilder(word.length());
 
         for (int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
@@ -172,7 +172,7 @@ public final class Structure {
         }
 
         public static @NotNull StructureSymbol forCode(char c) {
-            for (StructureSymbol symbol : values())
+            for (var symbol : values())
                 if (symbol.code == c)
                     return symbol;
 

@@ -37,7 +37,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * Loads [UnweightedTransducer] from a <a href="https://github.com/voikko/corevoikko/wiki/vfst-fileformat">VFST-file</a>.
@@ -49,20 +51,20 @@ public final class UnweightedVfstLoader {
 
     @NotNull
     public static UnweightedTransducer load(@NotNull InputStream inputStream) throws IOException {
-        MyInputStream stream = new MyInputStream(inputStream);
+        var stream = new MyInputStream(inputStream);
         stream.skipNBytes(HEADER_SIZE);
 
-        SymbolMap features = new SymbolMap();
-        SymbolMap values = new SymbolMap();
+        var features = new SymbolMap();
+        var values = new SymbolMap();
 
         // initialize these to 0 and 1 (Neutral and Any)
         values.getCode("");
         values.getCode("@");
 
         short symbolCount = stream.readShort();
-        ArrayList<Symbol> symbols = new ArrayList<>(symbolCount);
+        var symbols = new ArrayList<Symbol>(symbolCount);
         for (short i = 0; i < symbolCount; i++) {
-            String s = stream.readUtf8String();
+            var s = stream.readUtf8String();
 
             if (i == 0)
                 symbols.add(Diacritic.EPSILON);
@@ -76,7 +78,7 @@ public final class UnweightedVfstLoader {
         if (partial != 0)
             stream.skipNBytes(TRANSITION_ALIGNMENT - partial);
 
-        ArrayList<TransitionData> transitions = new ArrayList<>();
+        var transitions = new ArrayList<TransitionData>();
         while (stream.hasMore()) {
             short symIn = stream.readShort();
             short symOut = stream.readShort();
@@ -94,24 +96,24 @@ public final class UnweightedVfstLoader {
                 assert padding == 0;
             }
 
-            Symbol in = (symIn == -1) ? Symbol.FINAL : symbols.get(symIn);
-            Symbol out = symbols.get(symOut);
-            transitions.add(new TransitionData(in, out, targetState, moreTransitions));
+            var in = (symIn == -1) ? Symbol.FINAL : symbols.get(symIn);
+            var out = symbols.get(symOut);
+            transitions.add(new TransitionData(in, out.toOutputSymbol(), targetState, moreTransitions));
 
             if (overflow)
                 transitions.add(null); // add null to keep indexes correct
         }
 
-        Set<Integer> targets = new HashSet<>();
+        var targets = new HashSet<>();
         targets.add(0);
-        for (TransitionData transition : transitions)
+        for (var transition : transitions)
             if (transition != null)
                 targets.add(transition.targetState);
 
-        Map<Integer, State> states = new HashMap<>();
+        var states = new HashMap<Integer, State>();
         for (int i = 0; i < transitions.size(); i++)
             if (targets.contains(i)) {
-                TransitionData tr = transitions.get(i);
+                var tr = transitions.get(i);
                 assert (!tr.symIn.isFinal() || tr.moreTransitions == 0);
                 states.put(i, new State());
             }
@@ -119,23 +121,26 @@ public final class UnweightedVfstLoader {
         for (int i = 0; i < transitions.size(); i++) {
             if (!targets.contains(i)) continue;
 
-            TransitionData head = transitions.get(i);
-            State state = states.get(i);
+            var head = transitions.get(i);
+            var state = states.get(i);
 
             if (head.symIn.isFinal()) {
                 state.diacriticTransitions = new DiacriticTransition[0];
                 state.charTransitions = new CharTransition[0];
+
             } else {
-                ArrayList<DiacriticTransition> diacriticTransitions = new ArrayList<>();
-                ArrayList<CharTransition> characterTransitions = new ArrayList<>();
+                var diacriticTransitions = new ArrayList<DiacriticTransition>();
+                var characterTransitions = new ArrayList<CharTransition>();
 
                 int offset = head.hasOverflow() ? 1 : 0;
                 for (int j = 0; j < head.moreTransitions + 1 + offset; j++) {
-                    if (j == 1 && head.hasOverflow()) continue;
-                    TransitionData data = transitions.get(i + j);
+                    if (j == 1 && head.hasOverflow())
+                        continue;
 
-                    State targetState = states.get(data.targetState);
-                    Diacritic diacritic = data.symIn.getDiacritic();
+                    var data = transitions.get(i + j);
+                    var targetState = states.get(data.targetState);
+                    var diacritic = data.symIn.getDiacritic();
+
                     if (diacritic != null)
                         diacriticTransitions.add(new DiacriticTransition(diacritic, data.symOut, targetState));
                     else
@@ -150,19 +155,12 @@ public final class UnweightedVfstLoader {
         return new UnweightedTransducer(symbols, states.get(0), features.size());
     }
 
-    private static final class TransitionData {
-
-        final @NotNull Symbol symIn;
-        final @NotNull Symbol symOut;
-        final int targetState;
-        final int moreTransitions;
-
-        TransitionData(@NotNull Symbol symIn, @NotNull Symbol symOut, int targetState, int moreTransitions) {
-            this.symIn = symIn;
-            this.symOut = symOut.toOutputSymbol();
-            this.targetState = targetState;
-            this.moreTransitions = moreTransitions;
-        }
+    private record TransitionData(
+        @NotNull Symbol symIn,
+        @NotNull Symbol symOut,
+        int targetState,
+        int moreTransitions
+    ) {
 
         boolean hasOverflow() {
             return moreTransitions >= 255;

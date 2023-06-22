@@ -38,7 +38,6 @@ import fi.evident.raudikko.internal.morphology.FinnishVfstAnalyzer;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UncheckedIOException;
 
 /**
@@ -56,7 +55,7 @@ public final class Morphology {
      * Loads the morphology rules bundles with the library.
      */
     public static @NotNull Morphology loadBundled() {
-        InputStream stream = Morphology.class.getResourceAsStream("/morpho/5/mor-morpho/mor.vfst");
+        var stream = Morphology.class.getResourceAsStream("/morpho/5/mor-morpho/mor.vfst");
         if (stream == null)
             throw new IllegalStateException("Failed to find bundled morphology");
 

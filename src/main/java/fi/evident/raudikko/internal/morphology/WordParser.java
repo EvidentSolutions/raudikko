@@ -33,7 +33,6 @@
 package fi.evident.raudikko.internal.morphology;
 
 import fi.evident.raudikko.*;
-import fi.evident.raudikko.internal.fst.Symbol;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -54,14 +53,14 @@ final class WordParser {
         word.reset();
 
         while (tokenizer.nextToken()) {
-            Symbol tag = tokenizer.getCurrentTag();
+            var tag = tokenizer.getCurrentTag();
 
             if (tag == null) {
                 word.append(tokenizer.currentToken.toString());
             } else {
                 if (tag.matches(Tags.xp)) {
-                    String baseForm = tokenizer.readXTagContents();
-                    String[] baseFormParts = equalSignPattern.split(baseForm);
+                    var baseForm = tokenizer.readXTagContents();
+                    var baseFormParts = equalSignPattern.split(baseForm);
 
                     if (baseFormParts.length > 1)
                         word.startStrongMorpheme(baseFormParts);

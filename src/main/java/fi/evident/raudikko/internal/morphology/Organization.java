@@ -52,9 +52,9 @@ final class Organization {
                                                        @NotNull Structure oldStructure) {
 
         if (analysis.getWordClass() == NOUN && isOrganizationName(tokenizer)) {
-            Structure structure = oldStructure.capitalized();
+            var structure = oldStructure.capitalized();
 
-            Analysis newAnalysis = analysis.clone();
+            var newAnalysis = analysis.clone();
             newAnalysis.setWordClass(PROPER_NOUN);
             newAnalysis.setStructure(structure);
             newAnalysis.setBaseForm(parseBaseform(tokenizer, structure));
