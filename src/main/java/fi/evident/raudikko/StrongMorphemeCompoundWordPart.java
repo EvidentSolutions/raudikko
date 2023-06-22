@@ -37,8 +37,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collections;
 import java.util.List;
 
-import static fi.evident.raudikko.internal.utils.StringUtils.withoutChar;
-
 public final class StrongMorphemeCompoundWordPart implements WordPart {
 
     private final @NotNull List<SingleWordPart> parts;

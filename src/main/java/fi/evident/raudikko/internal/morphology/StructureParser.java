@@ -136,7 +136,7 @@ final class StructureParser {
                         case ':':
                             if (isAbbr) {
                                 if (charsSeen > charsFromDefault) {
-                                    defaultTitleCase = createDefaultStructure(structure, charsSeen - charsFromDefault, defaultTitleCase, isAbbr);
+                                    defaultTitleCase = createDefaultStructure(structure, charsSeen - charsFromDefault, defaultTitleCase, true);
                                     charsMissing -= charsSeen - charsFromDefault;
                                     charsSeen = 0;
                                     charsFromDefault = 0;
