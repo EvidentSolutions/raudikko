@@ -35,6 +35,7 @@ package fi.evident.raudikko;
 import fi.evident.raudikko.internal.fst.UnweightedTransducer;
 import fi.evident.raudikko.internal.fst.UnweightedVfstLoader;
 import fi.evident.raudikko.internal.morphology.FinnishVfstAnalyzer;
+import fi.evident.raudikko.internal.suggestions.DefaultSpellingSuggester;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -84,5 +85,15 @@ public final class Morphology {
      */
     public @NotNull Analyzer newAnalyzer(@NotNull AnalyzerConfiguration configuration) {
         return new FinnishVfstAnalyzer(transducer, configuration);
+    }
+
+    /**
+     * Creates a new {@link SpellingSuggester} for this morphology.
+     * <p>
+     * The suggester is a mutable object that can be used repeatedly, but may not be
+     * shared between threads.
+     */
+    public @NotNull SpellingSuggester newSpellingSuggester() {
+        return new DefaultSpellingSuggester(this);
     }
 }

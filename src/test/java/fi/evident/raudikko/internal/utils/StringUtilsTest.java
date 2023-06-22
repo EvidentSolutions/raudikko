@@ -34,14 +34,13 @@ package fi.evident.raudikko.internal.utils;
 
 import org.junit.jupiter.api.Test;
 
-import static fi.evident.raudikko.internal.utils.StringUtils.matchesAt;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static fi.evident.raudikko.internal.utils.StringUtils.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 class StringUtilsTest {
 
     @Test
-    void verifyMatchesAt() {
+    void testMatchesAt() {
         assertTrue(matchesAt("foo", 0, "foo"));
         assertTrue(matchesAt("foobar", 0, "foo"));
         assertFalse(matchesAt("foobar", 1, "foo"));
@@ -52,5 +51,137 @@ class StringUtilsTest {
         assertFalse(matchesAt("foobar", 1, "foobarbaz"));
 
         assertFalse(matchesAt("foobar", -1, "ofoo"));
+    }
+
+    @Test
+    void testWithoutChar() {
+        assertEquals("helloworld", withoutChar("hello world", ' '));
+        assertEquals("hello world", withoutChar("hello world", 'x'));
+    }
+
+    @Test
+    void testCountOccurrences() {
+        assertEquals(3, countOccurrences("hello world", 'l'));
+        assertEquals(0, countOccurrences("hello world", 'x'));
+    }
+
+    @Test
+    void testEndsWithChar() {
+        assertTrue(endsWithChar("hello", 'o'));
+        assertFalse(endsWithChar("hello", 'l'));
+    }
+
+    @Test
+    void testStartsWithChar() {
+        assertTrue(startsWithChar("hello", 'h'));
+        assertFalse(startsWithChar("hello", 'e'));
+    }
+
+    @Test
+    void testCapitalizeIfLower() {
+        assertEquals("Abc", capitalizeIfLower("abc"));
+        assertEquals("aBc", capitalizeIfLower("aBc"));
+    }
+
+    @Test
+    void testIsAllUpper() {
+        assertTrue(isAllUpper("HELLO"));
+        assertFalse(isAllUpper("Hello"));
+    }
+
+    @Test
+    void testIsAllLower() {
+        assertTrue(isAllLower("hello"));
+        assertFalse(isAllLower("Hello"));
+    }
+
+    @Test
+    void testDecapitalize() {
+        assertEquals("hello", decapitalize("Hello"));
+        assertEquals("hello", decapitalize("hello"));
+    }
+
+    @Test
+    void testRemoveRange() {
+        assertEquals("hello world", removeRange("hello cruel world", 6, 12));
+        assertEquals("hello world", removeRange("hello world", 6, 6));
+    }
+
+    @Test
+    void testContains() {
+        assertTrue(contains("hello world", 'h'));
+        assertFalse(contains("hello world", 'x'));
+    }
+
+    @Test
+    void testIndexOf() {
+        assertEquals(0, indexOf("hello world", 'h'));
+        assertEquals(0, indexOf("hello world", 'h', 0));
+        assertEquals(-1, indexOf("hello world", 'h', 1));
+        assertEquals(-1, indexOf("hello world", 'h', 1));
+
+        assertEquals(4, indexOf("hello world", 'o'));
+        assertEquals(4, indexOf("hello world", 'o', 4));
+        assertEquals(7, indexOf("hello world", 'o', 5));
+        assertEquals(7, indexOf("hello world", 'o', 6));
+        assertEquals(7, indexOf("hello world", 'o', 7));
+        assertEquals(-1, indexOf("hello world", 'o', 8));
+
+        assertEquals(-1, indexOf("hello world", 'x'));
+        assertEquals(-1, indexOf("hello world", 'x', 4));
+    }
+
+    @Test
+    void testSwap() {
+        assertEquals("hlelow", swap("hellow", 1, 2));
+        assertEquals("hellow", swap("hellow", 2, 2));
+    }
+
+    @Test
+    void testReplaceTwoChars() {
+        assertEquals("xx", replaceTwoChars("ab", 0, 'x'));
+        assertEquals("helloxxorld", replaceTwoChars("hello world", 5, 'x'));
+    }
+
+    @Test
+    void testContainsInSubstring() {
+        assertTrue(containsInSubstring("hello world", 0, 5, 'e'));
+
+        assertFalse(containsInSubstring("hello world", 0, 5, 'w'));
+        assertFalse(containsInSubstring("hello world", 1, 5, 'h'));
+    }
+
+    @Test
+    void testContainsAdjacentCharacter() {
+        assertTrue(containsAdjacentCharacterIgnoringCase("hello", 0, 'h'));
+        assertTrue(containsAdjacentCharacterIgnoringCase("hello", 1, 'h'));
+        assertTrue(containsAdjacentCharacterIgnoringCase("hello", 1, 'e'));
+        assertTrue(containsAdjacentCharacterIgnoringCase("hello", 2, 'e'));
+        assertTrue(containsAdjacentCharacterIgnoringCase("hello", 2, 'l'));
+        assertTrue(containsAdjacentCharacterIgnoringCase("hello", 3, 'l'));
+        assertTrue(containsAdjacentCharacterIgnoringCase("hello", 4, 'l'));
+        assertTrue(containsAdjacentCharacterIgnoringCase("hello", 4, 'o'));
+        assertTrue(containsAdjacentCharacterIgnoringCase("hello", 5, 'o'));
+
+        assertFalse(containsAdjacentCharacterIgnoringCase("hello", 0, 'e'));
+        assertFalse(containsAdjacentCharacterIgnoringCase("hello", 1, 'o'));
+        assertFalse(containsAdjacentCharacterIgnoringCase("hello", 1, 'x'));
+        assertFalse(containsAdjacentCharacterIgnoringCase("hello", 5, 'x'));
+
+        assertTrue(containsAdjacentCharacterIgnoringCase("hello", 1, 'E'));
+    }
+
+    @Test
+    void testReplaceCharAt() {
+        assertEquals("hallo", replaceCharAt("hello", 1, 'a'));
+        assertEquals("hello", replaceCharAt("hello", 1, 'e'));
+    }
+
+    @Test
+    void testCharIndices() {
+        assertArrayEquals(new int[]{0}, charIndices("foo", 'f').toArray());
+        assertArrayEquals(new int[]{1,2}, charIndices("foo", 'o').toArray());
+        assertArrayEquals(new int[]{2, 3, 9}, charIndices("hello world", 'l').toArray());
+        assertArrayEquals(new int[]{}, charIndices("hello world", 'x').toArray());
     }
 }

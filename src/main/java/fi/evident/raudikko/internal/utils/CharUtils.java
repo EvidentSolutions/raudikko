@@ -33,62 +33,37 @@
 package fi.evident.raudikko.internal.utils;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import static fi.evident.raudikko.internal.utils.StringUtils.contains;
+import static java.lang.Character.toLowerCase;
 
-import static java.util.Collections.unmodifiableCollection;
+public final class CharUtils {
 
-public final class CharMap<T> {
+    private static final @NotNull String FRONT_AND_BACK_VOWELS = "aouAOUäöyÄÖY";
 
-    private final Object[] low = new Object[256];
-    private @Nullable Map<Character, T> high = null;
-
-    public void put(char key, T value) {
-        if (key < low.length)
-            low[key] = value;
-        else {
-            if (high == null)
-                high = new HashMap<>();
-
-            high.put(key, value);
-        }
+    public static char convertVowelBetweenFrontAndBack(char c) {
+        return switch (c) {
+            case 'a' -> 'ä';
+            case 'o' -> 'ö';
+            case 'u' -> 'y';
+            case 'A' -> 'Ä';
+            case 'O' -> 'Ö';
+            case 'U' -> 'Y';
+            case 'ä' -> 'a';
+            case 'ö' -> 'o';
+            case 'y' -> 'u';
+            case 'Ä' -> 'A';
+            case 'Ö' -> 'O';
+            case 'Y' -> 'U';
+            default -> c;
+        };
     }
 
-    @SuppressWarnings("unchecked")
-    public @Nullable T get(char key) {
-        if (key < low.length)
-            return (T) low[key];
-        else if (high != null)
-            return high.get(key);
-        else
-            return null;
+    public static boolean isFrontOrBackVowel(char ch) {
+        return contains(FRONT_AND_BACK_VOWELS, ch);
     }
 
-    public @NotNull T getOrDefault(char key, @NotNull T defaultValue) {
-        var result = get(key);
-        return result != null ? result : defaultValue;
-    }
-
-    public @NotNull Collection<Character> keys() {
-        var result = new ArrayList<Character>();
-        for (int i = 0; i < low.length; i++)
-            if (low[i] != null)
-                result.add((char) i);
-
-        if (high != null)
-            result.addAll(high.keySet());
-
-        return unmodifiableCollection(result);
-    }
-
-    public @NotNull CharMap<T> copy() {
-        var result = new CharMap<T>();
-        System.arraycopy(low, 0, result.low, 0, low.length);
-        result.high = high != null ? new HashMap<>(high) : null;
-        return result;
+    public static boolean equalsIgnoreCase(char c1, char c2) {
+        return c1 == c2 || toLowerCase(c1) == toLowerCase(c2);
     }
 }

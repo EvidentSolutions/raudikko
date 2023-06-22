@@ -46,4 +46,18 @@ public final class CollectionUtils {
 
         return count;
     }
+
+    public static char[] toCharArray(@NotNull List<Character> xs) {
+        char[] ys = new char[xs.size()];
+        for (int i = 0; i < xs.size(); i++)
+            ys[i] = xs.get(i);
+        return ys;
+    }
+
+    public static char[] toUpperCase(char @NotNull [] xs) {
+        char[] ys = new char[xs.length];
+        for (int i = 0; i < xs.length; i++)
+            ys[i] = Character.toUpperCase(xs[i]);
+        return ys;
+    }
 }
