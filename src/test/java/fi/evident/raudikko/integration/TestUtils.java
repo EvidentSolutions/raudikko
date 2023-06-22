@@ -37,13 +37,15 @@ import org.jetbrains.annotations.NotNull;
 import java.io.File;
 import java.util.Arrays;
 
+import static java.util.Objects.requireNonNull;
+
 final class TestUtils {
 
     static @NotNull File locateProjectRoot() {
         File dir = new File("").getAbsoluteFile();
 
         while (dir != null) {
-            if (Arrays.asList(dir.list()).contains("gradlew"))
+            if (Arrays.asList(requireNonNull(dir.list())).contains("gradlew"))
                 return dir;
 
             dir = dir.getParentFile();

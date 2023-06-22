@@ -38,6 +38,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.*;
 
@@ -53,6 +54,8 @@ class UnweightedTransducerTest {
     @BeforeAll
     public void setup() throws Exception {
         try (InputStream stream = UnweightedTransducer.class.getResourceAsStream("/morpho/5/mor-morpho/mor.vfst")) {
+            if (stream == null) throw new FileNotFoundException("could not load morphology");
+
             transducer = UnweightedVfstLoader.load(stream);
         }
     }
