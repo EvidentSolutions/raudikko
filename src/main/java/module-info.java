@@ -1,5 +1,5 @@
 module fi.evident.raudikko {
-    requires org.jetbrains.annotations;
+    requires static org.jetbrains.annotations;
 
     exports fi.evident.raudikko;
     exports fi.evident.raudikko.analysis;
