@@ -40,8 +40,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static fi.evident.raudikko.internal.utils.StringUtils.endsWithChar;
-import static fi.evident.raudikko.internal.utils.StringUtils.startsWithChar;
+import static fi.evident.raudikko.internal.utils.StringUtils.removeLeadingAndTrailing;
 
 final class BaseFormParts {
 
@@ -90,15 +89,5 @@ final class BaseFormParts {
         }
 
         return s.toString();
-    }
-
-    private static @NotNull String removeLeadingAndTrailing(@NotNull String s, char c) {
-        if (s.isEmpty() || s.equals(String.valueOf(c)))
-            return "";
-
-        int startOffset = startsWithChar(s, c) ? 1 : 0;
-        int endOffset = endsWithChar(s, c) ? 1 : 0;
-
-        return s.substring(startOffset, s.length() - endOffset);
     }
 }

@@ -129,4 +129,14 @@ public final class StringUtils {
 
         return true;
     }
+
+    public static @NotNull String removeLeadingAndTrailing(@NotNull String s, char c) {
+        if (s.isEmpty() || s.length() == 1 && s.charAt(0) == c)
+            return "";
+
+        int startOffset = startsWithChar(s, c) ? 1 : 0;
+        int endOffset = endsWithChar(s, c) ? 1 : 0;
+
+        return s.substring(startOffset, s.length() - endOffset);
+    }
 }
