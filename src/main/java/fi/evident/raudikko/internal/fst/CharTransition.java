@@ -33,6 +33,7 @@ package fi.evident.raudikko.internal.fst;
 
 import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("ClassCanBeRecord")
 final class CharTransition {
 
     public final char in;

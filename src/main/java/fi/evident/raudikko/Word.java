@@ -39,6 +39,7 @@ import java.util.List;
 import static java.util.Collections.unmodifiableList;
 import static java.util.stream.Collectors.joining;
 
+@SuppressWarnings("ClassCanBeRecord")
 public final class Word {
 
     private @NotNull final List<WordPart> wordParts;

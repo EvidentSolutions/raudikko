@@ -34,6 +34,7 @@ package fi.evident.raudikko.internal.fst;
 
 import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("ClassCanBeRecord")
 final class DiacriticTransition {
 
     public final @NotNull Diacritic in;
