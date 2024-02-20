@@ -46,6 +46,7 @@ The below table lists the version of Voikko that Raudikko is tests against.
 ## Related projects
 
 - [elasticsearch-analysis-raudikko](https://github.com/EvidentSolutions/elasticsearch-analysis-raudikko) uses Raudikko to provide Finnish analysis for Elasticsearch
+- [opensearch-analysis-raudikko](https://github.com/EvidentSolutions/opensearch-analysis-raudikko) uses Raudikko to provide Finnish analysis for OpenSearch
 
 ## Acknowledgements
 
