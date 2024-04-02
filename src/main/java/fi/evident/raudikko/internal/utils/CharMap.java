@@ -32,10 +32,15 @@
 
 package fi.evident.raudikko.internal.utils;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
+import static java.util.Collections.unmodifiableCollection;
 
 public final class CharMap<T> {
 
@@ -61,5 +66,29 @@ public final class CharMap<T> {
             return high.get(key);
         else
             return null;
+    }
+
+    public @NotNull T getOrDefault(char key, @NotNull T defaultValue) {
+        var result = get(key);
+        return result != null ? result : defaultValue;
+    }
+
+    public @NotNull Collection<Character> keys() {
+        var result = new ArrayList<Character>();
+        for (int i = 0; i < low.length; i++)
+            if (low[i] != null)
+                result.add((char) i);
+
+        if (high != null)
+            result.addAll(high.keySet());
+
+        return unmodifiableCollection(result);
+    }
+
+    public @NotNull CharMap<T> copy() {
+        var result = new CharMap<T>();
+        System.arraycopy(low, 0, result.low, 0, low.length);
+        result.high = high != null ? new HashMap<>(high) : null;
+        return result;
     }
 }
